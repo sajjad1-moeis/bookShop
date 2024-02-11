@@ -93,4 +93,4 @@ function LodingSite() {
   $.querySelector(".load").classList.add("hidden");
   $.querySelector("main").classList.remove("hidden");
 }
-LodingSite();
+// LodingSite();
