@@ -38,7 +38,7 @@ const Header = (dot) => {
         </div>
       </header>`
   );
-  document.querySelector("main").insertAdjacentHTML(
+  document.body.insertAdjacentHTML(
     "afterbegin",
     `
     
