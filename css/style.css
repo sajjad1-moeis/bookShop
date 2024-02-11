@@ -19,6 +19,9 @@ body{
     background-color: rgba(241, 242, 246, 0.5)
 
 }
+main,.header-mobile{
+    transition: 0.3s;
+}
 
 header li{
     list-style: none;
