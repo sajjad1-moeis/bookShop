@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>فروشگاه کتاب</title>
+    <link rel="stylesheet" href="./css/tailwind.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="icon" href="https://xtratheme.com/wp-content/uploads/2018/03/favicon.png" sizes="32x32" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /> -->
+  </head>
+  <body dir="rtl">
+    <main class="relative h-max lg:pt-0 pt-20">
+      <div class="container w-full body">
+        <!-- Girl And Search -->
+        <div class="grid grid-cols-1 lg:grid-cols-2">
+          <div class="w-full p-10 md:p-20 md:pt-32">
+            <p class="text-2xl md:text-6xl flex-none">مجموعه عظیم</p>
+            <!-- <p class="text-2xl md:text-6xl flex-none my-5">از <span class="text-primary">بهترین کتاب ها</span></p> -->
+            <div class="my-10 leading-8 text-zinc-400">
+              کتاب آنلاین منبعی به شکل کتاب است که فقط برای مطالعه در اینترنت در دسترس است. این کتاب با ایده رایج یک کتاب الکترونیکی متفاوت است.
+            </div>
+            <div class="flex justify-between gap-2">
+              <div class="w-full overflow-hidden bg-white rounded-full p-3 h-max m-auto">
+                <input type="text" class="outline-none rounded-full h-full w-full m-auto px-3" placeholder="اسم کتاب, نویسنده, کلمه کلیدی, ..." />
+              </div>
+              <div class="flex my-10 bg-primary ps-4 p-8 py-3 gap-1 rounded-full btnSearch cursor-pointer">
+                <img src="./img/search3.png" class="w-4 h-4 m-auto" alt="" />
+                <div class="text-white w-full">جستجو</div>
+              </div>
+            </div>
+          </div>
+          <div class="overflow-hidden relative">
+            <div
+              class="absolute bg-primary bottom-[-9%] right-7"
+              style="border-radius: 100px; z-index: 5; transform: rotate(75deg); width: 90%; height: 80%"
+            ></div>
+            <img src="./img/girl.png" class="relative" alt="" style="z-index: 5555" />
+          </div>
+        </div>
+
+        <!-- daste Bandi  -->
+
+        <div class="my-24">
+          <category-show title="دسته بندی" more="مجموعه کتاب اکسترا"></category-show>
+        </div>
+        <div class="" w-full mt-20>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-white md:p-10">
+            <div class="md:col-span-1"><majmoe-show book="book1" title="اکشن و ماجراجویی"></majmoe-show></div>
+            <div class="md:col-span-2">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <majmoe-show book="book2" title="کلاسیک"></majmoe-show>
+                <majmoe-show book="book3" title="کارگاه و رمز و راز"></majmoe-show>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-5 my-5">
+                <majmoe-show book="book4" title="زمان هایی در نیویورک پرفروش ترین ها" class="md:col-span-2"></majmoe-show>
+                <majmoe-show book="book5" title="بیوگرافی"></majmoe-show>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <section class="m-0">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path
+              fill="#F1F2F6"
+              fill-opacity="1"
+              d="M0,128L120,112C240,96,480,64,720,64C960,64,1200,96,1320,112L1440,128L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"
+            ></path>
+          </svg>
+        </div>
+        <div class="mt-[-10%]" style="background-color: #f1f2f6">
+          <!-- <category-show title="پر فروش ترین  ها" more="پرفروش ترین های امسال"></category-show> -->
+
+          <!-- پر فروش ترین -->
+
+          <div class="py-20 product grid grid-cols-1 gap-y-10 md:gap-y-20 md:grid-cols-2 lg:grid-cols-4 gap-5 container">
+            <!-- template Mahsol -->
+
+            <!-- template Mahsol -->
+          </div>
+          <div class="mt-10 allProduct cursor-pointer p-4 bg-primary px-6 w-max mx-auto text-white rounded-full">مشاهده کل مجموعه</div>
+        </div>
+        <div class="rotate-180">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200">
+            <path
+              fill="#F1F2F6"
+              fill-opacity="1"
+              d="M0,128L120,112C240,96,480,64,720,64C960,64,1200,96,1320,112L1440,128L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"
+            ></path>
+          </svg>
+        </div>
+      </section>
+      <div class="mt-10 md:mt-0"></div>
+
+      <category-show title="نظرات و پیشنهادات" more="مشتریان ما چه می گویند؟"></category-show>
+
+      <!-- MySwiper1 -->
+
+      <div class="container my-20 swiper1 relative">
+        <div class="swiper mySwiper1">
+          <div class="swiper-wrapper"></div>
+        </div>
+        <div class="absolute left-1/2" style="bottom: -50px">
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+
+      <div class="md:px-0 px-2">
+        <div class="container p-16 percent mt-44">
+          <div class="text-white p-2 px-4 rounded-full bg-primary w-max mx-auto">تخفیف ویژه</div>
+          <h1 class="text-2xl md:text-5xl my-9 text-center text-white">۲۰ درصد تخفیف ویژه برای اولین خرید شما!</h1>
+          <p class="text-center text-zinc-300">کتاب آنلاین منبعی به شکل کتاب است که فقط برای مطالعه در اینترنت در دسترس است.</p>
+          <p class="text-center text-zinc-300">این کتاب با ایده رایج یک کتاب الکترونیکی متفاوت است.</p>
+          <div class="cursor-pointer p-5 text-white bg-primary w-max rounded-full mx-auto my-10 hover:bg-black" style="transition: 0.3s">
+            <img src="./img/shop.png" class="w-6 inline" alt="" />
+            همین الان خرید کنید
+          </div>
+        </div>
+        <div class="mt-28 my-10">
+          <category-show title="نویسندگان" more="محبوب ترین نویسندگان"></category-show>
+        </div>
+
+        <!-- نویسنده ها -->
+
+        <div class="grid md:grid-cols-4 gap-5 grid-cols-2 container nevisande">
+          <div-nevisande img="./img/n2.jpg" t1="آدام گرین" t2="روانشناس"></div-nevisande>
+          <div-nevisande img="./img/n1.jpg" t1="مایک براون" t2="نویسنده برزیلی"></div-nevisande>
+          <div-nevisande img="./img/n3.jpg" t1="جمیس جان" t2="روانشناس"></div-nevisande>
+          <div-nevisande img="./img/n4.jpg" t1="ساناز بهرامی" t2=" نویسنده ایرانی"></div-nevisande>
+        </div>
+
+        <div class="md:px-10 container mt-44">
+          <div class="w-full ozviat p-10 md:p-20">
+            <div class="text-white px-4 rounded-full bg-[#27187e] p-2 w-max mx-auto">دریافت تخفیف</div>
+            <h1 class="text-3xl md:text-5xl text-white mx-auto my-8 text-center">به ما بپیوندید</h1>
+            <div class="gap-3 overflow-hidden max-w-[550px] mx-auto w-full p-1 bg-white rounded-full flex justify-between">
+              <div class="w-full"><input placeholder="ارسال ایمیل" type="text" class="w-full h-full p-3 outline-none" required /></div>
+              <div class="cursor-pointer bg-primary p-3 rounded-full flex w-max text-white ps-5 pe-9">
+                <div class="h-max my-auto">عضویت</div>
+                <img src="./img/search3.png" class="w-7 inline ms-2" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="container bg-[#f1f2f6] gap-7 px-5 md:px-20 pt-44 pb-20 footer grid grid-cols-2 md:grid-cols-4">
+        <div>
+          <div><img src="./img/logo-book-shop.png" alt="" /></div>
+          <div class="my-8">"همان باشید که هستید و آنچه را که احساس می کنید بگویید ، زیرا کسانی که اهمیت می دهند اهمیتی ندارند ."</div>
+          <span class="text-primary">برنارد</span>
+        </div>
+        <item-footer></item-footer>
+        <item-footer></item-footer>
+        <item-footer></item-footer>
+        <div></div>
+        <div></div>
+      </div>
+    </footer>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <script src="index.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+  </body>
+  <div></div>
+</html>

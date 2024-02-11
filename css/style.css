@@ -1,0 +1,197 @@
+@font-face {
+    font-family: iranSans;
+    src: url("../fonts/woff/DanaFaNum-Medium.woff");
+}
+:root{
+    --main-color: #758bfd;
+    --main-radius: 40px;
+
+    
+}
+*{
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: iranSans;
+}
+main{
+    background-color: rgba(241, 242, 246, 0.5)
+
+}
+header li{
+    list-style: none;
+}
+
+.item-nav{
+    transition: 0.3s;
+    position: relative;
+    cursor: pointer;
+}
+.item-nav::before{
+    transition: 0.3s ease-in-out;
+    content: "";
+    position: absolute;
+    height: 3px; 
+    border-radius: 20px;
+    width: 0; 
+    bottom: -5px;
+    background-color: var(--main-color);
+}
+.item-nav:hover::before{
+    width: 100%;
+}
+.item-nav:hover{
+    color: var(--main-color);
+
+}
+header .active{
+    color: var(--main-color);
+}
+.login{transition: 0.3s;}
+.login:hover{
+    background-color: black;
+}
+
+.book1,.book2,.book3,.book4,.book5{
+         border-radius: var(--main-radius);
+        background-size: cover;
+
+}
+.book1{
+    padding: 40px 50px 425px;
+    background-image: url("/img/book1.png"),linear-gradient(90deg,#105372,#105372);
+
+
+}
+.book2{
+         padding: 40px 50px 130px;
+        background-image: url("/img/book2.png"),linear-gradient(90deg,#26292a,#26292a);
+}
+.book3{
+         padding:40px 50px 130px;
+         background-repeat: no-repeat;
+         background-position: right center;
+        background-image: url("/img/book3.png"),linear-gradient(90deg,#ff6600,#ff6600);
+}
+.book4{    background-repeat: no-repeat;
+    background-position: right center;
+         padding: 40px 50px 140px;
+        background-image: url("/img/book4.png"),linear-gradient(90deg,var(--main-color),var(--main-color));
+}
+.book5{
+    color: #353535;
+         padding: 40px 50px 140px;
+        background-image: url("/img/book5.png"),linear-gradient(90deg,#f1f2f6,#f1f2f6);
+}
+.parent .hover,.p-1{
+    transition: 0.5s;
+}
+.parent .hover:hover{
+    color: var(--main-color);;
+    background-color: white;
+}
+.parent .hover:hover .p-1{
+    background-color: var(--main-color);;
+}
+.btnMahsol{
+    transition: 0.3s;
+}
+.btnMahsol:hover{
+    background-color: #000;
+}
+#scrollTop{
+
+    bottom: -70px;
+    left: 50px;
+    z-index: 50;
+    transition: 0.5s;
+}
+.allProduct{
+    transition: 0.3s;
+}
+#scrollTop:hover,.allProduct:hover{
+    background-color: #000;
+}
+
+.hoverLeft{
+    top: 50px;
+    transition: 0.3s;
+    overflow: hidden;
+    left: 5px;
+}
+@media (min-width:1024px) {
+    .hoverLeft{
+        left: -50px;
+    } 
+    .item-mahsol:hover .hoverLeft{
+        left: 5px;
+    }
+}
+
+
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-slide img {
+    display: block;
+   
+    object-fit: cover;
+  }
+  .mySwiper1 .swiper-slide{
+    background: transparent
+  }
+  .swiper-button-prev::after,.swiper-button-next::after{
+    color: white;
+font-size: 25px !important;
+}
+  .swiper-button-prev,.swiper-button-next{
+    transform: rotate(180deg);
+    background-color: var(--main-color);
+    padding: 30px;
+    border-radius: 20px;
+  }
+  .percent{
+    border-radius: var(--main-radius);
+    background-size: cover;
+    background-image: linear-gradient(90deg,rgba(32,48,129,.8),rgba(32,48,129,.8)),url("../img/keetab.jpg");
+  }
+  .menu-mobile{
+    z-index: 55555; background-image: url("/img/bg.png"), linear-gradient(90deg, #758bfd, #758bfd);transition: 0.5s;left: -350px;
+}
+.showMenu{
+    left: 0;
+}
+.persent {
+    transition: 0.3s;
+}
+.persent:hover{
+    opacity: 0.5;
+}
+.ozviat{
+    background-position: center center;
+    border-radius: var(--main-radius);
+    background-image: url("/img/bg.png"),linear-gradient(90deg,#758bfd,#758bfd); 
+       background-size: cover;
+
+}
+.footer{
+    border-radius: var(--main-radius);
+    margin-top: -120px;
+}
+.footer .leading-8 div{
+    cursor: pointer;
+    line-height: 50px;
+
+}
