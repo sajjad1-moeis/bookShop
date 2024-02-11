@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/tailwind.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body dir="rtl" class="bg-[#2a2b3d]">
+    <div class="body">
+      <div class="grid grid-cols-1 md:grid-cols-5">
+        <div class="md:col-span-1 overflow-auto h-full bg-[#252636] p-5 py-10">
+          <div class="user-profile bg-white w-max mx-auto rounded-full">
+            <img src="../img/noProfile.png" class="w-32" alt="" />
+          </div>
+          <div class="text-white my-10 text-xl panel"></div>
+        </div>
+        <div class="md:col-span-4 text-white">
+          <div class="p-10 w-full flex text-lg md:text-xl justify-between bg-[#313348]">
+            <span>سلام سجاد جان</span>
+            <a href="../index.html"
+              ><span>بازگشت به صفحه اصلی <img src="../img/arrow-left.png" class="inline w-4" alt="" /></span
+            ></a>
+          </div>
+          <div class="p-10 pb-5">
+            <div>
+              <div class="rounded-xl overflow-hidden p-4 px-10 bg-[#313348] md:flex block justify-between">
+                <div>
+                  <h1 class="text-2xl my-3">به پنل ادمین خوش آمدید</h1>
+                  <p>سلام سجاد جان، به داشبورد عالی خود خوش آمدید!</p>
+                </div>
+                <div class="flex h-max gap-2 md:my-auto justify-end my-5">
+                  <div class="relative">
+                    <img src="../img/icons8-notification-50.png" class="w-8 h-8" alt="" />
+                    <div class="absolute p-0.5 top-[-8px] rounded-full bg-danger text-xs">98</div>
+                  </div>
+                  <div class="relative">
+                    <img src="../img/icons8-setting-50.png" class="w-8 h-8" alt="" />
+                    <div class="absolute p-0.5 top-[-8px] rounded-full bg-danger text-xs">98</div>
+                  </div>
+                </div>
+              </div>
+              <div class="p-4 my-5 px-10 bg-[#313348] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 more rounded-xl overflow-hidden"></div>
+            </div>
+
+            <!-- Chart -->
+
+            <div class="pt-0 md:block hidden rounded-xl overflow-hidden">
+              <div class="bg-[#313348]">
+                <canvas id="myChart"></canvas>
+              </div>
+            </div>
+
+            <!-- آمار فروش -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10 mb-5 more2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="../js/panel.js"></script>
+  </body>
+</html>

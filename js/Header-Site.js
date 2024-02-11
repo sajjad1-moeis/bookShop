@@ -1,5 +1,5 @@
 const $ = document;
-const Header = (dot) => {
+const Header = (dot, href) => {
   document.querySelector(".body").insertAdjacentHTML(
     "afterbegin",
     `
@@ -27,11 +27,13 @@ const Header = (dot) => {
 
                 <img src="${dot}./img/download.png" class="w-9" />
               </div>
-              <div class="login m-auto p-4 w-full h-full cursor-pointer bg-primary text-white rounded-full">
-                <div class="text-center w-max m-auto pe-2">
+              <div class="login m-auto  w-full h-full cursor-pointer bg-primary text-white rounded-full">
+              <a href="${dot}./html/login.html" >  
+              <div class="text-center w-max m-auto  p-4">
                   <img src="${dot}./img/user.png" class="my-auto w-7 h-7 inline" />
-                  <span class="my-auto">ورود / ثبت نام</span>
+                  <span class="my-auto">${href}</span>
                 </div>
+                </a>
               </div>
             </div>
           </div>
@@ -53,6 +55,10 @@ const Header = (dot) => {
         <div class="text-xl h-max my-auto">منوها</div>
         <div class="closeBtnMenuMobile"><img src="${dot}./img/close-icon.png" alt="" class="w-8" /></div>
       </div>
+     <div class="my-5 p-3 border-b-2 text-white border-white">
+     <a href="${dot}./html/login.html"><span class="my-auto">${href}</span></a>
+     </div>
+
     </div>
 `
   );

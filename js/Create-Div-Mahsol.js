@@ -13,7 +13,7 @@ const CreateDivMahsol = (arr, parent, dot) => {
                     <div id="search" class="cursor-pointer rounded-full"><img src="${dot}./img/search3.png" class="md:w-5 w-7 mx-auto my-2" alt="" /></div>
                   </div>
 
-                  <img src="https://book-shop-back-end-one.vercel.app${item.imagePath}" alt="" />
+                  <img src="https://bookshop-backend.liara.run${item.imagePath}" alt="" />
                 </div>
                 <div class="my-6 text-3xl">${item.name}</div>
                 <div class="w-full flex justify-between my-3">

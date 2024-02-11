@@ -4,42 +4,92 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
     <link rel="stylesheet" href="../css/login.css" />
+    <link rel="stylesheet" href="../css/tailwind.css" />
   </head>
-  <body>
-    <div class="container">
-      <div class="screen">
-        <div class="screen__content">
-          <form class="login">
-            <div class="login__field">
-              <i class="login__icon fas fa-user"></i>
-              <input type="text" class="login__input" placeholder="User name / Email" />
-            </div>
-            <div class="login__field">
-              <i class="login__icon fas fa-lock"></i>
-              <input type="password" class="login__input" placeholder="Password" />
-            </div>
-            <button class="button login__submit">
-              <span class="button__text">Log In Now</span>
-              <i class="button__icon fas fa-chevron-right"></i>
-            </button>
-          </form>
-          <div class="social-login">
-            <h3>log in via</h3>
-            <div class="social-icons">
-              <a href="#" class="social-login__icon fab fa-instagram"></a>
-              <a href="#" class="social-login__icon fab fa-facebook"></a>
-              <a href="#" class="social-login__icon fab fa-twitter"></a>
-            </div>
+  <body dir="rtl">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path
+        fill="#5000ca"
+        fill-opacity="1"
+        d="M0,320L48,288C96,256,192,192,288,170.7C384,149,480,171,576,154.7C672,139,768,85,864,90.7C960,96,1056,160,1152,192C1248,224,1344,224,1392,224L1440,224L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
+      ></path>
+    </svg>
+    <div class="max-w-[400px] p-5 w-full form">
+      <div class="login-content w-full">
+        <form action="index.html" class="w-full bg-white p-10 rounded-xl">
+          <div class="flex text-center text-3xl justify-center gap-5 my-8 loginAndRegester">
+            <div class="cursor-pointer active relative" data-id="login">ورود</div>
+            <div class="cursor-pointer relative" data-id="regestar">ثبت نام</div>
           </div>
-        </div>
-        <div class="screen__background">
-          <span class="screen__background__shape screen__background__shape4"></span>
-          <span class="screen__background__shape screen__background__shape3"></span>
-          <span class="screen__background__shape screen__background__shape2"></span>
-          <span class="screen__background__shape screen__background__shape1"></span>
-        </div>
+          <!-- divLogin -->
+          <div id="login" class="login">
+            <div class="input-div one">
+              <div class="i">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="div">
+                <h5>نام کاربری</h5>
+                <input type="text" class="input" />
+              </div>
+            </div>
+            <div class="input-div pass">
+              <div class="i">
+                <i class="fas fa-lock"></i>
+              </div>
+              <div class="div">
+                <h5>پسوورد</h5>
+                <input type="password" class="input" />
+              </div>
+            </div>
+            <a href="#" class="my-7">رمز خود را فراموش کردید ؟</a>
+            <input class="btn" value="Login" />
+          </div>
+          <!-- Div regestar -->
+
+          <div id="regestar" class="hidden login">
+            <div class="input-div one">
+              <div class="i">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="div">
+                <h5>نام</h5>
+                <input type="text" class="input" />
+              </div>
+            </div>
+            <div class="input-div one">
+              <div class="i">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="div">
+                <h5>نام خانوادگی</h5>
+                <input type="text" class="input" />
+              </div>
+            </div>
+            <div class="input-div one">
+              <div class="i">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="div">
+                <h5>پسوورد</h5>
+                <input type="password" class="input" />
+              </div>
+            </div>
+            <div class="input-div pass">
+              <div class="i">
+                <i class="fas fa-lock"></i>
+              </div>
+              <div class="div">
+                <h5>تکرار پسوورد</h5>
+                <input type="password" class="input" />
+              </div>
+            </div>
+            <input class="btn my-8" value="register" />
+          </div>
+        </form>
       </div>
     </div>
+    <script src="../js/login.js"></script>
   </body>
 </html>
