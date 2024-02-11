@@ -25,8 +25,8 @@ class temp1 extends HTMLElement {
 
 let template2 = document.createElement("template");
 template2.innerHTML = `
-   <link rel="stylesheet" href="../css/tailwind.css" />
-   <link rel="stylesheet" href="../css/style.css" />
+   <link rel="stylesheet" href="./css/tailwind.css" />
+   <link rel="stylesheet" href="./css/style.css" />
          <section class="max-w-[550px] w-full mx-auto">
           <div class="w-full flex gap-5">
             <div class="w-full border-[1px] border-zinc-200 m-auto"></div>
