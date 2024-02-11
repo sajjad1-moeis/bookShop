@@ -1,7 +1,7 @@
 let template = document.createElement("template");
 template.innerHTML = `
-   <link rel="stylesheet" href="../css/tailwind.css" />
-   <link rel="stylesheet" href="../css/style.css" />
+   <link rel="stylesheet" href="./css/tailwind.css" />
+   <link rel="stylesheet" href="ٌ./css/style.css" />
     <div class=" w-full parent">
     <div class="text-lg onvan">اکشن و ماجراجویی</div>
     <div class="hover cursor-pointer pe-3 p-2 gap-3 flex text-xs border-[1px] border-white rounded-full my-3 w-max">

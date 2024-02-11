@@ -23,8 +23,6 @@ customElements.define("item-footer", itemFooter);
 // let res = await api.json();
 // console.log(res);
 
-CreateDivMahsol([1, 5, 5, 2, 3, 6, 6, 5], document.querySelector(".product"), "");
-
 ///////////////// PopUp
 
 tippy("#love", {
@@ -86,9 +84,10 @@ const CreateDivSwiper1 = (arr) => {
   });
   swiper1.append(fragment);
 };
+CreateDivSwiper1([1, 11, 11, 1, 1, 1]);
 fetch("https://book-shop-back-end-one.vercel.app/api/v1/books")
   .then((result) => result.json())
   .then((data) => {
     console.log(data);
-    // CreateDivSwiper1(data.slice(1, 10));
+    CreateDivMahsol(data.slice(0, 8), document.querySelector(".product"), "");
   });
