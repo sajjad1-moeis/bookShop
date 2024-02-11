@@ -103,8 +103,8 @@ header .active{
 #scrollTop{
 
     bottom: -70px;
-    left: 50px;
-    z-index: 50;
+    left: 30px;
+    z-index: 5550;
     transition: 0.5s;
 }
 .allProduct{
@@ -194,4 +194,9 @@ font-size: 25px !important;
     cursor: pointer;
     line-height: 50px;
 
+}
+.end-footer{
+    border-top-right-radius: var(--main-radius) ;
+    border-top-left-radius:  var(--main-radius);
+    margin-top: -50px;
 }
