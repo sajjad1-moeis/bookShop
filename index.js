@@ -91,3 +91,7 @@ fetch("https://book-shop-back-end-one.vercel.app/api/v1/books")
     console.log(data);
     CreateDivMahsol(data.slice(0, 8), document.querySelector(".product"), "");
   });
+
+window.onload = () => {
+  console.log("object");
+};
