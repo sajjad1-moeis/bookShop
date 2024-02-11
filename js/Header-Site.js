@@ -42,7 +42,7 @@ const Header = (dot) => {
     "afterbegin",
     `
     
-    <div class="w-full lg:hidden bg-white shadow-xl p-5 flex justify-between fixed" style="z-index: 55555">
+    <div class="header-mobile w-full lg:hidden bg-white shadow-xl p-5 flex justify-between fixed" style="z-index: 55555">
   <div><img src="${dot}./img/logo-book-shop.png" class="w-28" alt="" /></div>
   <div class="flex gap-1">
     <div class="cursor-pointer p-3 rounded-full bg-primary"><img src="${dot}./img/book-header.png" class="w-6" alt="" /></div>
@@ -79,14 +79,38 @@ const DivScroll = (dot) => {
   };
 };
 
+function removeClass(elm, clas) {
+  $.querySelector(`${elm}`).classList.remove(`${clas}`);
+}
 const showMenuMobileBtn = () => {
   $.querySelector(".showMenuMobile").onclick = () => {
     $.querySelector(".menu-mobile").classList.toggle("showMenu");
+    $.querySelector("main").classList.toggle("showMain");
+    $.querySelector(".header-mobile").classList.toggle("showMain");
   };
 };
+function a() {
+  removeClass(".header-mobile", "showMain");
+  removeClass("main", "showMain");
+  removeClass(".menu-mobile", "showMenu");
+}
+
+/////////////CloseMenuMobile
+
 const closeMenuMobile = () => {
-  $.querySelector(".closeBtnMenuMobile").onclick = () => {
-    $.querySelector(".menu-mobile").classList.remove("showMenu");
+  document.querySelector(".header-mobile").onclick = (e) => {
+    let Elm = e.target.tagName;
+    if (Elm === "DIV") {
+      if (!e.target.className.includes("showMenuMobile")) {
+        a();
+      }
+    } else {
+      if (!e.target.parentElement.className.includes("showMenuMobile")) {
+        a();
+      }
+    }
   };
+  document.querySelector("main").onclick = a;
+  $.querySelector(".closeBtnMenuMobile").onclick = a;
 };
 export {Header, DivScroll, showMenuMobileBtn, closeMenuMobile};
