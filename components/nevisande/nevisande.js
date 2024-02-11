@@ -1,7 +1,7 @@
 let template = document.createElement("template");
 template.innerHTML = `
-<link rel="stylesheet" href="../css/tailwind.css" />
-<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="./css/tailwind.css" />
+<link rel="stylesheet" href="./css/style.css" />
 <div>
 <img src="./img/n1.jpg" alt="" class="rounded-full persent" />
 <div class="flex gap-2 w-max mx-auto mt-[-35px]">

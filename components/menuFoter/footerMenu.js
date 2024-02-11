@@ -1,7 +1,7 @@
 let template = document.createElement("template");
 template.innerHTML = `
-<link rel="stylesheet" href="../css/tailwind.css" />
-<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="./css/tailwind.css" />
+<link rel="stylesheet" href="./css/style.css" />
 <div class="">
 <div class="h-max border-s-2 border-zinc-300"></div>
 <div class="">

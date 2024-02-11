@@ -65,7 +65,7 @@ var swiper = new Swiper(mySwiper1, {
 
 const CreateDivSwiper1 = (arr) => {
   let fragment = $.createDocumentFragment();
-  arr.forEach((element) => {
+  arr.forEach(() => {
     let div = $.createElement("div");
     div.className = "swiper-slide py-2";
     div.innerHTML = `
@@ -86,4 +86,9 @@ const CreateDivSwiper1 = (arr) => {
   });
   swiper1.append(fragment);
 };
-CreateDivSwiper1([1, 1, 1, 1]);
+fetch("https://book-shop-back-end-one.vercel.app/api/v1/books")
+  .then((result) => result.json())
+  .then((data) => {
+    console.log(data);
+    // CreateDivSwiper1(data.slice(1, 10));
+  });
