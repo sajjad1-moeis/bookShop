@@ -1280,6 +1280,10 @@ video {
     row-gap: 5rem;
   }
 
+  .md\:text-balance {
+    text-wrap: balance;
+  }
+
   .md\:p-10 {
     padding: 2.5rem;
   }

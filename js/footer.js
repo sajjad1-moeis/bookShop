@@ -5,7 +5,7 @@ const TemplateFooter = (dot) => {
     <footer class="container">
       <div class="md:px-10 container mt-44 relative">
         <div class="w-full ozviat p-5 md:p-20">
-          <div class="text-white px-4 rounded-full bg-[#27187e] p-2 w-max mx-auto">دریافت تخفیف</div>
+          <div class="text-white px-4 rounded-full bg-[#27187e] p-2 w-max mx-auto md:text-balance text-sm">دریافت تخفیف</div>
           <h1 class="text-3xl md:text-5xl text-white mx-auto my-8 text-center">به ما بپیوندید</h1>
           <div class="gap-3 overflow-hidden max-w-[550px] mx-auto w-full p-1 bg-white rounded-full flex justify-between">
             <div class="w-full"><input placeholder="ارسال ایمیل" type="text" class="w-full h-full p-3 outline-none" required /></div>
