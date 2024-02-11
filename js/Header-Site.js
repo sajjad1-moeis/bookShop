@@ -41,8 +41,7 @@ const Header = (dot) => {
   document.body.insertAdjacentHTML(
     "afterbegin",
     `
-    
-    <div class="header-mobile w-full lg:hidden bg-white shadow-xl p-5 flex justify-between fixed" style="z-index: 55555">
+    <div class="hidden header-mobile w-full lg:hidden bg-white shadow-xl p-5  justify-between fixed" style="z-index: 55555">
   <div><img src="${dot}./img/logo-book-shop.png" class="w-28" alt="" /></div>
   <div class="flex gap-1">
     <div class="cursor-pointer p-3 rounded-full bg-primary"><img src="${dot}./img/book-header.png" class="w-6" alt="" /></div>

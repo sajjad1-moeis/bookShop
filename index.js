@@ -92,5 +92,6 @@ function LodingSite() {
   $.body.classList.remove("bg-primary");
   $.querySelector(".load").classList.add("hidden");
   $.querySelector("main").classList.remove("hidden");
+  $.querySelector(".header-mobile").classList.replace("hidden", "flex");
 }
 LodingSite();
