@@ -39,7 +39,7 @@ header li{
     height: 3px; 
     border-radius: 20px;
     width: 0; 
-    bottom: -5px;
+    bottom: -10px;
     background-color: var(--main-color);
 }
 .item-nav:hover::before{
@@ -51,6 +51,10 @@ header li{
 }
 header .active{
     color: var(--main-color);
+}
+header .active::before{
+    width: 100%;
+
 }
 .login{transition: 0.3s;}
 .login:hover{
@@ -208,4 +212,38 @@ font-size: 25px !important;
     border-top-right-radius: var(--main-radius) ;
     border-top-left-radius:  var(--main-radius);
     margin-top: -50px;
+}
+
+.load{
+  padding: 5px;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform-origin: center center;
+  transform:translate(-50%, -50%) rotate(135deg);
+  /*change these sizes to fit into your project*/
+  width:50px;
+  height:50px;
+  
+}
+.load hr{
+  border:0;
+  margin:0;
+  width:80%;
+  height:80%;
+  position:absolute;
+  border-radius:50%;
+  animation:spin 2s ease infinite;
+}
+
+.load :first-child{background:#3d23ce;animation-delay:-1.5s}
+.load :nth-child(2){background:#4d4fc4;animation-delay:-1s}
+.load :nth-child(3){background:#9aa0f7;animation-delay:-0.5s}
+.load :last-child{background:#c1e0ec}
+
+@keyframes spin{
+  0%,100%{transform:translateX(200%)}
+  25%{transform:translateY(200%)}
+  50%{transform:translateX(0)}
+  75%{transform:translateY(0)}
 }

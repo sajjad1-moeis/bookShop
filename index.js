@@ -85,13 +85,12 @@ const CreateDivSwiper1 = (arr) => {
   swiper1.append(fragment);
 };
 CreateDivSwiper1([1, 11, 11, 1, 1, 1]);
-fetch("https://book-shop-back-end-one.vercel.app/api/v1/books")
-  .then((result) => result.json())
-  .then((data) => {
-    console.log(data);
-    CreateDivMahsol(data.slice(0, 8), document.querySelector(".product"), "");
-  });
-
-window.onload = () => {
-  console.log("object");
-};
+let api = await fetch("https://book-shop-back-end-one.vercel.app/api/v1/books");
+let arrBook = await api.json();
+CreateDivMahsol(arrBook.slice(0, 8), document.querySelector(".product"), "");
+function LodingSite() {
+  $.body.classList.remove("bg-primary");
+  $.querySelector(".load").classList.add("hidden");
+  $.querySelector("main").classList.remove("hidden");
+}
+LodingSite();

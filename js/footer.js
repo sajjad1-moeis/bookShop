@@ -1,5 +1,5 @@
 const TemplateFooter = (dot) => {
-  document.body.insertAdjacentHTML(
+  document.querySelector("main").insertAdjacentHTML(
     "beforeend",
     `
     <footer class="container">
