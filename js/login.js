@@ -54,11 +54,11 @@ const regesterFunc = () => {
   spanError.forEach((span) => span.classList.add("hidden"));
   if (inputDivRegestar[0].value.length < 8) {
     removeClass(0);
-  } else if (!validateEmail(inputDivRegestar[1].value)) {
+  } else if (inputDivRegestar[1].value.length < 8) {
     removeClass(1);
-  } else if (inputDivRegestar[2].value.length < 8) {
+  } else if (!validateEmail(inputDivRegestar[2].value)) {
     removeClass(2);
-  } else if (inputDivRegestar[3].value !== inputDivRegestar[2].value) {
+  } else if (inputDivRegestar[3].value < 8) {
     console.log("object");
     removeClass(3);
   } else {
@@ -89,6 +89,3 @@ showPassBtn.forEach((btn) => {
 });
 registerBtn.onclick = regesterFunc;
 loginBtn.onclick = loginFunc;
-
-const email = "example@gmail.com";
-console.log(validateEmail(email));
