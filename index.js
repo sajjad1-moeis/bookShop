@@ -12,6 +12,12 @@ customElements.define("majmoe-show", temp1);
 customElements.define("category-show", temp2);
 customElements.define("div-nevisande", DivNeviSande);
 customElements.define("item-footer", itemFooter);
+fetch("https://bookshop-backend.liara.run/api/v1/userdata/mydata", {credentials: "include"})
+  .then((result) => {
+    return result.json();
+  })
+  .then((data) => console.log(data))
+  .catch((err) => {});
 (() => {
   Header("", "ورود / ثبت نام");
   DivScroll("");

@@ -69,11 +69,20 @@ const ValidDataBaseRegister = (name, family, email, pass) => {
     body: JSON.stringify(newUser),
   })
     .then((result) => {
-      console.log(result);
-      location.reload();
+      Swal.fire({
+        title: "با موفقیت ثبت نام کردید ",
+        icon: "success",
+      }).then((data) => {
+        if (data.isConfirmed || data.isDismissed) {
+          location.reload();
+        }
+      });
     })
     .catch((err) => {
-      console.log(err);
+      Swal.fire({
+        title: "دوباره تلاش کنید",
+        icon: "error",
+      });
     });
 };
 const regesterFunc = () => {
@@ -93,7 +102,7 @@ const regesterFunc = () => {
 };
 
 ////////////////Valid Login
-const ValidDataBaseLogin = (email, password) => {
+const ValidDataBaseLogin = async (email, password) => {
   fetch("https://bookshop-backend.liara.run/api/v1/login", {
     credentials: "include",
     method: "POST",
@@ -112,12 +121,21 @@ const ValidDataBaseLogin = (email, password) => {
       } else if (!data.success) {
         spanErrorLogin.textContent = "پسورد اشتباه است";
       } else {
-        location.href = "../index.html";
-        spanErrorLogin.textContent = "";
+        Swal.fire({
+          title: "با موفقیت ورود کردید ",
+          icon: "success",
+        }).then((data) => {
+          if (data.isConfirmed || data.isDismissed) {
+            location.href = "../index.html";
+          }
+        });
       }
     })
     .catch((err) => {
-      console.log(err);
+      Swal.fire({
+        title: "دوباره تلاش کنید",
+        icon: "error",
+      });
     });
 };
 
