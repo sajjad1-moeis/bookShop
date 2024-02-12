@@ -87,6 +87,7 @@
 //     }
 //   });
 // });
+
 const inputs = document.querySelectorAll(".input");
 
 function addcl() {
@@ -119,3 +120,55 @@ BtnLoginAndRegestar.forEach((btn) => {
     div.classList.remove("hidden");
   };
 });
+
+const loginBtn = document.querySelector(".loginBtn");
+const registerBtn = document.querySelector(".registerBtn");
+const inputDivRegestar = document.querySelectorAll("#regestar input");
+const spanError = document.querySelectorAll(".spanError");
+const spanErrorLogin = document.querySelector(".spanErrorLogin");
+const showPassBtn = document.querySelectorAll(".showPassBtn");
+const removeClass = (add) => {
+  spanError[add].classList.remove("hidden");
+};
+
+///////////Function Regester
+
+const regesterFunc = () => {
+  spanError.forEach((span) => span.classList.add("hidden"));
+  if (inputDivRegestar[0].value.length < 8) {
+    removeClass(0);
+  } else if (inputDivRegestar[1].value.length < 4) {
+    removeClass(1);
+  } else if (inputDivRegestar[2].value.length < 8) {
+    removeClass(2);
+  } else if (inputDivRegestar[3].value !== inputDivRegestar[2].value) {
+    console.log("object");
+    removeClass(3);
+  } else {
+  }
+};
+
+///////////Function Login
+
+const loginFunc = () => {
+  console.log("object");
+};
+
+/////Convert input Text  To Pass
+
+function showPassFunc() {
+  let input = this.parentElement.querySelector("input");
+  let img = this.parentElement.querySelector("img");
+  if (input.type === "password") {
+    input.type = "text";
+    img.src = "../img/eye.png";
+  } else {
+    img.src = "../img/eye-slash.png";
+    input.type = "password";
+  }
+}
+showPassBtn.forEach((btn) => {
+  btn.onclick = showPassFunc;
+});
+registerBtn.onclick = regesterFunc;
+loginBtn.onclick = loginFunc;

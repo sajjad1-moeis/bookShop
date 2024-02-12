@@ -68,29 +68,29 @@ header .active::before{
 }
 .book1{
     padding: 40px 50px 425px;
-    background-image: url("/img/book1.png"),linear-gradient(90deg,#105372,#105372);
+    background-image: url("../img/book1.png"),linear-gradient(90deg,#105372,#105372);
 
 
 }
 .book2{
          padding: 40px 50px 130px;
-        background-image: url("/img/book2.png"),linear-gradient(90deg,#26292a,#26292a);
+        background-image: url("../img/book2.png"),linear-gradient(90deg,#26292a,#26292a);
 }
 .book3{
          padding:40px 50px 130px;
          background-repeat: no-repeat;
          background-position: right center;
-        background-image: url("/img/book3.png"),linear-gradient(90deg,#ff6600,#ff6600);
+        background-image: url("../img/book3.png"),linear-gradient(90deg,#ff6600,#ff6600);
 }
 .book4{    background-repeat: no-repeat;
     background-position: right center;
          padding: 40px 50px 140px;
-        background-image: url("/img/book4.png"),linear-gradient(90deg,var(--main-color),var(--main-color));
+        background-image: url("../img/book4.png"),linear-gradient(90deg,var(--main-color),var(--main-color));
 }
 .book5{
     color: #353535;
          padding: 40px 50px 140px;
-        background-image: url("/img/book5.png"),linear-gradient(90deg,#f1f2f6,#f1f2f6);
+        background-image: url("../img/book5.png"),linear-gradient(90deg,#f1f2f6,#f1f2f6);
 }
 .parent .hover,.p-1{
     transition: 0.5s;
