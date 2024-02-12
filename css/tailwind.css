@@ -977,6 +977,10 @@ video {
   border-radius: 0.75rem;
 }
 
+.rounded-2xl {
+  border-radius: 1rem;
+}
+
 .border-8 {
   border-width: 8px;
 }
@@ -999,6 +1003,10 @@ video {
 
 .border-s-4 {
   border-inline-start-width: 4px;
+}
+
+.border-b-4 {
+  border-bottom-width: 4px;
 }
 
 .border-primary {
@@ -1419,6 +1427,11 @@ video {
     margin-bottom: auto;
   }
 
+  .md\:my-0 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
   .md\:mt-0 {
     margin-top: 0px;
   }
@@ -1431,6 +1444,10 @@ video {
     display: flex;
   }
 
+  .md\:h-9 {
+    height: 2.25rem;
+  }
+
   .md\:w-5 {
     width: 1.25rem;
   }
@@ -1441,6 +1458,10 @@ video {
 
   .md\:w-8 {
     width: 2rem;
+  }
+
+  .md\:w-9 {
+    width: 2.25rem;
   }
 
   .md\:grid-cols-2 {

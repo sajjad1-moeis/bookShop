@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/tailwind.css" />
+    <link rel="stylesheet" href="../css/userPage.css" />
+  </head>
+  <body dir="rtl" class="">
+    <div class="grid grid-cols-1 md:grid-cols-5">
+      <div class="p-5">
+        <div class="rounded-2xl md:col-span-1 overflow-auto h-full bg-primary p-5 py-10">
+          <div class="user-profile bg-white w-max mx-auto rounded-full">
+            <img src="../img/noProfile.png" class="w-32" alt="" />
+          </div>
+          <div class="text-white my-10 text-xl panel"></div>
+        </div>
+      </div>
+      <!-- ////// -->
+      <div class="md:col-span-4 p-5">
+        <div class="p-8 rounded-2xl" style="background-color: rgb(243 244 246)">
+          <div class="text-2xl block md:flex justify-between p-4">
+            <div class="h-max my-auto">
+              <span> <span id="nameUser"></span> عزیز؛ خوش اومدی 🙌 </span>
+            </div>
+            <div class="flex gap-2 md:my-0 my-3 justify-end">
+              <div class="cursor-pointer p-3 bg-primary rounded-full"><img src="../img/icons8-notification-50.png" class="w-8" alt="" /></div>
+              <div class="cursor-pointer p-3 bg-primary rounded-full"><img src="../img/icons8-setting-50.png" class="w-8" alt="" /></div>
+            </div>
+          </div>
+          <div class="grid gap-5 my-6 md:grid-cols-4 grid-cols-1 text-white more2"></div>
+        </div>
+      </div>
+    </div>
+    <script src="../js/userPage.js" type="module"></script>
+  </body>
+</html>

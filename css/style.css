@@ -195,7 +195,7 @@ font-size: 25px !important;
 .ozviat{
     background-position: center center;
     border-radius: var(--main-radius);
-    background-image: url("/img/bg.png"),linear-gradient(90deg,#758bfd,#758bfd); 
+    background-image: url("../img/bg.png"),linear-gradient(90deg,#758bfd,#758bfd); 
        background-size: cover;
 
 }

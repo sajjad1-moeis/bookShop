@@ -24,7 +24,7 @@ const IsLogin = () => {
       if (data.userdata.isAdmin) {
         Header("", "پنل مدیریت", "./html/Panel-Admin.html");
       } else {
-        Header("", "حساب کاربری", "./html/Panel-Admin.html");
+        Header("", "حساب کاربری", "./html/userPage.html");
       }
       DivScroll("");
       showMenuMobileBtn();

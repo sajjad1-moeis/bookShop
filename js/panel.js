@@ -1,3 +1,4 @@
+import {CreateDivsPanel, moreDivCreatePanel} from "./export.js";
 let div = [
   {title: "افزودن محصول", href: "#"},
   {title: "افزودن مقاله", href: "#"},
@@ -8,33 +9,14 @@ let div = [
   {title: "تنظیمات ", href: "#"},
   {title: "خروج ", href: "#"},
 ];
+CreateDivsPanel(div);
 let imgDiv = [
   {img: "../img/icons8-gmail-50.png", title: "50", more1: "تیکت", color: "blue-500", more2: "بازدید سایت"},
   {img: "../img/icons8-file-50.png", title: "0", more1: "مقاله", color: "danger", more2: "ثبت نام کاربر"},
   {img: "../img/icons8-users-50.png", title: "5056", more1: "کاربر", color: "success", more2: "فروش محصولات"},
   {img: "../img/icons8-book-50.png", title: "10", more1: "محصول", color: "warning", more2: "معاملات"},
 ];
-div.forEach((item) => {
-  document.querySelector(".panel").innerHTML += `
-    
-    <div class="p-5 cursor-pointer my-1 flex justify-between">${item.title}<img src="../img/arrow-left.png" alt="" class="w-5 h-5 my-auto" /></div>
-    `;
-});
-
-imgDiv.forEach((item) => {
-  document.querySelector(".more").innerHTML += `
-           <div class="md:mx-auto flex p-4 rounded-lg">
-                <div class="bg-${item.color} p-3 rounded-full"><img src="${item.img}" alt="" class="w-10" /></div>
-                <div class=" h-max my-auto ms-5">${item.title} ${item.more1}</div>
-              </div>`;
-  document.querySelector(".more2").innerHTML += `
-         <div class="p-5 px-14 bg-${item.color} text-center text-3xl rounded-xl">
-                <div class="p-2 border-b-[1px] border-zinc-400 my-2">${item.title}</div>
-                <div class="my-4 text-2xl">${item.more2}</div>
-              </div>
-  `;
-});
-
+moreDivCreatePanel(imgDiv);
 const ctx = document.getElementById("myChart");
 
 new Chart(ctx, {
