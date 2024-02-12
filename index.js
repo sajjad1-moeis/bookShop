@@ -21,8 +21,6 @@ const IsLogin = () => {
       return result.json();
     })
     .then((data) => {
-      console.log(data);
-      console.log(data.userdata.isAdmin);
       if (data.userdata.isAdmin) {
         Header("", "پنل مدیریت", "./html/Panel-Admin.html");
       } else {
@@ -34,7 +32,9 @@ const IsLogin = () => {
       TemplateFooter("");
       LodingSite();
     })
-    .catch((err) => {});
+    .catch((err) => {
+      Header("", "ورود / ثبت نام", "./html/Panel-Admin.html");
+    });
 };
 
 IsLogin();
