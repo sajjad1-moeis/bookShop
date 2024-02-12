@@ -12,24 +12,32 @@ customElements.define("majmoe-show", temp1);
 customElements.define("category-show", temp2);
 customElements.define("div-nevisande", DivNeviSande);
 customElements.define("item-footer", itemFooter);
-fetch("https://bookshop-backend.liara.run/api/v1/userdata/mydata", {credentials: "include"})
-  .then((result) => {
-    return result.json();
-  })
-  .then((data) => console.log(data))
-  .catch((err) => {});
-(() => {
-  Header("", "ورود / ثبت نام");
-  DivScroll("");
-  showMenuMobileBtn();
-  closeMenuMobile();
-  TemplateFooter("");
-})();
-// let api = await fetch("http://localhost:3000/api/v1/book");
-// let res = await api.json();
-// console.log(res);
 
-///////////////// PopUp
+////////////////IsLogin
+
+const IsLogin = () => {
+  fetch("https://bookshop-backend.liara.run/api/v1/userdata/mydata", {credentials: "include"})
+    .then((result) => {
+      return result.json();
+    })
+    .then((data) => {
+      console.log(data);
+      console.log(data.userdata.isAdmin);
+      if (data.userdata.isAdmin) {
+        Header("", "پنل مدیریت", "./html/Panel-Admin.html");
+      } else {
+        Header("", "حساب کاربری", "./html/Panel-Admin.html");
+      }
+      DivScroll("");
+      showMenuMobileBtn();
+      closeMenuMobile();
+      TemplateFooter("");
+      LodingSite();
+    })
+    .catch((err) => {});
+};
+
+IsLogin();
 
 tippy("#love", {
   theme: "tomato",
@@ -101,4 +109,3 @@ function LodingSite() {
   $.querySelector("main").classList.remove("hidden");
   $.querySelector(".header-mobile").classList.replace("hidden", "flex");
 }
-LodingSite();

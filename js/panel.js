@@ -25,7 +25,7 @@ imgDiv.forEach((item) => {
   document.querySelector(".more").innerHTML += `
            <div class="md:mx-auto flex p-4 rounded-lg">
                 <div class="bg-${item.color} p-3 rounded-full"><img src="${item.img}" alt="" class="w-10" /></div>
-                <div class=" h-max my-auto ms-5">${item.title}${item.more1}</div>
+                <div class=" h-max my-auto ms-5">${item.title} ${item.more1}</div>
               </div>`;
   document.querySelector(".more2").innerHTML += `
          <div class="p-5 px-14 bg-${item.color} text-center text-3xl rounded-xl">

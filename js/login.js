@@ -87,9 +87,9 @@ const ValidDataBaseRegister = (name, family, email, pass) => {
 };
 const regesterFunc = () => {
   spanError.forEach((span) => span.classList.add("hidden"));
-  if (inputDivRegestar[0].value.length < 8) {
+  if (inputDivRegestar[0].value.length < 3) {
     removeClass(0);
-  } else if (inputDivRegestar[1].value.length < 8) {
+  } else if (inputDivRegestar[1].value.length < 4) {
     removeClass(1);
   } else if (!validateEmail(inputDivRegestar[2].value)) {
     removeClass(2);

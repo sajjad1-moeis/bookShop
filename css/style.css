@@ -176,7 +176,7 @@ font-size: 25px !important;
     background-image: linear-gradient(90deg,rgba(32,48,129,.8),rgba(32,48,129,.8)),url("../img/keetab.jpg");
   }
   .menu-mobile{
-    z-index: 55555; background-image: url("/img/bg.png"), linear-gradient(90deg, #758bfd, #758bfd);transition: 0.5s;left: -350px;
+    z-index: 55555; background-image: url("./img/bg.png"), linear-gradient(90deg, #758bfd, #758bfd);transition: 0.5s;left: -350px;
 }
 .showMenu{
     left: 0;
