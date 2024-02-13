@@ -69,30 +69,31 @@ new Chart(ctx, {
 let aDiv = document.querySelectorAll(".panel a");
 console.log(aDiv);
 console.log();
-aDiv[7].onclick = () => {
-  swalAlert
-    .fire({
-      title: "آیا مایلید خارج شوید ؟",
-      icon: "warning",
-    })
-    .then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: "با موفقیت خارج شدی",
-          icon: "success",
-        })
-          .then((result) => {
-            console.log(result);
+const LogOut = () => {
+  aDiv[7].onclick = () => {
+    swalAlert
+      .fire({
+        title: "آیا مایلید خارج شوید ؟",
+        icon: "warning",
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: "با موفقیت خارج شدی",
+            icon: "success",
+          }).then((result) => {
+            location.href = "../index.html";
             fetch("https://bookshop-backend.liara.run/api/v1/logout", {credentials: "include"})
               .then((result) => {
                 console.log(result);
               })
               .catch((err) => {});
-          })
-          .catch((err) => {});
-      }
-    });
+          });
+        }
+      });
+  };
 };
+LogOut();
 let swalAlert = Swal.mixin({
   showCancelButton: true,
   confirmButtonColor: "#3085d6",
