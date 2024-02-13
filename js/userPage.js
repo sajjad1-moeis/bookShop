@@ -84,7 +84,6 @@ fetch("https://bookshop-backend.liara.run/api/v1/userdata/mydata", {credentials:
     }
   })
   .catch((err) => {});
-LodingSite();
 
 function LodingSite() {
   $.body.classList.remove("bg-primary");
@@ -97,6 +96,7 @@ function LodingSite() {
 const changeUserBtn = $.getElementById("changeUser");
 const changePassBtn = $.getElementById("changePass");
 const uploadImg = $.getElementById("uploadImg");
+//////////////Unpoad Img User
 uploadImg.onchange = () => {
   console.log();
   let url = URL.createObjectURL(uploadImg.files[0]);
@@ -188,4 +188,11 @@ if (tiketsApi) {
   tiketsContainer.innerHTML = `<span>تیکتی وجود ندارد</span>`;
 }
 
-//////////////Unpoad Img User
+///////////// create Div mahsol
+
+import {CreateDivMahsol} from "./Create-Div-Mahsol.js";
+let mahsolContainer = $.querySelector(".mahsol");
+let api = await fetch("https://bookshop-backend.liara.run/api/v1/books");
+let arrBook = await api.json();
+CreateDivMahsol(arrBook.slice(4, 6), mahsolContainer, ".");
+LodingSite();
