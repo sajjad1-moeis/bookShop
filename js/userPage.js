@@ -30,7 +30,6 @@ const showDivLocation = () => {
   let locationSite = location.search;
   let IdLocation = new URLSearchParams(locationSite);
   let SearchLocation = IdLocation.get("id");
-  console.log(SearchLocation);
   if (SearchLocation === null) {
     document.querySelector(`#pishkhan`).classList.remove("hidden");
   } else {
@@ -124,7 +123,6 @@ const changeUserFunc = () => {
 const currentPass = $.getElementById("currentPass");
 const inputPass = $.querySelectorAll(".inputPass");
 const spanError = $.querySelector(".spanError");
-console.log(inputPass);
 const changePassFunc = () => {
   if (inputPass[0].value.length < 8) {
     spanError.textContent = "پسوورد فعلی باید بیشتر از 8 کاراکتر باشد";
@@ -169,25 +167,6 @@ changePassBtn.onclick = changePassFunc;
 
 ////////////// Tikets
 
-const tiketsContainer = $.querySelector(".tikets");
-let tiketsApi = 0;
-if (tiketsApi) {
-  tiketsContainer.innerHTML = `<a href="#">
-  <div class="p-2 px-4 rounded hover:bg-zinc-100 block md:flex justify-between">
-    <div class="h-max my-auto">محصولات سایت</div>
-    <div class="flex justify-between gap-5 md:my-0 my-5">
-      <div class="lg:text-xs text-zinc-400 h-max my-auto">1402/09/04 (02:42)</div>
-      <div class="flex md:my-5 my-5 gap-2">
-        <div class="lg:text-xs bg-zinc-200 text-slate-500 py-1 px-1.5 rounded">پشتیبانی</div>
-        <div class="lg:text-xs bg-zinc-200 text-slate-500 py-1 px-1.5 rounded">پشتیبانی</div>
-      </div>
-    </div>
-  </div>
-</a>`;
-} else {
-  tiketsContainer.innerHTML = `<span>تیکتی وجود ندارد</span>`;
-}
-
 ///////////// create Div mahsol
 
 import {CreateDivMahsol} from "./Create-Div-Mahsol.js";
@@ -195,4 +174,121 @@ let mahsolContainer = $.querySelector(".mahsol");
 let api = await fetch("https://bookshop-backend.liara.run/api/v1/books");
 let arrBook = await api.json();
 CreateDivMahsol(arrBook.slice(4, 8), mahsolContainer, ".");
+
+//////////////////Open Modal Tiket
+
+const allInputTiket = $.querySelectorAll(".input-tiket");
+function closeModal() {
+  allInputTiket[0].value = "دپارتمان";
+  Array.from(allInputTiket)
+    .slice(1)
+    .forEach((input) => (input.value = ""));
+  modalTiket.style.cssText = "top: -100%;transform: translate(0,-60%)";
+  $.querySelector("main").style.cssText = "filter: none; background: #fff;";
+}
+
+const openModalBtn = $.querySelector(".open-Modal");
+const modalTiket = $.querySelector(".modalTiket");
+openModalBtn.onclick = () => {
+  modalTiket.style.cssText = "top: 0%;transform: translate(0,0%)";
+  $.querySelector("main").style.cssText = "filter: brightness(0.5); background: #ccc;";
+};
+
+$.querySelector("main").onclick = (e) => {
+  let div = e.target.tagName;
+  if (div === "DIV") {
+    if (!e.target.className.includes("open-Modal")) {
+      closeModal();
+    }
+  } else {
+  }
+};
+
+//////////// Post Tiket
+
+const postTiketBtn = $.getElementById("postTiket");
+const errorTiketSpan = $.querySelector(".errorTiketSpan");
+const postTiket = () => {
+  if (allInputTiket[0].value && allInputTiket[1].value && allInputTiket[2].value) {
+    errorTiketSpan.classList.add("hidden");
+    let newTiket = {
+      subject: allInputTiket[0].value,
+      title: allInputTiket[1].value,
+      message: allInputTiket[2].value,
+    };
+    fetch("https://bookshop-backend.liara.run/api/v1/ticket", {
+      method: "POST",
+      credentials: "include",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(newTiket),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        closeModal();
+        getTiketFunc();
+      });
+  } else {
+    errorTiketSpan.classList.remove("hidden");
+  }
+};
+postTiketBtn.onclick = postTiket;
+
+////////////// get Tiket
+const tiketsContainer = $.querySelector(".tikets");
+
+const getTiketFunc = async () => {
+  fetch("https://bookshop-backend.liara.run/api/v1/ticket/myTickets", {
+    credentials: "include",
+  })
+    .then((result) => result.json())
+    .then((data) => {
+      console.log(data.tickets);
+      if (data.tickets == "") {
+        tiketsContainer.innerHTML = `<span>تیکتی وجود ندارد</span>`;
+      } else {
+        let date = new Date(data.tickets[0].createDate).toLocaleString("fa-IR");
+        let time = date.split(",");
+        console.log(time);
+        tiketsContainer.innerHTML = "";
+        data.tickets.forEach((item) => {
+          tiketsContainer.innerHTML += `
+      
+        <div class="btnShowChatUser p-2 px-4 my-2 rounded hover:bg-zinc-100 block md:flex justify-between cursor-pointer" data-ticket="${item._id}">
+          <div class="h-max my-auto">${item.title}</div>
+          <div class=" md:flex justify-between gap-5 md:my-0 my-5">
+            <div class="lg:text-xs text-zinc-400 h-max my-auto"> ${time[0]}   (${time[1].slice(0, 6)} )</div>
+            <div class=" flex md:my-5 my-5 gap-2">
+              <div class="lg:text-xs bg-zinc-200 text-slate-500 py-1 px-1.5 rounded">${item.subject}</div>
+              <div class="lg:text-xs px-4 ${item.status ? "bg-success" : "bg-danger"} text-white py-1 px-1.5 rounded">${item.status ? "باز" : "بسته"}</div>
+            </div>
+               </div>
+            </div>
+         `;
+        });
+        $.querySelectorAll(".btnShowChatUser").forEach((btn) => {
+          btn.onclick = () => {
+            showTikcetFunc(btn.dataset.ticket);
+          };
+        });
+      }
+    })
+    .catch((err) => {});
+};
+function showTikcetFunc(id) {
+  console.log(id);
+  fetch(`https://bookshop-backend.liara.run/api/v1/ticket/${id}`, {
+    credentials: "include",
+  })
+    .then((result) => result.json())
+    .then((res) => {
+      console.log(res);
+      $.querySelector(".titleTicket").textContent = res.title;
+      $.querySelector(".divChatUser").classList.remove("hidden");
+    })
+    .catch((err) => {});
+  ("titleTicket");
+  console.log("object");
+}
 LodingSite();
+getTiketFunc();

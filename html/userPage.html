@@ -6,13 +6,50 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/tailwind.css" />
     <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/userPage.css" />
   </head>
-  <body dir="rtl" class="bg-primary">
+  <body dir="rtl" class="bg-primary h-[100vh]">
     <div class="load">
       <hr />
       <hr />
       <hr />
       <hr />
+    </div>
+    <div class="modalTiket p-3 text-black max-w-[500px] w-full fixed inset-0 m-auto h-max">
+      <div class="rounded-xl bg-white p-5 border-2 border-primary">
+        <div class="pb-5 border-b-[1px] border-zinc-200 text-lg">ارسال تیکت</div>
+        <div class="my-5">
+          <select value="assd" class="input-tiket text-zinc-700 w-full rounded-xl border-[1px] border-zinc-300 bg-zinc-100 p-4 outline-none">
+            <option value="دپارتمان">دپارتمان</option>
+            <option value="خرید محصول">خرید محصول</option>
+            <option value="ارتباط با بخش مالی">ارتباط با بخش مالی</option>
+            <option value="پشتیبانی">پشتیبانی</option>
+            <option value="مشاوره">مشاوره</option>
+          </select>
+        </div>
+        <div class="my-8">
+          <div class="my-4">موضوع تیکت</div>
+          <input
+            type="text"
+            class="input-tiket w-full p-4 outline-none bg-zinc-100 rounded-xl border-zinc-300 border-[1px] placeholder:text-zinc-700"
+            required
+            placeholder="موضوع تیکت خود را وارد کنید"
+          />
+        </div>
+        <div class="mt-8">
+          <div class="my-2">توضیحات تیکت</div>
+
+          <textarea
+            name=""
+            id=""
+            cols="30"
+            rows="10"
+            class="input-tiket w-full my-3 rounded-xl outline-none p-5 bg-zinc-100 border-[1px] border-zinc-300"
+          ></textarea>
+        </div>
+        <div class="text-danger text-lg text-center w-full my-2 mb-5 errorTiketSpan hidden">لطفا تمام فیلد هارا پر کنید</div>
+        <div class="w-full my-2 p-4 text-white bg-primary text-center rounded-xl text-lg cursor-pointer" id="postTiket">ثبت تیکت</div>
+      </div>
     </div>
     <main class="hidden">
       <div class="grid grid-cols-1 xl:grid-cols-5">
@@ -25,8 +62,8 @@
           </div>
         </div>
         <!-- ////// -->
-        <div class="xl:col-span-4 md:p-5">
-          <div class="p-4 md:p-8 rounded-2xl h-[100vh]" style="background-color: rgb(243 244 246)">
+        <div class="xl:col-span-4 md:p-5 h-full">
+          <div class="p-4 md:p-8 rounded-2xl h-max" style="background-color: rgb(243 244 246)">
             <div class="text-2xl block md:flex justify-between pb-5 border-b-2 border-zinc-200">
               <div class="h-max my-auto">
                 <span class="md:text-balance"> <span id="nameUser"></span> عزیز؛ خوش اومدی 🙌 </span>
@@ -61,7 +98,30 @@
               </div>
               <div class="my-5 p-5 rounded-xl bg-white">
                 <div class="my-3 text-xl border-b-[1px] border-zinc-300 pb-5">تیکت های شما</div>
-                <div class="p-5 tikets"></div>
+                <div class="tikets"></div>
+              </div>
+              <div class="bg-white my-10 p-5 rounded-xl divChatUser hidden">
+                <div class="p-2 pb-6 border-b-2 border-zinc-300 titleTicket">دوره رجکس</div>
+                <div>
+                  <div class="my-5 w-full justify-start">
+                    <div class="w-max p-8 bg-primary text-white" style="border-radius: 10px; border-top-right-radius: 0">
+                      <div class="mt-2 mb-5 text-sm">Reza1817 1402/09/04 02:42</div>
+                      دوست عزیز سلام دوره رجکس رو میخام روی سیستم داداشم هم بالا بیارم یعنی دو اکانته مشکلی نداره ؟
+                    </div>
+                  </div>
+                  <div class="my-5 w-full justify-end flex">
+                    <div class="w-max p-6 bg-primary text-white" style="border-radius: 10px; border-bottom-left-radius: 0">
+                      <div class="mt-2 mb-5 text-sm">Reza1817 1402/09/04 02:42</div>
+                      دوست عزیز سلام دوره رجکس رو میخام روی سیستم داداشم هم بالا بیارم یعنی دو اکانته مشکلی نداره ؟
+                    </div>
+                  </div>
+                </div>
+                <div class="my-10">
+                  <textarea name="" id="" cols="30" rows="10" class="w-full outline-none border-[1px] border-zinc-300 bg-zinc-100 rounded-xl p-5"></textarea>
+                  <div class="flex justify-end">
+                    <div class="my-5 text-white bg-primary p-4 rounded-xl text-center w-max cursor-pointer">ارسال پیام</div>
+                  </div>
+                </div>
               </div>
             </div>
 
