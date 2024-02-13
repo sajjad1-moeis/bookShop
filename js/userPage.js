@@ -194,5 +194,5 @@ import {CreateDivMahsol} from "./Create-Div-Mahsol.js";
 let mahsolContainer = $.querySelector(".mahsol");
 let api = await fetch("https://bookshop-backend.liara.run/api/v1/books");
 let arrBook = await api.json();
-CreateDivMahsol(arrBook.slice(4, 6), mahsolContainer, ".");
+CreateDivMahsol(arrBook.slice(4, 8), mahsolContainer, ".");
 LodingSite();
