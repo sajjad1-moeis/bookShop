@@ -25,8 +25,8 @@ const moreDivCreatePanel = (arr, img) => {
 };
 
 /////////////////////Check Login is Panel Admin And User
+
 const CheckAuth = (href) => {
-  console.log("object");
   fetch("https://bookshop-backend.liara.run/api/v1/userdata/mydata", {credentials: "include"})
     .then((result) => {
       return result.json();

@@ -53,6 +53,7 @@ const divLoveTextContent = () => {
 divLoveTextContent();
 
 ///////////////////////// funUpdateUser
+
 const divUpdateUser = document.querySelector(".divUpdateUser");
 let inputDivUpdateUser;
 const funUpdateUser = () => {
@@ -68,7 +69,7 @@ const funUpdateUser = () => {
   inputDivUpdateUser = document.querySelectorAll(".divUpdateUser input");
 };
 funUpdateUser();
-console.log(inputDivUpdateUser);
+// console.log(inputDivUpdateUser);
 fetch("https://bookshop-backend.liara.run/api/v1/userdata/mydata", {credentials: "include"})
   .then((result) => result.json())
   .then((res) => {
@@ -88,3 +89,35 @@ function LodingSite() {
   $.querySelector(".load").classList.add("hidden");
   $.querySelector("main").classList.remove("hidden");
 }
+
+////////////////////////////////////
+
+const changeUserBtn = $.getElementById("changeUser");
+const changePassBtn = $.getElementById("changePass");
+const uploadImg = $.getElementById("uploadImg");
+//////////// changeUser
+
+const changeUserFunc = () => {
+  // const formData = new FormData();
+  // formData.append("image", uploadImg.files[0]);
+  // formData.append("fullname", `${inputDivUpdateUser[0].value}-${inputDivUpdateUser[1].value}`);
+  // formData.append("job", inputDivUpdateUser[2].value);
+  // formData.append("email", inputDivUpdateUser[3].value);
+  // fetch("https://bookshop-backend.liara.run/api/v1/userdata/mydata", {
+  //   method: "PUT",
+  //   credentials: "include",
+  //   headers: {"Content-Type": "multipart/form-data"},
+  //   body: formData,
+  // }).then(console.log);
+};
+
+////////////// changePass
+
+const currentPass = $.getElementById("currentPass");
+
+const changePassFunc = () => {
+  console.log("object");
+};
+
+changeUserBtn.onclick = changeUserFunc;
+changePassBtn.onclick = changePassFunc;
