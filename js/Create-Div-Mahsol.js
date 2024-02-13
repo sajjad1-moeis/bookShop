@@ -17,12 +17,12 @@ const CreateDivMahsol = (arr, parent, dot) => {
                 </div>
                 <div class="my-6 text-3xl">${item.name}</div>
                 <div class="w-full flex justify-between my-3">
-                  <div class="my-auto h-max"><img src="./img/star.png" alt="" /></div>
+                  <div class="my-auto h-max"><img src="${dot}./img/star.png" alt="" /></div>
                   <div class="text-xl">${item.price} تومان</div>
                 </div>
               </div>
               <div style="margin-top: -20px" class="btnMahsol cursor-pointer mx-auto p-3 px-6 w-max rounded-full bg-primary text-white flex" >
-                <div class="h-max"><img src="./img/shop.png" class="w-6 inline me-2" alt="" />افزودن به سبد خرید</div>
+                <div class="h-max"><img src="${dot}./img/shop.png" class="w-6 inline me-2" alt="" />افزودن به سبد خرید</div>
               </div>
             </div>
     `;
