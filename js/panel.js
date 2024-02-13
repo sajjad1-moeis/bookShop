@@ -1,4 +1,5 @@
-import {CreateDivsPanel, moreDivCreatePanel} from "./export.js";
+import {CreateDivsPanel, moreDivCreatePanel, CheckAuth, funcLogOut} from "./export.js";
+
 let div = [
   {title: "افزودن محصول", href: "#"},
   {title: "افزودن مقاله", href: "#"},
@@ -9,16 +10,24 @@ let div = [
   {title: "تنظیمات ", href: "#"},
   {title: "خروج ", href: "#"},
 ];
-CreateDivsPanel(div);
 let imgDiv = [
   {img: "../img/icons8-gmail-50.png", title: "50", more1: "تیکت", color: "blue-500", more2: "بازدید سایت"},
   {img: "../img/icons8-file-50.png", title: "0", more1: "مقاله", color: "danger", more2: "ثبت نام کاربر"},
   {img: "../img/icons8-users-50.png", title: "5056", more1: "کاربر", color: "success", more2: "فروش محصولات"},
   {img: "../img/icons8-book-50.png", title: "10", more1: "محصول", color: "warning", more2: "معاملات"},
 ];
-moreDivCreatePanel(imgDiv);
-const ctx = document.getElementById("myChart");
 
+/////// use ImportAll
+
+CheckAuth("../html/userPage.html");
+CreateDivsPanel(div);
+moreDivCreatePanel(imgDiv);
+let aDiv = document.querySelectorAll(".panel a");
+funcLogOut(aDiv[7]);
+
+////////////////Chart
+
+const ctx = document.getElementById("myChart");
 new Chart(ctx, {
   type: "bar",
   data: {
@@ -66,38 +75,4 @@ new Chart(ctx, {
   },
 });
 
-let aDiv = document.querySelectorAll(".panel a");
-console.log(aDiv);
-console.log();
-const LogOut = () => {
-  aDiv[7].onclick = () => {
-    swalAlert
-      .fire({
-        title: "آیا مایلید خارج شوید ؟",
-        icon: "warning",
-      })
-      .then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire({
-            title: "با موفقیت خارج شدی",
-            icon: "success",
-          }).then((result) => {
-            location.href = "../index.html";
-            fetch("https://bookshop-backend.liara.run/api/v1/logout", {credentials: "include"})
-              .then((result) => {
-                console.log(result);
-              })
-              .catch((err) => {});
-          });
-        }
-      });
-  };
-};
-LogOut();
-let swalAlert = Swal.mixin({
-  showCancelButton: true,
-  confirmButtonColor: "#3085d6",
-  cancelButtonColor: "#d33",
-  confirmButtonText: "بله و خروج",
-  cancelButtonText: "خیر",
-});
+////////////////// Btn LogOut

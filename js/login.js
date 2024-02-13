@@ -59,7 +59,7 @@ function validateEmail(email) {
 const ValidDataBaseRegister = (name, family, email, pass) => {
   let newUser = {
     email: email,
-    fullname: `${name}${family}`,
+    fullname: `${name}-${family}`,
     password: pass,
   };
   fetch("https://bookshop-backend.liara.run/api/v1/register", {

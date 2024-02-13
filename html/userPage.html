@@ -5,34 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="../css/tailwind.css" />
-    <link rel="stylesheet" href="../css/userPage.css" />
+    <link rel="stylesheet" href="../css/style.css" />
   </head>
-  <body dir="rtl" class="">
-    <div class="grid grid-cols-1 md:grid-cols-5">
-      <div class="p-5">
-        <div class="rounded-2xl md:col-span-1 overflow-auto h-full bg-primary p-5 py-10">
-          <div class="user-profile bg-white w-max mx-auto rounded-full">
-            <img src="../img/noProfile.png" class="w-32" alt="" />
-          </div>
-          <div class="text-white my-10 text-xl panel"></div>
-        </div>
-      </div>
-      <!-- ////// -->
-      <div class="md:col-span-4 p-5">
-        <div class="p-8 rounded-2xl" style="background-color: rgb(243 244 246)">
-          <div class="text-2xl block md:flex justify-between p-4">
-            <div class="h-max my-auto">
-              <span> <span id="nameUser"></span> عزیز؛ خوش اومدی 🙌 </span>
-            </div>
-            <div class="flex gap-2 md:my-0 my-3 justify-end">
-              <div class="cursor-pointer p-3 bg-primary rounded-full"><img src="../img/icons8-notification-50.png" class="w-8" alt="" /></div>
-              <div class="cursor-pointer p-3 bg-primary rounded-full"><img src="../img/icons8-setting-50.png" class="w-8" alt="" /></div>
-            </div>
-          </div>
-          <div class="grid gap-5 my-6 md:grid-cols-4 grid-cols-1 text-white more2"></div>
-        </div>
-      </div>
+  <body dir="rtl" class="bg-primary">
+    <div class="load">
+      <hr />
+      <hr />
+      <hr />
+      <hr />
     </div>
+    <main class="hidden">
+      <div class="grid grid-cols-1 md:grid-cols-5">
+        <div class="p-5">
+          <div class="rounded-2xl md:col-span-1 overflow-auto h-full bg-primary p-5 py-10">
+            <div class="user-profile bg-white w-max mx-auto rounded-full">
+              <img src="../img/noProfile.png" class="w-32" alt="" />
+            </div>
+            <div class="text-white my-10 text-xl panel"></div>
+          </div>
+        </div>
+        <!-- ////// -->
+        <div class="md:col-span-4 md:p-5">
+          <div class="p-8 rounded-2xl h-[100vh]" style="background-color: rgb(243 244 246)">
+            <div class="text-2xl block md:flex justify-between p-4">
+              <div class="h-max my-auto">
+                <span> <span id="nameUser"></span> عزیز؛ خوش اومدی 🙌 </span>
+              </div>
+              <div class="flex gap-2 md:my-0 my-3 justify-end">
+                <div class="cursor-pointer p-3 bg-primary rounded-full"><img src="../img/icons8-notification-50.png" class="w-8" alt="" /></div>
+                <div class="cursor-pointer p-3 bg-primary rounded-full"><img src="../img/icons8-setting-50.png" class="w-8" alt="" /></div>
+              </div>
+            </div>
+            <div class="grid gap-5 my-10 md:grid-cols-4 grid-cols-1 text-white more2 Location" id="pishkhan"></div>
+            <div id="tiket" class="hidden Location"></div>
+            <div id="love" class="hidden Location text-xl md:text-3xl text-center my-20"></div>
+            <div id="moreUser" class="hidden Location my-5">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="md:col-span-2 bg-white rounded-lg p-6">
+                  <div class="w-full p-3 border-b-[1px] border-zinc-200">جزییات حساب کاربری</div>
+                  <div>
+                    <div class="relative my-5">
+                      <div class="p-2 cursor-pointer bg-primary border-[6px] border-white rounded-full w-max absolute bottom-0 right-0">
+                        <div class="uploadDiv p-5 cursor-pointer">
+                          <input type="file" value="" class="cursor-pointerrounded-full absolute w-full h-full right-0 top-0 opacity-0" />
+                        </div>
+                      </div>
+                      <img src="../img/noProfile.png" class="w-32 md:w-40" alt="" />
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 my-5 divUpdateUser"></div>
+                    <div></div>
+                  </div>
+                  <div class="text-left w-full text-white text-lg flex justify-end mt-5">
+                    <div class="w-max bg-primary p-3 rounded-xl cursor-pointer">ثبت اطلاعات</div>
+                  </div>
+                </div>
+                <div class="md:col-span-1 bg-white rounded-lg p-6">
+                  <div class="w-full p-3 border-b-[1px] border-zinc-200">تغییر رمز عبور</div>
+                  <div class="my-10 px-3">
+                    <div>
+                      <p class="my-4">رمز عبور فعلی</p>
+                      <input type="text" class="focus:border-[1px] focus:border-zinc-300 bg-zinc-100 p-4 w-full outline-none rounded-xl" />
+                    </div>
+                    <div class="text-sm my-5 text-zinc-500 cursor-pointer">رمز عبور خود را فراموش کردید؟</div>
+                    <div class="my-10">
+                      <p class="my-4">رمز عبور جدید</p>
+                      <input type="text" class="focus:border-[1px] focus:border-zinc-300 bg-zinc-100 p-4 w-full outline-none rounded-xl" />
+                    </div>
+                    <div class="text-left w-full text-white text-lg flex justify-end mt-5">
+                      <div class="w-max bg-primary p-3 rounded-xl cursor-pointer">تغییر رمز</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/userPage.js" type="module"></script>
   </body>
 </html>

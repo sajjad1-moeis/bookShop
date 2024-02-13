@@ -255,3 +255,23 @@ margin: auto;
 .panel div:hover{
     box-shadow: 0px 0px 20px 0px #737373;
 }
+
+
+/* Page User */
+
+.panel div{
+    transition: 0.3s;
+    /* box-shadow: 5px 5px 20px 5px #fff; */
+    border-radius: 20px;
+
+}
+.panel div:hover{
+    box-shadow: 0px 0px 20px 0px #fff;
+}
+.uploadDiv{
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("../img/icons8-change-50.png");
+}
