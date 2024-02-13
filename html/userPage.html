@@ -15,21 +15,21 @@
       <hr />
     </div>
     <main class="hidden">
-      <div class="grid grid-cols-1 md:grid-cols-5">
+      <div class="grid grid-cols-1 xl:grid-cols-5">
         <div class="p-5">
-          <div class="rounded-2xl md:col-span-1 overflow-auto h-full bg-primary p-5 py-10">
+          <div class="rounded-2xl xl:col-span-1 overflow-auto h-full bg-primary p-5 py-10">
             <div class="user-profile bg-white w-max mx-auto rounded-full">
-              <img src="../img/noProfile.png" class="w-32" alt="" />
+              <img src="" class="w-32 imgUser rounded-full" alt="" />
             </div>
             <div class="text-white my-10 text-xl panel"></div>
           </div>
         </div>
         <!-- ////// -->
-        <div class="md:col-span-4 md:p-5">
-          <div class="p-8 rounded-2xl h-[100vh]" style="background-color: rgb(243 244 246)">
-            <div class="text-2xl block md:flex justify-between p-4">
+        <div class="xl:col-span-4 md:p-5">
+          <div class="p-4 md:p-8 rounded-2xl h-[100vh]" style="background-color: rgb(243 244 246)">
+            <div class="text-2xl block md:flex justify-between">
               <div class="h-max my-auto">
-                <span> <span id="nameUser"></span> عزیز؛ خوش اومدی 🙌 </span>
+                <span class="md:text-balance"> <span id="nameUser"></span> عزیز؛ خوش اومدی 🙌 </span>
               </div>
               <div class="flex gap-2 md:my-0 my-3 justify-end">
                 <div class="cursor-pointer p-3 bg-primary rounded-full"><img src="../img/icons8-notification-50.png" class="w-8" alt="" /></div>
@@ -37,7 +37,24 @@
               </div>
             </div>
             <div class="grid gap-5 my-10 md:grid-cols-4 grid-cols-1 text-white more2 Location" id="pishkhan"></div>
-            <div id="tiket" class="hidden Location"></div>
+
+            <!-- ///// DivTiket -->
+
+            <div id="tiket" class="hidden my-8 Location">
+              <div class="w-full flex justify-end pb-6">
+                <div class="open-Modal p-6 rounded-xl text-2xl cursor-pointer bg-primary text-white w-max">
+                  <img src="../img/icons8-plus-64.png" alt="" class="w-8 inline" />
+                  تیکت جدید
+                </div>
+              </div>
+              <div class="my-10 p-5 rounded-xl bg-white">
+                <div class="my-3 text-xl border-b-[1px] border-zinc-300 pb-5">تیکت های شما</div>
+                <div class="p-5 tikets"></div>
+              </div>
+            </div>
+
+            <!-- / Div Love -->
+
             <div id="love" class="hidden Location text-xl md:text-3xl text-center my-20"></div>
             <div id="moreUser" class="hidden Location my-5">
               <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -50,7 +67,7 @@
                           <input type="file" value="" class="cursor-pointerrounded-full absolute w-full h-full right-0 top-0 opacity-0" id="uploadImg" />
                         </div>
                       </div>
-                      <img src="../img/noProfile.png" class="w-32 md:w-40" alt="" />
+                      <img src="" class="w-32 md:w-40 imgUser rounded-full" alt="" />
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5 my-5 divUpdateUser"></div>
                     <div></div>
@@ -64,13 +81,14 @@
                   <div class="my-10 px-3">
                     <div>
                       <p class="my-4">رمز عبور فعلی</p>
-                      <input type="text" class="focus:border-[1px] focus:border-zinc-300 bg-zinc-100 p-4 w-full outline-none rounded-xl" />
+                      <input type="text" class="inputPass focus:border-[1px] focus:border-zinc-300 bg-zinc-100 p-4 w-full outline-none rounded-xl" />
                     </div>
                     <div class="text-sm my-5 text-zinc-500 cursor-pointer">رمز عبور خود را فراموش کردید؟</div>
                     <div class="my-10">
                       <p class="my-4">رمز عبور جدید</p>
-                      <input type="text" class="focus:border-[1px] focus:border-zinc-300 bg-zinc-100 p-4 w-full outline-none rounded-xl" />
+                      <input type="text" class="inputPass focus:border-[1px] focus:border-zinc-300 bg-zinc-100 p-4 w-full outline-none rounded-xl" />
                     </div>
+                    <div class="spanError w-full text-left px-2 text-danger my-3 text-xl"></div>
                     <div class="text-left w-full text-white text-lg flex justify-end mt-5">
                       <div class="w-max bg-primary p-3 rounded-xl cursor-pointer" id="changePass">تغییر رمز</div>
                     </div>

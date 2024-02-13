@@ -69,11 +69,13 @@ const funUpdateUser = () => {
   inputDivUpdateUser = document.querySelectorAll(".divUpdateUser input");
 };
 funUpdateUser();
+
 // console.log(inputDivUpdateUser);
+const imgUser = $.querySelectorAll(".imgUser");
 fetch("https://bookshop-backend.liara.run/api/v1/userdata/mydata", {credentials: "include"})
   .then((result) => result.json())
   .then((res) => {
-    console.log(res);
+    imgUser.forEach((img) => (img.src = `https://bookshop-backend.liara.run${res.userdata.profileURLPath}`));
     let fullname = res.userdata.fullname.split("-");
     fullname.push(res.userdata.job);
     fullname.push(res.userdata.email);
@@ -95,6 +97,12 @@ function LodingSite() {
 const changeUserBtn = $.getElementById("changeUser");
 const changePassBtn = $.getElementById("changePass");
 const uploadImg = $.getElementById("uploadImg");
+uploadImg.onchange = () => {
+  console.log();
+  let url = URL.createObjectURL(uploadImg.files[0]);
+  console.log(url);
+  imgUser.forEach((img) => (img.src = url));
+};
 //////////// changeUser
 
 const changeUserFunc = () => {
@@ -104,20 +112,80 @@ const changeUserFunc = () => {
   formData.append("job", inputDivUpdateUser[2].value);
   formData.append("email", inputDivUpdateUser[3].value);
   fetch("https://bookshop-backend.liara.run/api/v1/userdata/mydata", {
-    method: "PUT",
+    method: "POST",
     credentials: "include",
-    headers: {"Content-Type": "multipart/form-data"},
     body: formData,
-  }).then(console.log);
+  })
+    .then((res) => res.json())
+    .then((data) => location.reload());
 };
 
 ////////////// changePass
-
 const currentPass = $.getElementById("currentPass");
-
+const inputPass = $.querySelectorAll(".inputPass");
+const spanError = $.querySelector(".spanError");
+console.log(inputPass);
 const changePassFunc = () => {
-  console.log("object");
+  if (inputPass[0].value.length < 8) {
+    spanError.textContent = "پسوورد فعلی باید بیشتر از 8 کاراکتر باشد";
+  } else if (inputPass[1].value.length < 8) {
+    spanError.textContent = "پسوورد جدید باید بیشتر از 8 کاراکتر باشد";
+  } else {
+    console.log(inputPass[0].value);
+    console.log(inputPass[1].value);
+    let newPass = {
+      currentpassword: inputPass[0].value,
+      password: inputPass[1].value,
+    };
+    fetch("https://bookshop-backend.liara.run/api/v1/userdata/mydata/password", {
+      credentials: "include",
+      method: "PUT",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(newPass),
+    })
+      .then((result) => result.json())
+      .then((data) => {
+        if (!data.success) {
+          spanError.textContent = "پسوورد فعلی صحیح نیست";
+        } else {
+          Swal.fire({
+            title: "پسوورد با موفقیت تغییر کرد",
+            icon: "success",
+          }).then((data) => {
+            if (data.isConfirmed || data.isDismissed) {
+              location.reload();
+            }
+          });
+        }
+        console.log(data);
+      })
+      .catch((err) => {});
+    console.log("object");
+  }
 };
 
 changeUserBtn.onclick = changeUserFunc;
 changePassBtn.onclick = changePassFunc;
+
+////////////// Tikets
+
+const tiketsContainer = $.querySelector(".tikets");
+let tiketsApi = 0;
+if (tiketsApi) {
+  tiketsContainer.innerHTML = `<a href="#">
+  <div class="p-2 px-4 rounded hover:bg-zinc-100 block md:flex justify-between">
+    <div class="h-max my-auto">محصولات سایت</div>
+    <div class="flex justify-between gap-5 md:my-0 my-5">
+      <div class="lg:text-xs text-zinc-400 h-max my-auto">1402/09/04 (02:42)</div>
+      <div class="flex md:my-5 my-5 gap-2">
+        <div class="lg:text-xs bg-zinc-200 text-slate-500 py-1 px-1.5 rounded">پشتیبانی</div>
+        <div class="lg:text-xs bg-zinc-200 text-slate-500 py-1 px-1.5 rounded">پشتیبانی</div>
+      </div>
+    </div>
+  </div>
+</a>`;
+} else {
+  tiketsContainer.innerHTML = `<span>تیکتی وجود ندارد</span>`;
+}
+
+//////////////Unpoad Img User
