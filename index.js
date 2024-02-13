@@ -21,10 +21,15 @@ const IsLogin = () => {
       return result.json();
     })
     .then((data) => {
-      if (data.userdata.isAdmin) {
-        Header("", "پنل مدیریت", "./html/Panel-Admin.html");
+      if (data.login) {
+        console.log(data);
+        if (data.userdata.isAdmin) {
+          Header("", "پنل مدیریت", "./html/Panel-Admin.html");
+        } else {
+          Header("", "حساب کاربری", "./html/userPage.html");
+        }
       } else {
-        Header("", "حساب کاربری", "./html/userPage.html");
+        Header("", "ورود / ثبت نام", "./html/Panel-Admin.html");
       }
       DivScroll("");
       showMenuMobileBtn();
@@ -33,12 +38,31 @@ const IsLogin = () => {
       LodingSite();
     })
     .catch((err) => {
-      Header("", "ورود / ثبت نام", "./html/Panel-Admin.html");
+      console.log(err);
     });
 };
-
 IsLogin();
-
+// fetch("https://bookshop-backend.liara.run/api/v1/userdata/mydata", {credentials: "include"})
+//   .then((result) => {
+//     return result.json();
+//   })
+//   .then((data) => {
+//     if (data.userdata.isAdmin) {
+//       Header("", "پنل مدیریت", "./html/Panel-Admin.html");
+//     } else {
+//       Header("", "حساب کاربری", "./html/userPage.html");
+//     }
+//   })
+//   .catch((err) => {
+//     Header("", "ورود / ثبت نام", "./html/Panel-Admin.html");
+//   })
+//   .finally(() => {
+//     DivScroll("");
+//     showMenuMobileBtn();
+//     closeMenuMobile();
+//     TemplateFooter("");
+//     LodingSite();
+//   });
 tippy("#love", {
   theme: "tomato",
   content: "افزودن به علاقه مندی",
