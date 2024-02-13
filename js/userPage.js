@@ -82,9 +82,9 @@ fetch("https://bookshop-backend.liara.run/api/v1/userdata/mydata", {credentials:
     for (let i = 0; i < fullname.length; i++) {
       inputDivUpdateUser[i].value = fullname[i];
     }
-    LodingSite();
   })
   .catch((err) => {});
+LodingSite();
 
 function LodingSite() {
   $.body.classList.remove("bg-primary");
