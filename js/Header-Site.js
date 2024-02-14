@@ -128,7 +128,8 @@ function LodingSite() {
   $.querySelector("main").classList.remove("hidden");
   $.querySelector(".header-mobile").classList.replace("hidden", "flex");
 }
-const IsLoginAndHeader = (dot) => {
+
+const headerAndIsLogin = (dot) => {
   fetch("https://bookshop-backend.liara.run/api/v1/userdata/mydata", {credentials: "include"})
     .then((result) => {
       return result.json();
@@ -153,4 +154,5 @@ const IsLoginAndHeader = (dot) => {
       console.log(err);
     });
 };
-export {IsLoginAndHeader};
+
+export {headerAndIsLogin};

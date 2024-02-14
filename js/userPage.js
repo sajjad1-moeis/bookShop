@@ -85,10 +85,7 @@ const SettUI = async () => {
       inputDivUpdateUser[i].value = fullname[i];
     }
   } catch {
-    Swal.fire({
-      title: "دوباره تلاش کنید",
-      icon: "error",
-    });
+    SwalAlert("دوباره تلاش کنید", "error");
   }
 };
 SettUI();
@@ -112,6 +109,12 @@ uploadImg.onchange = () => {
   imgUser.forEach((img) => (img.src = url));
 };
 //////////// changeUser
+function SwalAlert(message, icon) {
+  Swal.fire({
+    title: message,
+    icon: icon,
+  });
+}
 
 const changeUserFunc = () => {
   const formData = new FormData();
@@ -125,7 +128,9 @@ const changeUserFunc = () => {
     body: formData,
   })
     .then((res) => res.json())
-    .then((data) => location.reload());
+    .then((data) => {
+      SwalAlert("اطلاعات با موفقیت تغییر یافت", "success");
+    });
 };
 
 ////////////// changePass
@@ -138,8 +143,6 @@ const changePassFunc = () => {
   } else if (inputPass[1].value.length < 8) {
     spanError.textContent = "پسوورد جدید باید بیشتر از 8 کاراکتر باشد";
   } else {
-    console.log(inputPass[0].value);
-    console.log(inputPass[1].value);
     let newPass = {
       currentpassword: inputPass[0].value,
       password: inputPass[1].value,
@@ -231,11 +234,15 @@ const postTiket = () => {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(newTiket),
     })
-      .then((res) => res.json())
+      .then((result) => {
+        return result.json();
+      })
       .then((data) => {
-        console.log(data);
         closeModal();
         getTiketFunc();
+      })
+      .catch((err) => {
+        SwalAlert("دوباره تلاش کنید", "error");
       });
   } else {
     errorTiketSpan.classList.remove("hidden");
@@ -243,6 +250,7 @@ const postTiket = () => {
 };
 postTiketBtn.onclick = postTiket;
 
+let IdTiket = 0;
 ////////////// get Tiket
 const tiketsContainer = $.querySelector(".tikets");
 
@@ -252,10 +260,10 @@ const getTiketFunc = async () => {
   })
     .then((result) => result.json())
     .then((data) => {
-      console.log(data.tickets);
       if (data.tickets == "") {
-        tiketsContainer.innerHTML = `<span>تیکتی وجود ندارد</span>`;
+        tiketsContainer.innerHTML = `<div class="w-max my-10 text-xl mx-auto">تیکتی وجود ندارد</div>`;
       } else {
+        console.log(data.tickets);
         let date = new Date(data.tickets[0].createDate).toLocaleString("fa-IR");
         let time = date.split(",");
         console.log(time);
@@ -275,31 +283,74 @@ const getTiketFunc = async () => {
             </div>
          `;
         });
-        LodingSite();
 
         $.querySelectorAll(".btnShowChatUser").forEach((btn) => {
           btn.onclick = () => {
             let nameUser = document.querySelector("#nameUser").textContent;
+            console.log(nameUser);
+            IdTiket = btn.dataset.ticket;
             showTikcetFunc(btn.dataset.ticket, nameUser);
           };
         });
       }
+      LodingSite();
     })
     .catch((err) => {});
 };
-function showTikcetFunc(id, name) {
-  console.log(id);
+const inputNewTextTicket = $.querySelector(".inputNewTextTicket");
+
+function showTikcetFunc(id, title) {
   fetch(`https://bookshop-backend.liara.run/api/v1/ticket/${id}`, {
     credentials: "include",
   })
     .then((result) => result.json())
     .then((res) => {
       console.log(res);
-      $.querySelector(".titleTicket").textContent = res.title;
-      $.querySelector(".divChatUser").classList.remove("hidden");
+      console.log();
+      $.querySelector(".titleTicket").textContent = res.ticket.title;
+      let DivChatUser = $.querySelector(".containerChatUser");
+      DivChatUser.classList.remove("hidden");
+      inputNewTextTicket.value = "";
+      $.querySelector(".divChatUser").innerHTML = "";
+      res.messages.forEach((item) => {
+        let date = new Date(item.sendTime).toLocaleString("fa-IR");
+        let time = date.split(",");
+        console.log(time);
+        $.querySelector(".divChatUser").innerHTML += `
+         <div class="${item.isAdminMessage ? "divAdminChat" : "divUserChat"}">
+        <div class="max-w-[800px] w-full  p-6 ${
+          item.isAdminMessage ? "bg-primary text-white" : " bg-zinc-100"
+        } " style="border-radius: 10px; border-bottom-left-radius: 0">
+          <div class="mt-2 mb-5 text-sm w-full">${title} ${time[0]}  (${time[1]} )</div>
+          <p>${item.content}</p>
+        </div>
+      </div>
+      `;
+      });
     })
     .catch((err) => {});
-  ("titleTicket");
-  console.log("object");
 }
+
 getTiketFunc();
+
+////////////// sendNewTextTicket
+
+const sendNewTextTicketBtn = $.querySelector(".sendNewTextTicket");
+const sendNewTextTicket = () => {
+  if (inputNewTextTicket.value) {
+    fetch(`https://bookshop-backend.liara.run/api/v1/ticket/${IdTiket}`, {
+      method: "PUT",
+      credentials: "include",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({message: inputNewTextTicket.value}),
+    })
+      .then((res) => res.json())
+      .then(console.log);
+
+    console.log(IdTiket);
+  } else {
+    SwalAlert("لطفا متن مورد نظر را بنویسید", "warning");
+  }
+};
+
+sendNewTextTicketBtn.onclick = sendNewTextTicket;

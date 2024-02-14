@@ -2,7 +2,7 @@ const $ = document;
 
 //////////////////////// import All
 
-import {IsLoginAndHeader} from "./js/Header-Site.js";
+import {headerAndIsLogin} from "./js/Header-Site.js";
 import {temp2, temp1} from "./components/temp1/temp1.js";
 import {CreateDivMahsol} from "./js/Create-Div-Mahsol.js";
 import {DivNeviSande} from "./components/nevisande/nevisande.js";
@@ -12,8 +12,10 @@ customElements.define("majmoe-show", temp1);
 customElements.define("category-show", temp2);
 customElements.define("div-nevisande", DivNeviSande);
 customElements.define("item-footer", itemFooter);
-IsLoginAndHeader("");
+
 ////////////////IsLogin
+
+headerAndIsLogin("");
 
 tippy("#love", {
   theme: "tomato",
@@ -79,3 +81,9 @@ let api = await fetch("https://bookshop-backend.liara.run/api/v1/books");
 let arrBook = await api.json();
 console.log(arrBook);
 CreateDivMahsol(arrBook.slice(0, 8), document.querySelector(".product"), "");
+function LodingSite() {
+  $.body.classList.remove("bg-primary");
+  $.querySelector(".load").classList.add("hidden");
+  $.querySelector("main").classList.remove("hidden");
+  $.querySelector(".header-mobile").classList.replace("hidden", "flex");
+}

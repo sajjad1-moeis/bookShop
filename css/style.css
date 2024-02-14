@@ -19,6 +19,9 @@ body{
     background-color: rgba(241, 242, 246, 0.5)
 
 }
+main{
+    height: 100vh;
+}
 main,.header-mobile{
     transition: 0.3s;
 }
@@ -176,7 +179,7 @@ font-size: 25px !important;
     background-image: linear-gradient(90deg,rgba(32,48,129,.8),rgba(32,48,129,.8)),url("../img/keetab.jpg");
   }
   .menu-mobile{
-    z-index: 55555; background-image: url("./img/bg.png"), linear-gradient(90deg, #758bfd, #758bfd);transition: 0.5s;left: -350px;
+    z-index: 55555; background-image: url("../img/bg.png"), linear-gradient(90deg, #758bfd, #758bfd);transition: 0.5s;left: -350px;
 }
 .showMenu{
     left: 0;
@@ -329,11 +332,23 @@ margin: auto;
   
   /* Demo Styles */
   .modalTiket{
-    z-index: 5555;
+    z-index: 1;
     transition: 0.5s;
     top: -100%;transform: translate(0,-60%);
   } 
   .active{
     top: 0%;transform: translate(0,0%);
 
+  }
+  
+  .divAdminChat{
+    margin: 30px 0;
+    justify-content: end;
+    display: flex; 
+  }
+  .divUserChat{
+    margin: 30px 0;
+
+    justify-content: start;
+    display: flex; 
   }

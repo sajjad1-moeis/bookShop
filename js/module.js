@@ -1,5 +1,2 @@
-import {Header, DivScroll, showMenuMobileBtn, closeMenuMobile} from "./Header-Site.js";
-Header(".");
-DivScroll(".");
-showMenuMobileBtn();
-closeMenuMobile();
+import {headerAndIsLogin} from "./Header-Site.js";
+headerAndIsLogin(".");
