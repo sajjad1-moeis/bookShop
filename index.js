@@ -2,7 +2,7 @@ const $ = document;
 
 //////////////////////// import All
 
-import {Header, DivScroll, showMenuMobileBtn, closeMenuMobile} from "./js/Header-Site.js";
+import {IsLoginAndHeader} from "./js/Header-Site.js";
 import {temp2, temp1} from "./components/temp1/temp1.js";
 import {CreateDivMahsol} from "./js/Create-Div-Mahsol.js";
 import {DivNeviSande} from "./components/nevisande/nevisande.js";
@@ -12,36 +12,8 @@ customElements.define("majmoe-show", temp1);
 customElements.define("category-show", temp2);
 customElements.define("div-nevisande", DivNeviSande);
 customElements.define("item-footer", itemFooter);
-
+IsLoginAndHeader("");
 ////////////////IsLogin
-
-const IsLogin = () => {
-  fetch("https://bookshop-backend.liara.run/api/v1/userdata/mydata", {credentials: "include"})
-    .then((result) => {
-      return result.json();
-    })
-    .then((data) => {
-      if (data.login) {
-        console.log(data);
-        if (data.userdata.isAdmin) {
-          Header("", "پنل مدیریت", "./html/Panel-Admin.html");
-        } else {
-          Header("", "حساب کاربری", "./html/userPage.html");
-        }
-      } else {
-        Header("", "ورود / ثبت نام", "./html/login.html");
-      }
-      DivScroll("");
-      showMenuMobileBtn();
-      closeMenuMobile();
-      TemplateFooter("");
-      LodingSite();
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-IsLogin();
 
 tippy("#love", {
   theme: "tomato",
@@ -107,9 +79,3 @@ let api = await fetch("https://bookshop-backend.liara.run/api/v1/books");
 let arrBook = await api.json();
 console.log(arrBook);
 CreateDivMahsol(arrBook.slice(0, 8), document.querySelector(".product"), "");
-function LodingSite() {
-  $.body.classList.remove("bg-primary");
-  $.querySelector(".load").classList.add("hidden");
-  $.querySelector("main").classList.remove("hidden");
-  $.querySelector(".header-mobile").classList.replace("hidden", "flex");
-}

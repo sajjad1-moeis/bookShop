@@ -12,7 +12,7 @@ const Header = (dot, href, link) => {
               </div>
               <div class="flex gap-8 text-lg text-zinc-500">
                 <div class="item-nav h-max m-auto flex-none active"><a href="${dot}./index.html">صفحه اصلی</a></div>
-                <div class="item-nav h-max m-auto">کتاب ها</div>
+                <div class="item-nav h-max m-auto"><a href="${dot}./html/store.html">کتاب ها</a></div>
                 <div class="item-nav h-max m-auto">مجموعه<img class="w-3 ms-1 inline" src="${dot}./img/arrow.png" alt="" /></div>
                 <div class="item-nav h-max m-auto">دسته بندی<img class="w-3 ms-1 inline" src="${dot}./img/arrow.png" alt="" /></div>
                 <div class="item-nav h-max m-auto">صفحات<img class="w-3 ms-1 inline" src="${dot}./img/arrow.png" alt="" /></div>
@@ -28,7 +28,7 @@ const Header = (dot, href, link) => {
                 <img src="${dot}./img/download.png" class="w-9" />
               </div>
               <div class="login m-auto  w-full h-full cursor-pointer bg-primary text-white rounded-full">
-              <a href="${link}" >  
+              <a href="${dot}${link}">  
               <div class="text-center w-max m-auto  p-4">
                   <img src="${dot}./img/user.png" class="my-auto w-7 h-7 inline" />
                   <span class="my-auto">${href}</span>
@@ -56,7 +56,7 @@ const Header = (dot, href, link) => {
         <div class="closeBtnMenuMobile"><img src="${dot}./img/close-icon.png" alt="" class="w-8" /></div>
       </div>
      <div class="my-5 p-3 border-b-2 text-white border-white">
-     <a href="${link}"><span class="my-auto">${href}</span></a>
+     <a href="${dot}${link}"><span class="my-auto">${href}</span></a>
      </div>
 
     </div>
@@ -118,4 +118,36 @@ const closeMenuMobile = () => {
   document.querySelector("main").onclick = a;
   $.querySelector(".closeBtnMenuMobile").onclick = a;
 };
-export {Header, DivScroll, showMenuMobileBtn, closeMenuMobile};
+
+function LodingSite() {
+  $.body.classList.remove("bg-primary");
+  $.querySelector(".load").classList.add("hidden");
+  $.querySelector("main").classList.remove("hidden");
+  $.querySelector(".header-mobile").classList.replace("hidden", "flex");
+}
+const IsLoginAndHeader = (dot) => {
+  fetch("https://bookshop-backend.liara.run/api/v1/userdata/mydata", {credentials: "include"})
+    .then((result) => {
+      return result.json();
+    })
+    .then((data) => {
+      if (data.login) {
+        console.log(data);
+        if (data.userdata.isAdmin) {
+          Header(dot, "پنل مدیریت", "./html/Panel-Admin.html");
+        } else {
+          Header(dot, "حساب کاربری", "./html/userPage.html");
+        }
+      } else {
+        Header(dot, "ورود / ثبت نام", "./html/login.html");
+      }
+      DivScroll(dot);
+      showMenuMobileBtn();
+      closeMenuMobile();
+      LodingSite();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+export {IsLoginAndHeader};

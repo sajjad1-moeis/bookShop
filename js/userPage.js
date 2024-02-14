@@ -68,21 +68,30 @@ const funUpdateUser = () => {
   inputDivUpdateUser = document.querySelectorAll(".divUpdateUser input");
 };
 funUpdateUser();
-
+let apiUser = null;
+let imgUser = $.querySelectorAll(".imgUser");
+console.log(imgUser);
 // console.log(inputDivUpdateUser);
-const imgUser = $.querySelectorAll(".imgUser");
-fetch("https://bookshop-backend.liara.run/api/v1/userdata/mydata", {credentials: "include"})
-  .then((result) => result.json())
-  .then((res) => {
-    imgUser.forEach((img) => (img.src = `https://bookshop-backend.liara.run${res.userdata.profileURLPath}`));
-    let fullname = res.userdata.fullname.split("-");
-    fullname.push(res.userdata.job);
-    fullname.push(res.userdata.email);
+const SettUI = async () => {
+  try {
+    let api = await fetch("https://bookshop-backend.liara.run/api/v1/userdata/mydata", {credentials: "include"});
+    let jsonApi = await api.json();
+    apiUser = jsonApi.userdata;
+    imgUser.forEach((img) => (img.src = `https://bookshop-backend.liara.run${jsonApi.userdata.profileURLPath}`));
+    let fullname = jsonApi.userdata.fullname.split("-");
+    fullname.push(jsonApi.userdata.job);
+    fullname.push(jsonApi.userdata.email);
     for (let i = 0; i < fullname.length; i++) {
       inputDivUpdateUser[i].value = fullname[i];
     }
-  })
-  .catch((err) => {});
+  } catch {
+    Swal.fire({
+      title: "دوباره تلاش کنید",
+      icon: "error",
+    });
+  }
+};
+SettUI();
 
 function LodingSite() {
   $.body.classList.remove("bg-primary");
@@ -266,16 +275,19 @@ const getTiketFunc = async () => {
             </div>
          `;
         });
+        LodingSite();
+
         $.querySelectorAll(".btnShowChatUser").forEach((btn) => {
           btn.onclick = () => {
-            showTikcetFunc(btn.dataset.ticket);
+            let nameUser = document.querySelector("#nameUser").textContent;
+            showTikcetFunc(btn.dataset.ticket, nameUser);
           };
         });
       }
     })
     .catch((err) => {});
 };
-function showTikcetFunc(id) {
+function showTikcetFunc(id, name) {
   console.log(id);
   fetch(`https://bookshop-backend.liara.run/api/v1/ticket/${id}`, {
     credentials: "include",
@@ -290,5 +302,4 @@ function showTikcetFunc(id) {
   ("titleTicket");
   console.log("object");
 }
-LodingSite();
 getTiketFunc();
