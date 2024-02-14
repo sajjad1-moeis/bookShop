@@ -58,6 +58,9 @@ const Header = (dot, href, link) => {
      <div class="my-5 p-3 border-b-2 text-white border-white">
      <a href="${dot}${link}"><span class="my-auto">${href}</span></a>
      </div>
+     <div class="my-5 p-3 border-b-2 text-white border-white">
+     <a href="${dot}./html/store.html"><span class="my-auto">کتاب ها</span></a>
+     </div>
 
     </div>
 `
