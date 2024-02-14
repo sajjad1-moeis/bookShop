@@ -346,6 +346,15 @@ margin: auto;
     justify-content: end;
     display: flex; 
   }
+  .divAdminChat  .first{
+    border-radius: 20px;
+    border-bottom-left-radius: 0;
+  }
+  .divUserChat  .first{
+    border-radius: 20px;
+    border-bottom-right-radius: 0;
+  }
+
   .divUserChat{
     margin: 20px 0 0 30px;
 

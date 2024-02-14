@@ -304,14 +304,16 @@ function showTikcetFunc(id, title) {
   })
     .then((result) => result.json())
     .then((res) => {
-      ////////containetInputNewTicket
-      console.log(res);
+      let containetInputNewTicket = $.querySelector(".containetInputNewTicket");
+      console.log(res.ticket.status);
+      res.ticket.status ? containetInputNewTicket.classList.remove("hidden") : containetInputNewTicket.classList.add("hidden");
       console.log();
       $.querySelector(".titleTicket").textContent = res.ticket.title;
       let DivChatUser = $.querySelector(".containerChatUser");
       DivChatUser.classList.remove("hidden");
       inputNewTextTicket.value = "";
       $.querySelector(".divChatUser").innerHTML = "";
+
       res.messages.forEach((item) => {
         let date = new Date(item.sendTime).toLocaleString("fa-IR");
         let time = date.split(",");

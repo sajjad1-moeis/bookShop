@@ -46,14 +46,68 @@
 
             <!-- Chart -->
 
-            <div class="pt-0 md:block hidden rounded-xl overflow-hidden">
+            <div id="pishkhan" class="pt-0 rounded-xl overflow-hidden divPanel">
               <div class="bg-[#313348]">
                 <canvas id="myChart"></canvas>
               </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10 mb-5 more2"></div>
             </div>
+            <div id="mahsol" class="hidden divPanel"></div>
+            <div id="mahgale" class="hidden divPanel"></div>
+            <div id="nevisande" class="hidden divPanel"></div>
+            <div id="Users" class="hidden divPanel"></div>
+            <div id="ticket" class="hidden divPanel rounded-xl">
+              <div class="my-5 text-xl p-2">
+                <div class="pb-5 border-b-[1px] border-zinc-400">تیکت ها</div>
 
+                <!-- ticketsDiv -->
+
+                <div class="ticketsDiv"></div>
+
+                <!-- divNewTextTicket -->
+
+                <div class="my-10 p-8 rounded-xl divNewTextTicket hidden" style="background-color: rgb(28 28 40)">
+                  <div class="pb-5 border-b-[1px] border-zinc-400 flex justify-between">
+                    <div class="titleDivNewTextTicket">mohammad-molaii</div>
+                    <div class="cursor-pointer closeDivChat"><img src="../img/close-icon.png" alt="" class="w-6" /></div>
+                  </div>
+                  <div class="my-5">
+                    <!-- asda -->
+                    <div class="divUserChat text-base">
+                      <div class="first max-w-[900px] w-full p-4 py-6 rounded-xl bg-[#313348]">
+                        <div class="my-4" dir="rtl">
+                          <div>Shahram.Kh</div>
+                          <div>1402/09/04 09:37</div>
+                        </div>
+                        سلام وقتتون بخیر ترجیحا سعی کنید با آی پی ثابت وارد بشید ولی مثلا سیستم برادر تون باشه قطعا تو یه موقعیت هستید جفتتون هم و بیشتر زمانی
+                        به مشکل میخوره که موقعیت ها هم مختلف باشه
+                      </div>
+                    </div>
+                    <!-- dasd -->
+                    <div class="divAdminChat text-base">
+                      <div class="first max-w-[900px] w-full p-4 py-6 rounded-xl bg-sky-500/30" style="background-color: rgb(78 129 251 / 0.2)">
+                        <div class="my-4" dir="ltr">
+                          <div>Shahram.Kh</div>
+                          <div>1402/09/04 09:37</div>
+                        </div>
+                        سلام وقتتون بخیر ترجیحا سعی کنید با آی پی ثابت وارد بشید ولی مثلا سیستم برادر تون باشه قطعا تو یه موقعیت هستید جفتتون هم و بیشتر زمانی
+                        به مشکل میخوره که موقعیت ها هم مختلف باشه
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="">
+                    <textarea name="" id="" cols="30" rows="10" class="bg-[#313348] inputNewTextTicket w-full mt-10 outline-none p-5 rounded-xl"></textarea>
+                    <div class="flex justify-end mt-2">
+                      <div class="cursor-pointer p-3 text-lg bg-[#313348] rounded-xl text-white">ارسال پاسخ تیکت</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="comment" class="hidden divPanel"></div>
+            <div id="settings" class="hidden divPanel"></div>
             <!-- آمار فروش -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10 mb-5 more2"></div>
           </div>
         </div>
       </div>
