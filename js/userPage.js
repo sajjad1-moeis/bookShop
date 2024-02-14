@@ -327,6 +327,7 @@ function showTikcetFunc(id, title) {
       </div>
       `;
       });
+      SwalAlert("به سمت پایین اسکرول کنید", "success");
     })
     .catch((err) => {});
 }
