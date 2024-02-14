@@ -342,12 +342,12 @@ margin: auto;
   }
   
   .divAdminChat{
-    margin: 30px 0;
+    margin: 20px 30px 0 0;
     justify-content: end;
     display: flex; 
   }
   .divUserChat{
-    margin: 30px 0;
+    margin: 20px 0 0 30px;
 
     justify-content: start;
     display: flex; 

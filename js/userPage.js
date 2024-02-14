@@ -253,6 +253,7 @@ postTiketBtn.onclick = postTiket;
 let IdTiket = 0;
 ////////////// get Tiket
 const tiketsContainer = $.querySelector(".tikets");
+let nameUser = document.querySelector("#nameUser").textContent;
 
 const getTiketFunc = async () => {
   fetch("https://bookshop-backend.liara.run/api/v1/ticket/myTickets", {
@@ -263,7 +264,6 @@ const getTiketFunc = async () => {
       if (data.tickets == "") {
         tiketsContainer.innerHTML = `<div class="w-max my-10 text-xl mx-auto">تیکتی وجود ندارد</div>`;
       } else {
-        console.log(data.tickets);
         let date = new Date(data.tickets[0].createDate).toLocaleString("fa-IR");
         let time = date.split(",");
         console.log(time);
@@ -286,7 +286,6 @@ const getTiketFunc = async () => {
 
         $.querySelectorAll(".btnShowChatUser").forEach((btn) => {
           btn.onclick = () => {
-            let nameUser = document.querySelector("#nameUser").textContent;
             console.log(nameUser);
             IdTiket = btn.dataset.ticket;
             showTikcetFunc(btn.dataset.ticket, nameUser);
@@ -297,14 +296,15 @@ const getTiketFunc = async () => {
     })
     .catch((err) => {});
 };
-const inputNewTextTicket = $.querySelector(".inputNewTextTicket");
 
+const inputNewTextTicket = $.querySelector(".inputNewTextTicket");
 function showTikcetFunc(id, title) {
   fetch(`https://bookshop-backend.liara.run/api/v1/ticket/${id}`, {
     credentials: "include",
   })
     .then((result) => result.json())
     .then((res) => {
+      ////////containetInputNewTicket
       console.log(res);
       console.log();
       $.querySelector(".titleTicket").textContent = res.ticket.title;
@@ -318,7 +318,7 @@ function showTikcetFunc(id, title) {
         console.log(time);
         $.querySelector(".divChatUser").innerHTML += `
          <div class="${item.isAdminMessage ? "divAdminChat" : "divUserChat"}">
-        <div class="max-w-[800px] w-full  p-6 ${
+        <div class="max-w-[900px] w-full  p-6 ${
           item.isAdminMessage ? "bg-primary text-white" : " bg-zinc-100"
         } " style="border-radius: 10px; border-bottom-left-radius: 0">
           <div class="mt-2 mb-5 text-sm w-full">${title} ${time[0]}  (${time[1]} )</div>
@@ -336,6 +336,7 @@ getTiketFunc();
 ////////////// sendNewTextTicket
 
 const sendNewTextTicketBtn = $.querySelector(".sendNewTextTicket");
+const closeDivChatBtn = $.querySelector(".closeDivChat");
 const sendNewTextTicket = () => {
   if (inputNewTextTicket.value) {
     fetch(`https://bookshop-backend.liara.run/api/v1/ticket/${IdTiket}`, {
@@ -345,12 +346,18 @@ const sendNewTextTicket = () => {
       body: JSON.stringify({message: inputNewTextTicket.value}),
     })
       .then((res) => res.json())
-      .then(console.log);
+      .then(() => {
+        showTikcetFunc(IdTiket, nameUser);
+      });
 
     console.log(IdTiket);
   } else {
     SwalAlert("لطفا متن مورد نظر را بنویسید", "warning");
   }
 };
-
+console.log(closeDivChatBtn);
+closeDivChatBtn.onclick = () => {
+  console.log("object");
+  $.querySelector(".containerChatUser").classList.add("hidden");
+};
 sendNewTextTicketBtn.onclick = sendNewTextTicket;
