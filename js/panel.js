@@ -233,7 +233,7 @@ const getAllProduct = () => {
           <div class="p-5 my-4 bg-[#313348] rounded-xl block md:flex justify-between px-10">
                   <div class=" md:flex gap-6">
                     <div class="w-max m-auto">
-                    <img src="https://bookshop-backend.liara.run${item.imagePath}" class="rounded-full w-32 object-cover" alt="" />
+                    <img src="https://bookshop-backend.liara.run${item.imagePath}" class="rounded-full h-32 w-32 object-cover" alt="" />
                     </div>
                   <div class="h-max md:my-auto md:text-right  text-center my-5">
                       <div class="my-3 text-white text-xl">
@@ -242,7 +242,7 @@ const getAllProduct = () => {
                       </div>
                       <div class="my-3 text-white text-xl">
                         <span class="text-zinc-300 text-base">قیمت :</span>
-                        <span class="ms-2">${item.price}</span>
+                        <span class="ms-2">${item.price.toLocaleString()}</span>
                       </div>
                     </div>
                   </div>
@@ -270,17 +270,18 @@ const getAllProduct = () => {
 };
 
 //////////////////EditProduct
+const inputMahsolAll = $.querySelectorAll(".input-mahsol");
+
 const EditProduct = (id) => {
-  // let uplateBook = {};
-  // fetch("https://bookshop-backend.liara.run/api/v1/books", {
-  //   method: "PUT",
-  //   credentials: "include",
-  //   body: {name, price, offer, id},
-  // });
-  showModal();
+  showModal("updateMahsol");
+  window.idBook = id;
 };
 
+$.querySelector("#updateMahsol").onclick = () => {
+  postMahsol("PUT", idBook);
+};
 //////////////////DeleteProduct
+
 const DeleteProduct = (id) => {
   Swal.fire({
     title: "آیا مایلید حذف کنید ؟",
@@ -317,11 +318,16 @@ getAllProduct();
 ////////////////////Show modal
 const addProduct = $.querySelector(".addProduct");
 const modalTiket = $.querySelector(".modalTiket");
-const showModal = () => {
+const btnAddOrUpdate = $.querySelectorAll(".btnAddOrUpdate .bg-primary");
+
+const showModal = (btn) => {
+  btnAddOrUpdate.forEach((btn) => btn.classList.add("hidden"));
   modalTiket.style.cssText = "top: 0%;transform: translate(0,0%)";
   $.querySelector("main").style.cssText = "filter: brightness(0.5)";
+  $.querySelector(`#${btn}`).classList.remove("hidden");
 };
 
+// updateMahsol;
 const closeModal = () => {
   modalTiket.style.cssText = "top: -100%;transform: translate(0,-60%)";
   $.querySelector("main").style.cssText = "filter: none";
@@ -334,17 +340,18 @@ $.querySelector("main").onclick = (e) => {
   }
 };
 
-addProduct.onclick = showModal;
+addProduct.onclick = () => {
+  showModal("postMahsol");
+};
 const closeModalMahsol = $.querySelector(".closeModalMahsol");
 closeModalMahsol.onclick = closeModal;
 
 ///////////////////// Post Mahsol
 
 const postMahsolBtn = $.querySelector("#postMahsol");
-const inputMahsolAll = $.querySelectorAll(".input-mahsol");
 const inputImgMahsol = $.querySelector(".input-img-mahsol");
 
-const postMahsol = () => {
+const postMahsol = (metod, idImg) => {
   let sum = 0;
   inputMahsolAll.forEach((item) => (item.value ? sum++ : sum));
   if (sum >= 3 && inputImgMahsol.value) {
@@ -359,22 +366,53 @@ const postMahsol = () => {
     } else {
       $.querySelector(".errorTiketSpan").textContent = "";
       console.log($.querySelector(".errorTiketSpan"));
-      const formData = new FormData();
-      formData.append("image", inputImgMahsol.files[0]);
-      formData.append("name", inputMahsolAll[0].value);
-      formData.append("price", Number(inputMahsolAll[1].value));
-      formData.append("offer", inputMahsolAll[2].value);
-      formData.append("filter", inputMahsolAll[3].value);
+      let data = null;
+      if (metod === "POST") {
+        const formData = new FormData();
+        formData.append("image", inputImgMahsol.files[0]);
+        formData.append("name", inputMahsolAll[0].value);
+        formData.append("price", Number(inputMahsolAll[1].value));
+        formData.append("offer", inputMahsolAll[2].value);
+        formData.append("filter", inputMahsolAll[3].value);
+        data = formData;
+      } else {
+        data = JSON.stringify({
+          name: inputMahsolAll[0].value,
+          price: Number(inputMahsolAll[1].value),
+          offer: inputMahsolAll[2].value,
+          filter: inputMahsolAll[3].value,
+          id: idImg,
+        });
+      }
       fetch("https://bookshop-backend.liara.run/api/v1/books", {
-        method: "POST",
+        method: metod,
         credentials: "include",
-        body: formData,
+        headers: metod === "PUT" ? {"Content-Type": "application/json"} : undefined,
+        body: data,
       })
         .then((result) => result.json())
-        .then((data) => console.log(data))
+        .then(async (data) => {
+          if (metod === "PUT" && inputImgMahsol.value) {
+            await new Promise((resole) => {
+              let form = new FormData();
+              form.append("image", inputImgMahsol.files[0]);
+              form.append("id", idImg);
+              fetch("https://bookshop-backend.liara.run/api/v1/books/newImage", {
+                method: "POST",
+                credentials: "include",
+                body: form,
+              }).then(resole);
+            });
+          }
+          getAllProduct();
+          closeModal();
+          inputMahsolAll.forEach((item) => (item.value = ""));
+        })
         .catch((err) => {});
     }
   }
 };
 
-postMahsolBtn.onclick = postMahsol;
+postMahsolBtn.onclick = () => {
+  postMahsol("POST");
+};
