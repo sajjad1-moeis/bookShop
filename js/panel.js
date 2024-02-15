@@ -478,3 +478,7 @@ const getUsers = () => {
     .catch((err) => {});
 };
 getUsers();
+
+/////////////////// pagition
+let page = 1;
+const pagination = (arr) => {};

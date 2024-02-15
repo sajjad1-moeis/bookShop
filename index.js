@@ -81,4 +81,4 @@ let api = await fetch("https://bookshop-backend.liara.run/api/v1/books");
 let arrBook = await api.json();
 console.log(arrBook);
 CreateDivMahsol(arrBook.slice(0, 8), document.querySelector(".product"), "");
-TemplateFooter();
+TemplateFooter("");
