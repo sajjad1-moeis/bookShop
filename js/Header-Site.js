@@ -122,8 +122,9 @@ const closeMenuMobile = () => {
   $.querySelector(".closeBtnMenuMobile").onclick = a;
 };
 
-function LodingSite() {
+function LodingSite(bg) {
   $.body.classList.remove("bg-primary");
+  $.body.classList.add(bg);
   $.querySelector(".load").classList.add("hidden");
   $.querySelector("main").classList.remove("hidden");
   $.querySelector(".header-mobile").classList.replace("hidden", "flex");
@@ -148,11 +149,11 @@ const headerAndIsLogin = (dot) => {
       DivScroll(dot);
       showMenuMobileBtn();
       closeMenuMobile();
-      LodingSite();
+      LodingSite("s");
     })
     .catch((err) => {
       console.log(err);
     });
 };
 
-export {headerAndIsLogin};
+export {headerAndIsLogin, LodingSite};

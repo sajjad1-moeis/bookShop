@@ -1,14 +1,12 @@
 const $ = document;
 import {CreateDivsPanel, moreDivCreatePanel, CheckAuth, funcLogOut} from "./export.js";
-
+import {LodingSite} from "./Header-Site.js";
 let div = [
   {title: "پیشخوان", href: "../html/Panel-Admin.html?id=pishkhan"},
-  {title: "افزودن محصول", href: "../html/Panel-Admin.html?id=mahsol"},
-  {title: "افزودن مقاله", href: "../html/Panel-Admin.html?id=mahgale"},
-  {title: "افزودن نویسنده", href: "../html/Panel-Admin.html?id=nevisande"},
-  {title: "کاربران ", href: "../html/Panel-Admin.html?id=Users"},
+  {title: "محصول", href: "../html/Panel-Admin.html?id=mahsol"},
   {title: "تیکت ها ", href: "../html/Panel-Admin.html?id=ticket"},
-  {title: "نظرات ", href: "../html/Panel-Admin.html?id=comment"},
+  {title: "کاربران ", href: "../html/Panel-Admin.html?id=Users"},
+  {title: "افزودن مقاله", href: "../html/Panel-Admin.html?id=mahgale"},
   {title: "تنظیمات ", href: "../html/Panel-Admin.html?id=settings"},
   {title: "خروج ", href: "#"},
 ];
@@ -25,7 +23,7 @@ CheckAuth("../html/userPage.html");
 CreateDivsPanel(div);
 moreDivCreatePanel(imgDiv);
 let aDiv = document.querySelectorAll(".panel a");
-funcLogOut(aDiv[8]);
+funcLogOut(aDiv[6]);
 
 ////////////////Chart
 
@@ -219,3 +217,164 @@ sendAnswerTicketBtn.onclick = () => {
       .catch((err) => {});
   }
 };
+
+//////////////////////////////////////////// product Item
+
+const containerMahsol = $.querySelector(".containerMahsol");
+
+const getAllProduct = () => {
+  fetch(`https://bookshop-backend.liara.run/api/v1/books`)
+    .then((result) => result.json())
+    .then((data) => {
+      console.log(data);
+      containerMahsol.innerHTML = "";
+      data.forEach((item) => {
+        containerMahsol.innerHTML += `
+          <div class="p-5 my-4 bg-[#313348] rounded-xl block md:flex justify-between px-10">
+                  <div class=" md:flex gap-6">
+                    <div class="w-max m-auto">
+                    <img src="https://bookshop-backend.liara.run${item.imagePath}" class="rounded-full w-32 object-cover" alt="" />
+                    </div>
+                  <div class="h-max md:my-auto md:text-right  text-center my-5">
+                      <div class="my-3 text-white text-xl">
+                        <span class="text-zinc-300 text-base">محصول :</span>
+                        <span class="ms-2">${item.name}</span>
+                      </div>
+                      <div class="my-3 text-white text-xl">
+                        <span class="text-zinc-300 text-base">قیمت :</span>
+                        <span class="ms-2">${item.price}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="block md:flex h-max my-auto gap-3" data-id="${item._id}">
+                    <div class="editProduct my-2 text-center cursor-pointer p-4 text-lg text-white rounded  bg-warning">ادیت محصول</div>
+                    <div class="deleteProduct my-2 text-center cursor-pointer p-4 text-lg text-white rounded bg-danger">حذف محصول</div>
+                  </div>
+                </div>`;
+      });
+      $.querySelectorAll(".editProduct").forEach((btn) => {
+        btn.onclick = () => {
+          let id = btn.parentElement.dataset.id;
+          EditProduct(id);
+        };
+      });
+      $.querySelectorAll(".deleteProduct").forEach((btn) => {
+        btn.onclick = () => {
+          let id = btn.parentElement.dataset.id;
+          DeleteProduct(id);
+        };
+      });
+      LodingSite("bg-[#232434]");
+    })
+    .catch((err) => {});
+};
+
+//////////////////EditProduct
+const EditProduct = (id) => {
+  // let uplateBook = {};
+  // fetch("https://bookshop-backend.liara.run/api/v1/books", {
+  //   method: "PUT",
+  //   credentials: "include",
+  //   body: {name, price, offer, id},
+  // });
+  showModal();
+};
+
+//////////////////DeleteProduct
+const DeleteProduct = (id) => {
+  Swal.fire({
+    title: "آیا مایلید حذف کنید ؟",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "بله و خروج",
+    cancelButtonText: "خیر",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "با موفقیت حذف شد",
+        icon: "success",
+      }).then(() => {
+        fetch("https://bookshop-backend.liara.run/api/v1/books", {
+          method: "DELETE",
+          credentials: "include",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({id: id}),
+        })
+          .then((result) => result.json())
+          .then(() => {
+            getAllProduct();
+          })
+          .catch((err) => {});
+      });
+    }
+  });
+};
+
+getAllProduct();
+
+////////////////////Show modal
+const addProduct = $.querySelector(".addProduct");
+const modalTiket = $.querySelector(".modalTiket");
+const showModal = () => {
+  modalTiket.style.cssText = "top: 0%;transform: translate(0,0%)";
+  $.querySelector("main").style.cssText = "filter: brightness(0.5)";
+};
+
+const closeModal = () => {
+  modalTiket.style.cssText = "top: -100%;transform: translate(0,-60%)";
+  $.querySelector("main").style.cssText = "filter: none";
+};
+
+$.querySelector("main").onclick = (e) => {
+  let btn = e.target.className;
+  if (!(btn.includes("editProduct") || btn.includes("addProduct"))) {
+    closeModal();
+  }
+};
+
+addProduct.onclick = showModal;
+const closeModalMahsol = $.querySelector(".closeModalMahsol");
+closeModalMahsol.onclick = closeModal;
+
+///////////////////// Post Mahsol
+
+const postMahsolBtn = $.querySelector("#postMahsol");
+const inputMahsolAll = $.querySelectorAll(".input-mahsol");
+const inputImgMahsol = $.querySelector(".input-img-mahsol");
+
+const postMahsol = () => {
+  let sum = 0;
+  inputMahsolAll.forEach((item) => (item.value ? sum++ : sum));
+  if (sum >= 3 && inputImgMahsol.value) {
+    console.log(sum);
+    console.log(inputImgMahsol.value);
+    if (isNaN(inputMahsolAll[1].value)) {
+      console.log("nan");
+      $.querySelector(".errorTiketSpan").textContent = "لطفا برای قیمت عدد وارد کنید";
+    } else if (isNaN(inputMahsolAll[2].value)) {
+      console.log("nan");
+      $.querySelector(".errorTiketSpan").textContent = "لطفا برای تخفیف عدد وارد کنید";
+    } else {
+      $.querySelector(".errorTiketSpan").textContent = "";
+      console.log($.querySelector(".errorTiketSpan"));
+      const formData = new FormData();
+      formData.append("image", inputImgMahsol.files[0]);
+      formData.append("name", inputMahsolAll[0].value);
+      formData.append("price", Number(inputMahsolAll[1].value));
+      formData.append("offer", inputMahsolAll[2].value);
+      formData.append("filter", inputMahsolAll[3].value);
+      fetch("https://bookshop-backend.liara.run/api/v1/books", {
+        method: "POST",
+        credentials: "include",
+        body: formData,
+      })
+        .then((result) => result.json())
+        .then((data) => console.log(data))
+        .catch((err) => {});
+    }
+  }
+};
+
+postMahsolBtn.onclick = postMahsol;

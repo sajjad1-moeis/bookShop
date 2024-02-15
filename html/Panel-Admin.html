@@ -7,126 +7,190 @@
     <link rel="stylesheet" href="../css/tailwind.css" />
     <link rel="stylesheet" href="../css/style.css" />
   </head>
-  <body dir="rtl" class="bg-[#2a2b3d]">
-    <div class="body">
-      <div class="grid grid-cols-1 md:grid-cols-5 h-[100vh]">
-        <div class="md:col-span-1 overflow-auto h-full bg-[#252636] p-5 py-10">
-          <div class="user-profile bg-white w-max mx-auto rounded-full">
-            <img src="../img/noProfile.png" class="w-32" alt="" />
-          </div>
-          <div class="text-white my-10 text-xl panel"></div>
+  <body dir="rtl" class="bg-primary h-[100vh]">
+    <div class="load">
+      <hr />
+      <hr />
+      <hr />
+      <hr />
+    </div>
+    <div class="modalTiket p-3 text-black max-w-[500px] w-full fixed inset-0 m-auto h-max">
+      <div class="absolute left-8 top-8 cursor-pointer closeModalMahsol">
+        <img src="../img/icons8-close-50.png" class="w-7" alt="" />
+      </div>
+      <div class="rounded-xl bg-white p-5 border-2 border-primary">
+        <div class="pb-5 border-b-[1px] border-zinc-200 text-lg">اضافه کردن محصول جدید</div>
+        <div class="my-5"></div>
+        <div class="mt-8">
+          <div class="my-4">نام محصول</div>
+          <input
+            type="text"
+            class="input-mahsol w-full p-4 outline-none bg-zinc-100 rounded-xl border-zinc-300 border-[1px] placeholder:text-zinc-700"
+            required=""
+            placeholder="نام محصول را وارد کنید"
+          />
+          <div class="my-4">قیمت محصول</div>
+          <input
+            type="text"
+            class="input-mahsol w-full p-4 outline-none bg-zinc-100 rounded-xl border-zinc-300 border-[1px] placeholder:text-zinc-700"
+            required=""
+            placeholder="قیمت محصول را وارد کنید"
+          />
+          <div class="my-4">تخفیف محصول</div>
+          <input
+            type="text"
+            class="input-mahsol w-full p-4 outline-none bg-zinc-100 rounded-xl border-zinc-300 border-[1px] placeholder:text-zinc-700"
+            required=""
+            placeholder="تخفیف محصول را وارد کنید"
+          />
+          <div class="my-4">دسته بندی محصول</div>
+          <input
+            type="text"
+            class="input-mahsol w-full p-4 outline-none bg-zinc-100 rounded-xl border-zinc-300 border-[1px] placeholder:text-zinc-700"
+            required=""
+            placeholder="دسته بندی محصول را وارد کنید"
+          />
         </div>
-        <div class="md:col-span-4 text-white">
-          <div class="p-10 w-full flex text-lg md:text-xl justify-between bg-[#313348]">
-            <span>سلام سجاد جان</span>
-            <a href="../index.html"
-              ><span>بازگشت به صفحه اصلی <img src="../img/arrow-left.png" class="inline w-4" alt="" /></span
-            ></a>
+
+        <!-- chose Img -->
+
+        <div class="w-full flex justify-end">
+          <div class="rounded bg-primary w-max text-white relative mb-10 mt-3">
+            <div class="absolute p-2 inset-0 m-auto w-max h-max">انتخاب عکس</div>
+            <input type="file" name="" id="" class="input-img-mahsol cursor-pointer p-2 opacity-0 w-28" />
           </div>
-          <div class="p-10 pb-5">
-            <div>
-              <div class="rounded-xl overflow-hidden p-4 px-10 bg-[#313348] md:flex block justify-between">
-                <div>
-                  <h1 class="text-2xl my-3">به پنل ادمین خوش آمدید</h1>
-                  <p>سلام سجاد جان، به داشبورد عالی خود خوش آمدید!</p>
-                </div>
-                <div class="flex h-max gap-2 md:my-auto justify-end my-5">
-                  <div class="relative">
-                    <img src="../img/icons8-notification-50.png" class="w-8 h-8" alt="" />
-                    <div class="absolute p-0.5 top-[-8px] rounded-full bg-danger text-xs">98</div>
-                  </div>
-                  <div class="relative">
-                    <img src="../img/icons8-setting-50.png" class="w-8 h-8" alt="" />
-                    <div class="absolute p-0.5 top-[-8px] rounded-full bg-danger text-xs">98</div>
-                  </div>
-                </div>
-              </div>
-              <div class="p-4 my-5 px-10 bg-[#313348] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 more rounded-xl overflow-hidden"></div>
+        </div>
+
+        <div class="text-danger text-lg text-center w-full my-2 mb-5 errorTiketSpan"></div>
+        <div class="w-full my-2 p-4 text-white bg-primary text-center rounded-xl text-lg cursor-pointer" id="postMahsol">ثبت محصول</div>
+      </div>
+    </div>
+    <main class="hidden">
+      <div class="body">
+        <div class="grid grid-cols-1 lg:grid-cols-5 h-[100vh]">
+          <div class="lg:col-span-1 overflow-auto h-max lg:h-[100%] bg-[#252636] p-5 py-10">
+            <div class="user-profile bg-white w-max mx-auto rounded-full">
+              <img src="../img/noProfile.png" class="w-32" alt="" />
             </div>
-
-            <!-- Chart -->
-
-            <div id="pishkhan" class="pt-0 rounded-xl overflow-hidden divPanel">
-              <div class="bg-[#313348]">
-                <canvas id="myChart"></canvas>
-              </div>
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10 mb-5 more2"></div>
+            <div class="text-white my-10 text-xl panel"></div>
+          </div>
+          <div class="lg:col-span-4 text-white">
+            <div class="p-10 w-full flex text-lg md:text-xl justify-between bg-[#313348]">
+              <span>سلام سجاد جان</span>
+              <a href="../index.html"
+                ><span>بازگشت به صفحه اصلی <img src="../img/arrow-left.png" class="inline w-4" alt="" /></span
+              ></a>
             </div>
-            <div id="mahsol" class="hidden divPanel"></div>
-            <div id="mahgale" class="hidden divPanel"></div>
-            <div id="nevisande" class="hidden divPanel"></div>
-            <div id="Users" class="hidden divPanel"></div>
-            <div id="ticket" class="hidden divPanel rounded-xl">
-              <div class="my-5 text-xl p-2">
-                <div class="pb-5 border-b-[1px] border-zinc-400">تیکت ها</div>
-
-                <!-- ticketsDiv -->
-
-                <div class="ticketsDiv"></div>
-
-                <!-- divNewTextTicket -->
-
-                <div class="my-10 p-8 rounded-xl divNewTextTicket hidden relative" style="background-color: rgb(28 28 40)">
-                  <div class="pb-5 border-b-[1px] border-zinc-400 flex justify-between">
-                    <div class="">
-                      <div class="flex">
-                        <span class="text-base text-zinc-500">دسته بندی :</span>
-                        <div class="categoryTicket ms-2">ارتباط با بخش مالی</div>
-                      </div>
-                      <div class="my-3 flex">
-                        <span class="text-base text-zinc-500">موضوع :</span>
-                        <div class="subjectTicket ms-2">کمبود مالی</div>
-                      </div>
-                      <div class="my-3 flex">
-                        <span class="text-base text-zinc-500"> نام کاربری : </span>
-                        <div class="titleDivNewTextTicket ms-2">mohammad-molaii</div>
-                      </div>
+            <div class="p-5 md:p-10 pb-5">
+              <div>
+                <div class="rounded-xl overflow-hidden p-4 px-10 bg-[#313348] md:flex block justify-between">
+                  <div>
+                    <h1 class="text-2xl my-3">به پنل ادمین خوش آمدید</h1>
+                    <p>سلام سجاد جان، به داشبورد عالی خود خوش آمدید!</p>
+                  </div>
+                  <div class="flex h-max gap-2 md:my-auto justify-end my-5">
+                    <div class="relative">
+                      <img src="../img/icons8-notification-50.png" class="w-8 h-8" alt="" />
+                      <div class="absolute p-0.5 top-[-8px] rounded-full bg-danger text-xs">98</div>
                     </div>
-                    <div class="cursor-pointer closeDivChat absolute left-3 top-3"><img src="../img/close-icon.png" alt="" class="w-6" /></div>
+                    <div class="relative">
+                      <img src="../img/icons8-setting-50.png" class="w-8 h-8" alt="" />
+                      <div class="absolute p-0.5 top-[-8px] rounded-full bg-danger text-xs">98</div>
+                    </div>
                   </div>
-                  <div class="my-5 containerChatUserAndAdmin">
-                    <!-- asda -->
-                    <!-- <div class="divUserChat text-base">
-                      <div class="first max-w-[900px] w-full p-4 py-6 rounded-xl bg-[#313348]">
-                        <div class="my-4" dir="rtl">
-                          <div>Shahram.Kh</div>
-                          <div>1402/09/04 09:37</div>
+                </div>
+                <div class="p-4 my-5 px-10 bg-[#313348] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 more rounded-xl overflow-hidden"></div>
+              </div>
+
+              <!-- Chart -->
+
+              <div id="pishkhan" class="pt-0 rounded-xl overflow-hidden divPanel">
+                <div class="bg-[#313348]">
+                  <canvas id="myChart"></canvas>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10 mb-5 more2"></div>
+              </div>
+              <div id="mahsol" class="hidden divPanel md:p-5 my-10">
+                <div class="flex justify-between border-b-[1px] border-zinc-400 pb-5">
+                  <div class="text-2xl h-max my-auto">محصولات</div>
+                  <div class="cursor-pointer p-4 text-lg text-white rounded addProduct bg-blue-500">اضافه محصول</div>
+                </div>
+                <div class="mt-7 containerMahsol">
+                  <!-- div mahsol -->
+                  <div class="p-5 bg-[#313348] rounded-xl flex justify-between px-10">
+                    <div class="flex gap-6">
+                      <img src="../img/book-10-600x600.jpg" class="rounded-full w-32 object-cover" alt="" />
+                      <div class="h-max my-auto">
+                        <div class="my-3 text-white text-xl">
+                          <span class="text-zinc-300 text-base">محصول :</span>
+                          <span class="ms-2">صلیب بانو</span>
                         </div>
-                        سلام وقتتون بخیر ترجیحا سعی کنید با آی پی ثابت وارد بشید ولی مثلا سیستم برادر تون باشه قطعا تو یه موقعیت هستید جفتتون هم و بیشتر زمانی
-                        به مشکل میخوره که موقعیت ها هم مختلف باشه
+                        <div class="my-3 text-white text-xl">
+                          <span class="text-zinc-300 text-base">قیمت :</span>
+                          <span class="ms-2">5000</span>
+                        </div>
                       </div>
                     </div>
-                    <!-- dasd -->
-                    <!-- <div class="divAdminChat text-base">
-                      <div class="first max-w-[900px] w-full p-4 py-6 rounded-xl  style="background-color: rgb(78 129 251 / 0.2)">
-                        <div class="my-4" dir="ltr">
-                          <div>Shahram.Kh</div>
-                          <div>1402/09/04 09:37</div>
-                        </div>
-                        سلام وقتتون بخیر ترجیحا سعی کنید با آی پی ثابت وارد بشید ولی مثلا سیستم برادر تون باشه قطعا تو یه موقعیت هستید جفتتون هم و بیشتر زمانی
-                        به مشکل میخوره که موقعیت ها هم مختلف باشه
-                      </div>
-                    </div> -->
+                    <div class="flex h-max my-auto gap-3">
+                      <div class="cursor-pointer p-4 text-lg text-white rounded bg-warning">ادیت محصول</div>
+                      <div class="cursor-pointer p-4 text-lg text-white rounded bg-danger">حذف محصول</div>
+                    </div>
                   </div>
 
-                  <div class="divInputTicket">
-                    <textarea name="" id="" cols="30" rows="10" class="bg-[#313348] inputNewTextTicket w-full mt-10 outline-none p-5 rounded-xl"></textarea>
-                    <div class="flex justify-end mt-2">
-                      <div class="cursor-pointer p-3 text-lg bg-[#313348] rounded-xl text-white sendAnswerTicket">ارسال پاسخ تیکت</div>
+                  <!-- div mahsol -->
+                </div>
+              </div>
+              <div id="mahgale" class="hidden divPanel"></div>
+              <div id="nevisande" class="hidden divPanel"></div>
+              <div id="Users" class="hidden divPanel"></div>
+              <div id="ticket" class="hidden divPanel rounded-xl">
+                <div class="my-5 text-xl p-2">
+                  <div class="pb-5 border-b-[1px] border-zinc-400">تیکت ها</div>
+
+                  <!-- ticketsDiv -->
+
+                  <div class="ticketsDiv"></div>
+
+                  <!-- divNewTextTicket -->
+
+                  <div class="my-10 p-8 rounded-xl divNewTextTicket hidden relative" style="background-color: rgb(28 28 40)">
+                    <div class="pb-5 border-b-[1px] border-zinc-400 flex justify-between">
+                      <div class="">
+                        <div class="flex">
+                          <span class="text-base text-zinc-500">دسته بندی :</span>
+                          <div class="categoryTicket ms-2">ارتباط با بخش مالی</div>
+                        </div>
+                        <div class="my-3 flex">
+                          <span class="text-base text-zinc-500">موضوع :</span>
+                          <div class="subjectTicket ms-2">کمبود مالی</div>
+                        </div>
+                        <div class="my-3 flex">
+                          <span class="text-base text-zinc-500"> نام کاربری : </span>
+                          <div class="titleDivNewTextTicket ms-2">mohammad-molaii</div>
+                        </div>
+                      </div>
+                      <div class="cursor-pointer closeDivChat absolute left-3 top-3"><img src="../img/close-icon.png" alt="" class="w-6" /></div>
+                    </div>
+                    <div class="my-5 containerChatUserAndAdmin"></div>
+
+                    <div class="divInputTicket">
+                      <textarea name="" id="" cols="30" rows="10" class="bg-[#313348] inputNewTextTicket w-full mt-10 outline-none p-5 rounded-xl"></textarea>
+                      <div class="flex justify-end mt-2">
+                        <div class="cursor-pointer p-3 text-lg bg-[#313348] rounded-xl text-white sendAnswerTicket">ارسال پاسخ تیکت</div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+              <div id="settings" class="hidden divPanel"></div>
+              <!-- آمار فروش -->
             </div>
-            <div id="comment" class="hidden divPanel"></div>
-            <div id="settings" class="hidden divPanel"></div>
-            <!-- آمار فروش -->
           </div>
         </div>
       </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../js/panel.js" type="module"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script src="../js/panel.js" type="module"></script>
+    </main>
   </body>
 </html>
