@@ -6,7 +6,6 @@ let div = [
   {notification: false, title: "محصول", href: "../html/Panel-Admin.html?id=mahsol"},
   {notification: true, title: "تیکت ها ", href: "../html/Panel-Admin.html?id=ticket"},
   {notification: false, title: "کاربران ", href: "../html/Panel-Admin.html?id=Users"},
-  {notification: false, title: "افزودن مقاله", href: "../html/Panel-Admin.html?id=mahgale"},
   {notification: false, title: "تنظیمات ", href: "../html/Panel-Admin.html?id=settings"},
   {notification: false, title: "خروج ", href: "#"},
 ];
@@ -100,37 +99,44 @@ const ShowAllTikcet = () => {
     .then((data) => {
       containerTicket.innerHTML = "";
       data.tickets.forEach((item) => {
-        console.log();
-        containerTicket.innerHTML += `<div class="my-4 itemTicket">
+        containerTicket.innerHTML += `<div class="my-4 itemTicket ${item.status ? "" : "notTicket"}">
         <div class="my-3 p-8 rounded-lg bg-[#313348] block md:flex justify-between">
           <div class="h-max my-auto">${item.seen ? "تیکت پاسخ داده شده" : "تیکت جدید"}</div>
-          <div class="flex gap-2" data-user="${item.creator}" data-ticket="${item._id}">
+          <div class="flex my-2 gap-2" data-user="${item.creator}" data-ticket="${item._id}">
             <div class="text-sm p-2 cursor-pointer bg-success rounded answerTicket">${item.seen ? "مشاهده تیکت" : "جواب دادن به تیکت"}  </div>
-            <div class="text-sm p-2 cursor-pointer bg-danger rounded deleteTicket">بستن تیکت</div>
+            <div class="text-sm p-2 cursor-pointer bg-danger rounded ${item.status ? "deleteTicket" : ""}">${item.status ? "بستن تیکت" : "بسته شده"}</div>
           </div>
         </div>
       </div>`;
       });
       let itemTicketAll = document.querySelectorAll(".answerTicket");
-      itemTicketAll.forEach(
-        (btn) =>
-          (btn.onclick = () => {
-            userId = btn.parentElement.dataset.user;
-            userTicket = btn.parentElement.dataset.ticket;
-            showContainerTicket(userId, userTicket);
-            console.log();
+      let deleteTicket = document.querySelectorAll(".deleteTicket");
+      itemTicketAll.forEach((btn) => {
+        btn.onclick = () => {
+          userId = btn.parentElement.dataset.user;
+          userTicket = btn.parentElement.dataset.ticket;
+          showContainerTicket(userId, userTicket);
+          console.log();
+        };
+      });
+
+      deleteTicket.forEach((btn) => {
+        btn.onclick = () => {
+          fetch(` https://bookshop-backend.liara.run/api/v1/ticket/${btn.parentElement.dataset.ticket}/close`, {
+            method: "POST",
+            credentials: "include",
+            headers: {"Content-Type": "application/json"},
           })
-      );
+            .then((result) => result.json())
+            .then((data) => {
+              console.log(data);
+              ShowAllTikcet();
+            })
+            .catch((err) => {});
+        };
+      });
 
-      //////////////
-      let filterSinData = data.tickets.filter((item) => item.seen === false);
-      CreateDivsPanel(div, filterSinData.length);
-      CheckAuth("../html/userPage.html");
-      moreDivCreatePanel(imgDiv);
-      let aDiv = document.querySelectorAll(".panel a");
-      funcLogOut(aDiv[6]);
-
-      ////////////////
+      window.filterSinData = data.tickets.filter((item) => item.seen === false);
     })
     .catch((err) => {});
 };
@@ -229,7 +235,6 @@ const getAllProduct = () => {
   fetch(`https://bookshop-backend.liara.run/api/v1/books`)
     .then((result) => result.json())
     .then((data) => {
-      console.log(data);
       containerMahsol.innerHTML = "";
       data.forEach((item) => {
         containerMahsol.innerHTML += `
@@ -422,3 +427,50 @@ postMahsolBtn.onclick = () => {
 };
 
 /////// use ImportAll
+setTimeout(() => {
+  CreateDivsPanel(div, "");
+  CheckAuth("../html/userPage.html");
+  moreDivCreatePanel(imgDiv);
+  let aDiv = document.querySelectorAll(".panel a");
+  funcLogOut(aDiv[5]);
+}, 1000);
+
+///////////////// Get All Users
+
+const getUsers = () => {
+  fetch(`https://bookshop-backend.liara.run/api/v1/userdata/getUsers`, {
+    credentials: "include",
+  })
+    .then((result) => result.json())
+    .then((data) => {
+      console.log();
+      let filterAdmin = data.users.filter((item) => item.isAdmin !== true);
+      console.log();
+      $.querySelector(".containerUSers").innerHTML = "";
+      filterAdmin.forEach((user) => {
+        $.querySelector(".containerUSers").innerHTML += `
+        <div class="my-4 itemUser ">
+                    <div class="my-3 p-8 rounded-lg bg-[#313348] flex justify-between">
+                      <div class="h-max my-auto md:text-xl">${user.email}</div>
+                      <div class="p-2 md:p-3 cursor-pointer bg-danger md:text-base text-sm rounded w-max deleteUser" data-id="${user._id}">حذف کاربر</div>
+                    </div>
+                  </div>
+        `;
+      });
+      $.querySelectorAll(".deleteUser").forEach((btn) => {
+        btn.onclick = () => {
+          fetch(`https://bookshop-backend.liara.run/api/v1/userdata/${btn.dataset.id}`, {
+            method: "DELETE",
+            credentials: "include",
+          })
+            .then((result) => result.json())
+            .then((data) => console.log(data))
+            .catch((err) => {});
+          console.log(btn.dataset.id);
+          getUsers();
+        };
+      });
+    })
+    .catch((err) => {});
+};
+getUsers();

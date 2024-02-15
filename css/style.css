@@ -249,27 +249,19 @@ margin: auto;
   50%{transform:translateX(0)}
   75%{transform:translateY(0)}
 }
-.panel div{
-    transition: 0.3s;
-    /* box-shadow: 5px 5px 20px 5px #737373; */
-    border-radius: 20px;
 
-}
-.panel div:hover{
-    box-shadow: 0px 0px 20px 0px #737373;
-}
 
 
 /* Page User */
 
 .panel div{
-    transition: 0.3s;
+    transition: 0.15s;
     /* box-shadow: 5px 5px 20px 5px #fff; */
     border-radius: 20px;
 
 }
 .panel div:hover{
-    box-shadow: 0px 0px 20px 0px #fff;
+    box-shadow: 0px 0px 5px 0px #fff;
 }
 .uploadDiv{
     width: 30px;
@@ -367,4 +359,8 @@ margin: auto;
 
     justify-content: start;
     display: flex; 
+  }
+  .notTicket{
+    opacity: 0.5;
+    text-decoration: line-through;
   }

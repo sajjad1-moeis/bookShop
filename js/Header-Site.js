@@ -127,7 +127,9 @@ function LodingSite(bg) {
   $.body.classList.add(bg);
   $.querySelector(".load").classList.add("hidden");
   $.querySelector("main").classList.remove("hidden");
-  $.querySelector(".header-mobile").classList.replace("hidden", "flex");
+  if ($.querySelector(".header-mobile")) {
+    $.querySelector(".header-mobile").classList.replace("hidden", "flex");
+  }
 }
 
 const headerAndIsLogin = (dot) => {

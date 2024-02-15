@@ -168,7 +168,9 @@ const changePassFunc = () => {
         }
         console.log(data);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        SwalAlert("دوباره تلاش کنید", "error");
+      });
     console.log("object");
   }
 };
@@ -184,7 +186,7 @@ import {CreateDivMahsol} from "./Create-Div-Mahsol.js";
 let mahsolContainer = $.querySelector(".mahsol");
 let api = await fetch("https://bookshop-backend.liara.run/api/v1/books");
 let arrBook = await api.json();
-CreateDivMahsol(arrBook.slice(4, 8), mahsolContainer, ".");
+CreateDivMahsol(arrBook.slice(0, 2), mahsolContainer, ".");
 
 //////////////////Open Modal Tiket
 
@@ -277,9 +279,7 @@ const getTiketFunc = async () => {
             <div class=" flex md:my-5 my-5 gap-2">
               <div class="lg:text-xs bg-zinc-200 text-slate-500 py-1 px-1.5 rounded">${item.subject}</div>
               <div class="lg:text-xs px-4 ${item.status ? "bg-success" : "bg-danger"} text-white py-1 px-1.5 rounded">${item.status ? "باز" : "بسته"}</div>
-              <div class="lg:text-xs px-4 ${!item.seen ? "bg-success" : "bg-warning"} text-white py-1 px-1.5 rounded">${
-            !item.seen ? "پاسخ داده شده" : "منتظر پاسخ"
-          }</div>
+              <div class="lg:text-xs px-4 ${item.seen ? "bg-success" : "bg-warning"} text-white py-1 px-1.5 rounded">${item.seen ? "پاسخ داده شده" : "منتظر پاسخ"}</div>
             </div>
                </div>
             </div>
@@ -288,6 +288,7 @@ const getTiketFunc = async () => {
 
         $.querySelectorAll(".btnShowChatUser").forEach((btn) => {
           btn.onclick = () => {
+            SwalAlert("به سمت پایین اسکرول کنید", "success");
             IdTiket = btn.dataset.ticket;
             showTikcetFunc(btn.dataset.ticket, nameUser);
           };
@@ -319,9 +320,7 @@ function showTikcetFunc(id, title) {
         let time = date.split(",");
         $.querySelector(".divChatUser").innerHTML += `
          <div class="${item.isAdminMessage ? "divAdminChat" : "divUserChat"}">
-        <div class="max-w-[900px] w-full  p-6 ${
-          item.isAdminMessage ? "bg-primary text-white" : " bg-zinc-100"
-        } " style="border-radius: 10px; border-bottom-left-radius: 0">
+        <div class="max-w-[900px] w-full  p-6 ${item.isAdminMessage ? "bg-primary text-white" : " bg-zinc-100"} " style="border-radius: 10px; border-bottom-left-radius: 0">
         <div dir="${item.isAdminMessage ? "ltr" : "rtl"}">
         <div class="text-xl my-2" >${item.isAdminMessage ? "admin" : title}</div>
          <div class="mt-2 mb-5 text-sm w-full"> ${time[0]}  (${time[1]} )</div>
@@ -331,7 +330,6 @@ function showTikcetFunc(id, title) {
       </div>
       `;
       });
-      SwalAlert("به سمت پایین اسکرول کنید", "success");
     })
     .catch((err) => {});
 }
@@ -366,3 +364,12 @@ closeDivChatBtn.onclick = () => {
   $.querySelector(".containerChatUser").classList.add("hidden");
 };
 sendNewTextTicketBtn.onclick = sendNewTextTicket;
+
+////////////
+fetch("https://bookshop-backend.liara.run/api/v1/ticket/myTickets", {
+  credentials: "include",
+})
+  .then((result) => result.json())
+  .then((data) => {
+    $.querySelectorAll(".item")[2].textContent = data.tickets.length;
+  });
