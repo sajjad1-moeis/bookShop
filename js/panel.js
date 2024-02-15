@@ -2,13 +2,13 @@ const $ = document;
 import {CreateDivsPanel, moreDivCreatePanel, CheckAuth, funcLogOut} from "./export.js";
 import {LodingSite} from "./Header-Site.js";
 let div = [
-  {title: "پیشخوان", href: "../html/Panel-Admin.html?id=pishkhan"},
-  {title: "محصول", href: "../html/Panel-Admin.html?id=mahsol"},
-  {title: "تیکت ها ", href: "../html/Panel-Admin.html?id=ticket"},
-  {title: "کاربران ", href: "../html/Panel-Admin.html?id=Users"},
-  {title: "افزودن مقاله", href: "../html/Panel-Admin.html?id=mahgale"},
-  {title: "تنظیمات ", href: "../html/Panel-Admin.html?id=settings"},
-  {title: "خروج ", href: "#"},
+  {notification: false, title: "پیشخوان", href: "../html/Panel-Admin.html?id=pishkhan"},
+  {notification: false, title: "محصول", href: "../html/Panel-Admin.html?id=mahsol"},
+  {notification: true, title: "تیکت ها ", href: "../html/Panel-Admin.html?id=ticket"},
+  {notification: false, title: "کاربران ", href: "../html/Panel-Admin.html?id=Users"},
+  {notification: false, title: "افزودن مقاله", href: "../html/Panel-Admin.html?id=mahgale"},
+  {notification: false, title: "تنظیمات ", href: "../html/Panel-Admin.html?id=settings"},
+  {notification: false, title: "خروج ", href: "#"},
 ];
 let imgDiv = [
   {img: "../img/icons8-gmail-50.png", title: "50", more1: "تیکت", color: "blue-500", more2: "بازدید سایت"},
@@ -16,14 +16,6 @@ let imgDiv = [
   {img: "../img/icons8-users-50.png", title: "5056", more1: "کاربر", color: "success", more2: "فروش محصولات"},
   {img: "../img/icons8-book-50.png", title: "10", more1: "محصول", color: "warning", more2: "معاملات"},
 ];
-
-/////// use ImportAll
-
-CheckAuth("../html/userPage.html");
-CreateDivsPanel(div);
-moreDivCreatePanel(imgDiv);
-let aDiv = document.querySelectorAll(".panel a");
-funcLogOut(aDiv[6]);
 
 ////////////////Chart
 
@@ -78,6 +70,7 @@ new Chart(ctx, {
 ////////////////// Btn LogOut
 
 ////// ShowDivPanel
+
 const ShowDivPanelUrl = () => {
   let locationSite = location.search;
   let IdLocation = new URLSearchParams(locationSite);
@@ -105,7 +98,6 @@ const ShowAllTikcet = () => {
   })
     .then((result) => result.json())
     .then((data) => {
-      console.log(data);
       containerTicket.innerHTML = "";
       data.tickets.forEach((item) => {
         console.log();
@@ -129,6 +121,16 @@ const ShowAllTikcet = () => {
             console.log();
           })
       );
+
+      //////////////
+      let filterSinData = data.tickets.filter((item) => item.seen === false);
+      CreateDivsPanel(div, filterSinData.length);
+      CheckAuth("../html/userPage.html");
+      moreDivCreatePanel(imgDiv);
+      let aDiv = document.querySelectorAll(".panel a");
+      funcLogOut(aDiv[6]);
+
+      ////////////////
     })
     .catch((err) => {});
 };
@@ -212,6 +214,7 @@ sendAnswerTicketBtn.onclick = () => {
       .then((result) => result.json())
       .then(() => {
         showContainerTicket(userId, userTicket);
+        ShowAllTikcet();
         inputNewTextTicket.value = "";
       })
       .catch((err) => {});
@@ -270,6 +273,7 @@ const getAllProduct = () => {
 };
 
 //////////////////EditProduct
+
 const inputMahsolAll = $.querySelectorAll(".input-mahsol");
 
 const EditProduct = (id) => {
@@ -416,3 +420,5 @@ const postMahsol = (metod, idImg) => {
 postMahsolBtn.onclick = () => {
   postMahsol("POST");
 };
+
+/////// use ImportAll

@@ -266,6 +266,7 @@ const getTiketFunc = async () => {
         let date = new Date(data.tickets[0].createDate).toLocaleString("fa-IR");
         let time = date.split(",");
         tiketsContainer.innerHTML = "";
+        console.log(data);
         data.tickets.forEach((item) => {
           tiketsContainer.innerHTML += `
       
@@ -276,6 +277,9 @@ const getTiketFunc = async () => {
             <div class=" flex md:my-5 my-5 gap-2">
               <div class="lg:text-xs bg-zinc-200 text-slate-500 py-1 px-1.5 rounded">${item.subject}</div>
               <div class="lg:text-xs px-4 ${item.status ? "bg-success" : "bg-danger"} text-white py-1 px-1.5 rounded">${item.status ? "باز" : "بسته"}</div>
+              <div class="lg:text-xs px-4 ${!item.seen ? "bg-success" : "bg-warning"} text-white py-1 px-1.5 rounded">${
+            !item.seen ? "پاسخ داده شده" : "منتظر پاسخ"
+          }</div>
             </div>
                </div>
             </div>
@@ -349,6 +353,7 @@ const sendNewTextTicket = () => {
       .then((res) => res.json())
       .then(() => {
         showTikcetFunc(IdTiket, nameUser);
+        getTiketFunc();
       });
 
     console.log(IdTiket);
