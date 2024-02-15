@@ -446,17 +446,21 @@ const getUsers = () => {
       console.log();
       let filterAdmin = data.users.filter((item) => item.isAdmin !== true);
       console.log();
-      $.querySelector(".containerUSers").innerHTML = "";
-      filterAdmin.forEach((user) => {
-        $.querySelector(".containerUSers").innerHTML += `
-        <div class="my-4 itemUser ">
-                    <div class="my-3 p-8 rounded-lg bg-[#313348] flex justify-between">
-                      <div class="h-max my-auto md:text-xl">${user.email}</div>
-                      <div class="p-2 md:p-3 cursor-pointer bg-danger md:text-base text-sm rounded w-max deleteUser" data-id="${user._id}">حذف کاربر</div>
+      if (filterAdmin == "") {
+        $.querySelector(".containerUSers").innerHTML = `<div class="w-full text-xl md:text-2xl text-center my-10">کاربری وجود ندارد ...</div>`;
+      } else {
+        $.querySelector(".containerUSers").innerHTML = "";
+        filterAdmin.forEach((user) => {
+          $.querySelector(".containerUSers").innerHTML += `
+          <div class="my-4 itemUser ">
+                      <div class="my-3 p-8 rounded-lg bg-[#313348] flex justify-between">
+                        <div class="h-max my-auto md:text-xl">${user.email}</div>
+                        <div class="p-2 md:p-3 cursor-pointer bg-danger md:text-base text-sm rounded w-max deleteUser" data-id="${user._id}">حذف کاربر</div>
+                      </div>
                     </div>
-                  </div>
-        `;
-      });
+          `;
+        });
+      }
       $.querySelectorAll(".deleteUser").forEach((btn) => {
         btn.onclick = () => {
           fetch(`https://bookshop-backend.liara.run/api/v1/userdata/${btn.dataset.id}`, {
