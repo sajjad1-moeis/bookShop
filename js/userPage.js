@@ -70,7 +70,6 @@ const funUpdateUser = () => {
 funUpdateUser();
 let apiUser = null;
 let imgUser = $.querySelectorAll(".imgUser");
-console.log(imgUser);
 // console.log(inputDivUpdateUser);
 const SettUI = async () => {
   try {
@@ -266,7 +265,6 @@ const getTiketFunc = async () => {
       } else {
         let date = new Date(data.tickets[0].createDate).toLocaleString("fa-IR");
         let time = date.split(",");
-        console.log(time);
         tiketsContainer.innerHTML = "";
         data.tickets.forEach((item) => {
           tiketsContainer.innerHTML += `
@@ -286,7 +284,6 @@ const getTiketFunc = async () => {
 
         $.querySelectorAll(".btnShowChatUser").forEach((btn) => {
           btn.onclick = () => {
-            console.log(nameUser);
             IdTiket = btn.dataset.ticket;
             showTikcetFunc(btn.dataset.ticket, nameUser);
           };
@@ -305,7 +302,6 @@ function showTikcetFunc(id, title) {
     .then((result) => result.json())
     .then((res) => {
       let containetInputNewTicket = $.querySelector(".containetInputNewTicket");
-      console.log(res.ticket.status);
       res.ticket.status ? containetInputNewTicket.classList.remove("hidden") : containetInputNewTicket.classList.add("hidden");
       console.log();
       $.querySelector(".titleTicket").textContent = res.ticket.title;
@@ -317,13 +313,15 @@ function showTikcetFunc(id, title) {
       res.messages.forEach((item) => {
         let date = new Date(item.sendTime).toLocaleString("fa-IR");
         let time = date.split(",");
-        console.log(time);
         $.querySelector(".divChatUser").innerHTML += `
          <div class="${item.isAdminMessage ? "divAdminChat" : "divUserChat"}">
         <div class="max-w-[900px] w-full  p-6 ${
           item.isAdminMessage ? "bg-primary text-white" : " bg-zinc-100"
         } " style="border-radius: 10px; border-bottom-left-radius: 0">
-          <div class="mt-2 mb-5 text-sm w-full">${title} ${time[0]}  (${time[1]} )</div>
+        <div dir="${item.isAdminMessage ? "ltr" : "rtl"}">
+        <div class="text-xl my-2" >${item.isAdminMessage ? "admin" : title}</div>
+         <div class="mt-2 mb-5 text-sm w-full"> ${time[0]}  (${time[1]} )</div>
+        </div>
           <p>${item.content}</p>
         </div>
       </div>
@@ -358,7 +356,6 @@ const sendNewTextTicket = () => {
     SwalAlert("لطفا متن مورد نظر را بنویسید", "warning");
   }
 };
-console.log(closeDivChatBtn);
 closeDivChatBtn.onclick = () => {
   console.log("object");
   $.querySelector(".containerChatUser").classList.add("hidden");

@@ -347,13 +347,20 @@ margin: auto;
     display: flex; 
   }
   .divAdminChat  .first{
+    background-color: rgb(78 129 251 / 0.2);
     border-radius: 20px;
     border-bottom-left-radius: 0;
   }
+
+  .divAdminChat .my-4{
+    direction: ltr;
+  }
   .divUserChat  .first{
+    background-color: #313348;
     border-radius: 20px;
     border-bottom-right-radius: 0;
   }
+
 
   .divUserChat{
     margin: 20px 0 0 30px;

@@ -66,14 +66,27 @@
 
                 <!-- divNewTextTicket -->
 
-                <div class="my-10 p-8 rounded-xl divNewTextTicket hidden" style="background-color: rgb(28 28 40)">
+                <div class="my-10 p-8 rounded-xl divNewTextTicket hidden relative" style="background-color: rgb(28 28 40)">
                   <div class="pb-5 border-b-[1px] border-zinc-400 flex justify-between">
-                    <div class="titleDivNewTextTicket">mohammad-molaii</div>
-                    <div class="cursor-pointer closeDivChat"><img src="../img/close-icon.png" alt="" class="w-6" /></div>
+                    <div class="">
+                      <div class="flex">
+                        <span class="text-base text-zinc-500">دسته بندی :</span>
+                        <div class="categoryTicket ms-2">ارتباط با بخش مالی</div>
+                      </div>
+                      <div class="my-3 flex">
+                        <span class="text-base text-zinc-500">موضوع :</span>
+                        <div class="subjectTicket ms-2">کمبود مالی</div>
+                      </div>
+                      <div class="my-3 flex">
+                        <span class="text-base text-zinc-500"> نام کاربری : </span>
+                        <div class="titleDivNewTextTicket ms-2">mohammad-molaii</div>
+                      </div>
+                    </div>
+                    <div class="cursor-pointer closeDivChat absolute left-3 top-3"><img src="../img/close-icon.png" alt="" class="w-6" /></div>
                   </div>
-                  <div class="my-5">
+                  <div class="my-5 containerChatUserAndAdmin">
                     <!-- asda -->
-                    <div class="divUserChat text-base">
+                    <!-- <div class="divUserChat text-base">
                       <div class="first max-w-[900px] w-full p-4 py-6 rounded-xl bg-[#313348]">
                         <div class="my-4" dir="rtl">
                           <div>Shahram.Kh</div>
@@ -84,8 +97,8 @@
                       </div>
                     </div>
                     <!-- dasd -->
-                    <div class="divAdminChat text-base">
-                      <div class="first max-w-[900px] w-full p-4 py-6 rounded-xl bg-sky-500/30" style="background-color: rgb(78 129 251 / 0.2)">
+                    <!-- <div class="divAdminChat text-base">
+                      <div class="first max-w-[900px] w-full p-4 py-6 rounded-xl  style="background-color: rgb(78 129 251 / 0.2)">
                         <div class="my-4" dir="ltr">
                           <div>Shahram.Kh</div>
                           <div>1402/09/04 09:37</div>
@@ -93,13 +106,13 @@
                         سلام وقتتون بخیر ترجیحا سعی کنید با آی پی ثابت وارد بشید ولی مثلا سیستم برادر تون باشه قطعا تو یه موقعیت هستید جفتتون هم و بیشتر زمانی
                         به مشکل میخوره که موقعیت ها هم مختلف باشه
                       </div>
-                    </div>
+                    </div> -->
                   </div>
 
-                  <div class="">
+                  <div class="divInputTicket">
                     <textarea name="" id="" cols="30" rows="10" class="bg-[#313348] inputNewTextTicket w-full mt-10 outline-none p-5 rounded-xl"></textarea>
                     <div class="flex justify-end mt-2">
-                      <div class="cursor-pointer p-3 text-lg bg-[#313348] rounded-xl text-white">ارسال پاسخ تیکت</div>
+                      <div class="cursor-pointer p-3 text-lg bg-[#313348] rounded-xl text-white sendAnswerTicket">ارسال پاسخ تیکت</div>
                     </div>
                   </div>
                 </div>

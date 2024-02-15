@@ -1,3 +1,4 @@
+const $ = document;
 import {CreateDivsPanel, moreDivCreatePanel, CheckAuth, funcLogOut} from "./export.js";
 
 let div = [
@@ -83,13 +84,11 @@ const ShowDivPanelUrl = () => {
   let locationSite = location.search;
   let IdLocation = new URLSearchParams(locationSite);
   let SearchLocation = IdLocation.get("id");
-  console.log(SearchLocation);
   if (SearchLocation) {
     let Div = document.querySelector(`#${SearchLocation}`);
     let divPanel = document.querySelectorAll(".divPanel");
     divPanel.forEach((div) => div.classList.add("hidden"));
     Div.classList.remove("hidden");
-    console.log(Div);
   } else {
     document.querySelector("#pishkhan").classList.remove("hidden");
   }
@@ -111,11 +110,12 @@ const ShowAllTikcet = () => {
       console.log(data);
       containerTicket.innerHTML = "";
       data.tickets.forEach((item) => {
+        console.log();
         containerTicket.innerHTML += `<div class="my-4 itemTicket">
         <div class="my-3 p-8 rounded-lg bg-[#313348] block md:flex justify-between">
-          <div class="h-max my-auto">تیکت جدید</div>
+          <div class="h-max my-auto">${item.seen ? "تیکت پاسخ داده شده" : "تیکت جدید"}</div>
           <div class="flex gap-2" data-user="${item.creator}" data-ticket="${item._id}">
-            <div class="text-sm p-2 cursor-pointer bg-success rounded answerTicket">جواب دادن به تیکت</div>
+            <div class="text-sm p-2 cursor-pointer bg-success rounded answerTicket">${item.seen ? "مشاهده تیکت" : "جواب دادن به تیکت"}  </div>
             <div class="text-sm p-2 cursor-pointer bg-danger rounded deleteTicket">بستن تیکت</div>
           </div>
         </div>
@@ -133,12 +133,16 @@ const ShowAllTikcet = () => {
       );
     })
     .catch((err) => {});
-
-  console.log(containerTicket);
 };
 ShowAllTikcet();
 
-////////////// close
+/////////// Show Ticket
+
+const containerChatUserAndAdmin = document.querySelector(".containerChatUserAndAdmin");
+const categoryTicket = document.querySelector(".categoryTicket");
+const subjectTicket = document.querySelector(".subjectTicket");
+const divInputTicket = $.querySelector(".divInputTicket");
+
 const showContainerTicket = (useId, userTicket) => {
   console.log(useId);
   fetch(`https://bookshop-backend.liara.run/api/v1/userdata/${useId}`, {
@@ -148,13 +152,70 @@ const showContainerTicket = (useId, userTicket) => {
     .then((data) => {
       console.log(data);
       document.querySelector(".divNewTextTicket").classList.remove("hidden");
-      document.querySelector(".titleDivNewTextTicket").textContent = data.fullname;
+      document.querySelector(".titleDivNewTextTicket").textContent = `  ${data.fullname}  `;
+      fetch(`https://bookshop-backend.liara.run/api/v1/ticket/${userTicket}`, {
+        credentials: "include",
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          console.log(result.ticket.status);
+          result.ticket.status ? divInputTicket.classList.remove("hidden") : divInputTicket.classList.add("hidden");
+          subjectTicket.textContent = result.ticket.subject;
+          categoryTicket.textContent = result.ticket.title;
+          containerChatUserAndAdmin.innerHTML = "";
+          console.log(result.messages);
+          result.messages.forEach((item) => {
+            let date = new Date(item.sendTime).toLocaleString("fa-IR");
+            let time = date.split(",");
+            containerChatUserAndAdmin.innerHTML += `
+                <div class="${item.isAdminMessage ? "divAdminChat" : "divUserChat"}  text-base">
+                      <div class="first max-w-[900px] w-full p-4 py-6 rounded-xl">
+                        <div class="my-4"  >
+                          <div class="text-lg"> ${item.isAdminMessage ? "admin" : data.fullname}</div>
+                          <div>${time[1].slice(0, 5)}    ${time[0]}  </div>
+                        </div>
+                       ${item.content} </div>
+                    </div>
+            `;
+          });
+        })
+        .catch((err) => {});
     })
-    .catch((err) => {});
+    .catch((err) => {
+      Swal.fire({
+        title: "لطفا دوباره تلاش کنید",
+        icon: "error",
+      });
+    });
 };
 
-///////////
+////////////// close Ticket BTN
+
 const closeDivChat = document.querySelector(".closeDivChat");
+
 closeDivChat.onclick = () => {
   document.querySelector(".divNewTextTicket").classList.add("hidden");
+};
+
+/////////////////////// sendAnswerTicket
+
+const sendAnswerTicketBtn = document.querySelector(".sendAnswerTicket");
+const inputNewTextTicket = document.querySelector(".inputNewTextTicket");
+
+sendAnswerTicketBtn.onclick = () => {
+  console.log(userTicket);
+  if (inputNewTextTicket.value) {
+    fetch(`https://bookshop-backend.liara.run/api/v1/ticket/${userTicket}`, {
+      method: "PUT",
+      credentials: "include",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({message: inputNewTextTicket.value}),
+    })
+      .then((result) => result.json())
+      .then(() => {
+        showContainerTicket(userId, userTicket);
+        inputNewTextTicket.value = "";
+      })
+      .catch((err) => {});
+  }
 };
