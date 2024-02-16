@@ -6,6 +6,7 @@ let div = [
   {notification: false, title: "محصول", href: "../html/Panel-Admin.html?id=mahsol"},
   {notification: true, title: "تیکت ها ", href: "../html/Panel-Admin.html?id=ticket"},
   {notification: false, title: "کاربران ", href: "../html/Panel-Admin.html?id=Users"},
+  {notification: false, title: "صفحه اصلی ", href: "../index.html"},
   {notification: false, title: "تنظیمات ", href: "../html/Panel-Admin.html?id=settings"},
   {notification: false, title: "خروج ", href: "#"},
 ];
@@ -17,8 +18,15 @@ let imgDiv = [
 ];
 
 ////////////////Chart
+const SwalAler = (title, icon) => {
+  Swal.fire({
+    title: title,
+    icon: icon,
+  });
+};
 
 const ctx = document.getElementById("myChart");
+
 new Chart(ctx, {
   type: "bar",
   data: {
@@ -132,13 +140,17 @@ const ShowAllTikcet = () => {
               console.log(data);
               ShowAllTikcet();
             })
-            .catch((err) => {});
+            .catch((err) => {
+              SwalAler("دوباره تلاش کنید", "error");
+            });
         };
       });
 
       window.filterSinData = data.tickets.filter((item) => item.seen === false);
     })
-    .catch((err) => {});
+    .catch((err) => {
+      SwalAler("دوباره تلاش کنید", "error");
+    });
 };
 ShowAllTikcet();
 
@@ -185,13 +197,12 @@ const showContainerTicket = (useId, userTicket) => {
             `;
           });
         })
-        .catch((err) => {});
+        .catch((err) => {
+          SwalAler("دوباره تلاش کنید", "error");
+        });
     })
     .catch((err) => {
-      Swal.fire({
-        title: "لطفا دوباره تلاش کنید",
-        icon: "error",
-      });
+      SwalAler("دوباره تلاش کنید", "error");
     });
 };
 
@@ -223,7 +234,9 @@ sendAnswerTicketBtn.onclick = () => {
         ShowAllTikcet();
         inputNewTextTicket.value = "";
       })
-      .catch((err) => {});
+      .catch((err) => {
+        SwalAler("دوباره تلاش کنید", "error");
+      });
   }
 };
 
@@ -254,7 +267,7 @@ const getAllProduct = () => {
                       </div>
                     </div>
                   </div>
-                  <div class="block md:flex h-max my-auto gap-3" data-id="${item._id}">
+                  <div class="flex h-max my-auto gap-3" data-id="${item._id}">
                     <div class="editProduct my-2 text-center cursor-pointer p-4 text-lg text-white rounded  bg-warning">ادیت محصول</div>
                     <div class="deleteProduct my-2 text-center cursor-pointer p-4 text-lg text-white rounded bg-danger">حذف محصول</div>
                   </div>
@@ -272,9 +285,10 @@ const getAllProduct = () => {
           DeleteProduct(id);
         };
       });
-      LodingSite("bg-[#232434]");
     })
-    .catch((err) => {});
+    .catch((err) => {
+      SwalAler("دوباره تلاش کنید", "error");
+    });
 };
 
 //////////////////EditProduct
@@ -290,17 +304,16 @@ $.querySelector("#updateMahsol").onclick = () => {
   postMahsol("PUT", idBook);
 };
 //////////////////DeleteProduct
+const Toast = Swal.mixin({
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "بله و خروج",
+  cancelButtonText: "خیر",
+});
 
 const DeleteProduct = (id) => {
-  Swal.fire({
-    title: "آیا مایلید حذف کنید ؟",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "بله و خروج",
-    cancelButtonText: "خیر",
-  }).then((result) => {
+  Toast.fire({title: "آیا مایلید حذف کنید ؟", icon: "warning"}).then((result) => {
     if (result.isConfirmed) {
       Swal.fire({
         title: "با موفقیت حذف شد",
@@ -316,7 +329,9 @@ const DeleteProduct = (id) => {
           .then(() => {
             getAllProduct();
           })
-          .catch((err) => {});
+          .catch((err) => {
+            SwalAler("دوباره تلاش کنید", "error");
+          });
       });
     }
   });
@@ -417,7 +432,9 @@ const postMahsol = (metod, idImg) => {
           closeModal();
           inputMahsolAll.forEach((item) => (item.value = ""));
         })
-        .catch((err) => {});
+        .catch((err) => {
+          SwalAler("دوباره تلاش کنید", "error");
+        });
     }
   }
 };
@@ -426,59 +443,109 @@ postMahsolBtn.onclick = () => {
   postMahsol("POST");
 };
 
-/////// use ImportAll
-setTimeout(() => {
-  CreateDivsPanel(div, "");
-  CheckAuth("../html/userPage.html");
-  moreDivCreatePanel(imgDiv);
-  let aDiv = document.querySelectorAll(".panel a");
-  funcLogOut(aDiv[5]);
-}, 1000);
-
 ///////////////// Get All Users
 
+const DivUsers = $.querySelector(".containerUSers");
+const divAdmin = $.querySelector(".divAdmin");
+const tempate = `<div class="w-full text-xl md:text-2xl text-center my-10">کاربری وجود ندارد ...</div>`;
+const divBtnPageItem = $.querySelector(".divBtnPageItem");
 const getUsers = () => {
   fetch(`https://bookshop-backend.liara.run/api/v1/userdata/getUsers`, {
     credentials: "include",
   })
     .then((result) => result.json())
     .then((data) => {
-      console.log();
-      let filterAdmin = data.users.filter((item) => item.isAdmin !== true);
-      console.log();
-      if (filterAdmin == "") {
-        $.querySelector(".containerUSers").innerHTML = `<div class="w-full text-xl md:text-2xl text-center my-10">کاربری وجود ندارد ...</div>`;
-      } else {
-        $.querySelector(".containerUSers").innerHTML = "";
-        filterAdmin.forEach((user) => {
-          $.querySelector(".containerUSers").innerHTML += `
-          <div class="my-4 itemUser ">
-                      <div class="my-3 p-8 rounded-lg bg-[#313348] flex justify-between">
-                        <div class="h-max my-auto md:text-xl">${user.email}</div>
-                        <div class="p-2 md:p-3 cursor-pointer bg-danger md:text-base text-sm rounded w-max deleteUser" data-id="${user._id}">حذف کاربر</div>
-                      </div>
-                    </div>
-          `;
-        });
-      }
-      $.querySelectorAll(".deleteUser").forEach((btn) => {
-        btn.onclick = () => {
-          fetch(`https://bookshop-backend.liara.run/api/v1/userdata/${btn.dataset.id}`, {
-            method: "DELETE",
-            credentials: "include",
-          })
-            .then((result) => result.json())
-            .then((data) => console.log(data))
-            .catch((err) => {});
-          console.log(btn.dataset.id);
-          getUsers();
-        };
-      });
+      let filterUser = data.users.filter((item) => item.isAdmin !== true);
+      let filterAdmin = data.users.filter((item) => item.isAdmin !== false);
+
+      filterUser == "" ? (DivUsers.innerHTML = tempate) : pagination(filterUser, DivUsers, divBtnPageItem);
+      filterAdmin == "" ? (DivUsers.innerHTML = tempate) : pagination(filterAdmin, divAdmin, $.querySelector(".divBtnPageAdmin"));
+      divBtnPageItem.parentElement.classList.remove("hidden");
+      LodingSite("bg-[#232434]");
     })
     .catch((err) => {});
 };
 getUsers();
 
 /////////////////// pagition
+
 let page = 1;
-const pagination = (arr) => {};
+let currentMahsol = 10;
+function pagination(arr1, parent, parentBtn) {
+  let Btn1 = Math.ceil(arr1.length / 10);
+  let end = page * currentMahsol;
+  let start = end - currentMahsol;
+  let slice = arr1.slice(start, end);
+  if (slice == "") {
+    page--;
+    end = page * currentMahsol;
+    start = end - currentMahsol;
+    slice = arr1.slice(start, end);
+  } else {
+    parent.innerHTML = "";
+    parentBtn.innerHTML = "";
+    slice.forEach((user) => {
+      parent.innerHTML += ItemDivUserAndAdmin(user.email, user._id, user.isAdmin);
+    });
+    for (let i = 1; i < Btn1 + 1; i++) {
+      parentBtn.innerHTML += `
+    <div class="w-8 h-8 rounded-full itemPage cursor-pointer bg-blue-500"><div class="h-max w-max my-1.5 mx-auto">${i}</div></div>
+    `;
+    }
+    parentBtn.querySelectorAll(".itemPage").forEach((btn) => {
+      btn.onclick = () => {
+        console.log("object");
+        page = btn.textContent;
+        pagination(arr1, parent, parentBtn);
+      };
+    });
+
+    $.querySelectorAll(".deleteUser").forEach((btn) => {
+      btn.onclick = () => {
+        //////////
+        Toast.fire({title: "آیا مایلید حذف کنید ؟", icon: "warning"}).then((result) => {
+          if (result.isConfirmed) {
+            console.log(btn.parentElement.dataset.id);
+            Swal.fire({
+              title: "با موفقیت حذف شد",
+              icon: "success",
+            }).then(() => {
+              fetch(`https://bookshop-backend.liara.run/api/v1/userdata/${btn.parentElement.dataset.id}`, {
+                method: "DELETE",
+                credentials: "include",
+              })
+                .then(() => {
+                  getUsers();
+                })
+                .catch((err) => {
+                  SwalAler("دوباره تلاش کنید", "error");
+                });
+            });
+          }
+        });
+      };
+    });
+  }
+}
+
+function ItemDivUserAndAdmin(email, id, admin) {
+  return `<div class="my-4 itemUser">
+  <div class="my-3 p-4 md:p-8 rounded-lg bg-[#313348] block md:flex justify-between">
+    <div class="h-max my-auto md:text-xl w-[100px] md:w-max">${email}</div>
+    <div class="justify-end my-3 md:my-0 flex gap-2" data-id="${id}">
+      <div class="p-2 md:p-3 cursor-pointer bg-blue-600 md:text-base text-sm rounded w-max ${admin ? "closeAdmin" : "addAdmin"}">${admin ? "لغو ادمینی" : "ادد ادمین"}</div>
+      <div class="p-2 md:p-3 cursor-pointer bg-danger md:text-base text-sm rounded w-max ${admin ? "deleteAdmin" : "deleteUser"}">${admin ? "حذف ادمین" : "حذف کاربر"}</div>
+    </div>
+  </div>
+</div>`;
+}
+
+////////////////////////// btn Page Item
+
+/////// use ImportAll
+
+CreateDivsPanel(div, "");
+CheckAuth("../html/userPage.html");
+moreDivCreatePanel(imgDiv);
+let aDiv = document.querySelectorAll(".panel a");
+funcLogOut(aDiv[6]);
