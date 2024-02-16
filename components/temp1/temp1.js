@@ -52,24 +52,4 @@ class temp2 extends HTMLElement {
   }
 }
 
-let templateMajmoee = document.createElement("template");
-templateMajmoee.innerHTML = `
-    <link rel="stylesheet" href="./css/tailwind.css" />
-   <link rel="stylesheet" href="./css/style.css" />
-         <div>
-            <img src="./img/book-10-600x600.jpg"  class="img-majmoe" alt="" />
-            <div class="bg w-2/3 p-3 py-4 rounded-full text-center  mx-auto mt-[-20px] relative text-white text-xl">کتاب رمز ارز</div>
-          </div>
-`;
-class tempMajmoeHeader extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({mode: "open"});
-    this.shadowRoot.append(templateMajmoee.content.cloneNode(true));
-  }
-  connectedCallback() {
-    this.shadowRoot.querySelector(".bg").classList.add(this.getAttribute("bg"));
-    this.shadowRoot.querySelector(".bg").textContent = this.getAttribute("title");
-  }
-}
-export {temp2, temp1, tempMajmoeHeader};
+export {temp2, temp1};

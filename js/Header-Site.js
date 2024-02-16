@@ -17,10 +17,19 @@ const Header = (dot, href, link) => {
                 <div class="item-nav h-max m-auto  ">مجموعه<img class="w-3 ms-1 inline" src="${dot}./img/arrow.png" alt="" />
                 <div class=" absolute w-max  majmoee maj">
                   <div class="bg-white py-10 container  w-max grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <header-majmoee bg="bg-warning" title="کتاب غار"></header-majmoee>
-                  <header-majmoee bg="bg-warning" title="کتاب غار"></header-majmoee>
-                  <header-majmoee bg="bg-warning" title="کتاب غار"></header-majmoee>
-                  <header-majmoee bg="bg-warning" title="کتاب غار"></header-majmoee>
+                  <div class="img-majmoe">
+                     <img src="${dot}./img/book-11-600x600.jpg"   alt="" />
+                     <div class="bg w-2/3 p-3 py-4 rounded-full text-center  mx-auto mt-[-20px] relative text-white text-xl bg-warning">کتاب رمز ارز</div>
+                   </div><div class="img-majmoe">
+                     <img src="${dot}./img/book-12-600x600.jpg"   alt="" />
+                   <div class="bg w-2/3 p-3 py-4 rounded-full text-center  mx-auto mt-[-20px] relative text-white text-xl bg-warning">کتاب رمز ارز</div>
+                 </div><div class="img-majmoe">
+                      <img src="${dot}./img/book-10-600x600.jpg"   alt="" />
+                     <div class="bg w-2/3 p-3 py-4 rounded-full text-center  mx-auto mt-[-20px] relative text-white text-xl bg-warning">کتاب رمز ارز</div>
+               </div><div class="img-majmoe">
+                    <img src="${dot}./img/package2-1-600x600.jpg"   alt="" />
+                  <div class="bg w-2/3 p-3 py-4 rounded-full text-center  mx-auto mt-[-20px] relative text-white text-xl bg-warning">کتاب رمز ارز</div>
+                </div>
                   </div>
                </div>
                 </div>

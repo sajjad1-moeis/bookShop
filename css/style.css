@@ -379,12 +379,12 @@ margin: auto;
   border-radius: 15px;
   border-top-right-radius: 0!important;
 }
-  .img-majmoe{
+  .img-majmoe img{
     transition: 0.3s;
     transform:  rotateY(0deg);
 
   }
-  .img-majmoe:hover{
+  .img-majmoe:hover img{
     transform:  rotateY(180deg);
 
   }
