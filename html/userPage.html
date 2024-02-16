@@ -39,22 +39,16 @@
         <div class="mt-8">
           <div class="my-2">توضیحات تیکت</div>
 
-          <textarea
-            name=""
-            id=""
-            cols="30"
-            rows="10"
-            class="input-tiket w-full my-3 rounded-xl outline-none p-5 bg-zinc-100 border-[1px] border-zinc-300"
-          ></textarea>
+          <textarea name="" id="" cols="30" rows="10" class="input-tiket w-full my-3 rounded-xl outline-none p-5 bg-zinc-100 border-[1px] border-zinc-300"></textarea>
         </div>
         <div class="text-danger text-lg text-center w-full my-2 mb-5 errorTiketSpan hidden">لطفا تمام فیلد هارا پر کنید</div>
         <div class="w-full my-2 p-4 text-white bg-primary text-center rounded-xl text-lg cursor-pointer" id="postTiket">ثبت تیکت</div>
       </div>
     </div>
     <main class="hidden">
-      <div class="grid grid-cols-1 xl:grid-cols-5">
-        <div class="p-5 h-[100vh]">
-          <div class="rounded-2xl xl:col-span-1 overflow-auto h-full bg-primary p-5 py-10">
+      <div class="grid grid-cols-1 xl:grid-cols-5 h-full">
+        <div class="h-full">
+          <div class="xl:col-span-1 overflow-auto h-full bg-primary p-5 py-10">
             <div class="user-profile bg-white w-max mx-auto rounded-full">
               <img src="" class="w-32 h-32 imgUser rounded-full object-cover" alt="" />
             </div>
@@ -62,8 +56,8 @@
           </div>
         </div>
         <!-- ////// -->
-        <div class="xl:col-span-4 md:p-5 h-full">
-          <div class="p-4 md:p-8 rounded-2xl h-full" style="background-color: rgb(243 244 246)">
+        <div class="xl:col-span-4">
+          <div class="p-4 md:p-8 h-full" style="background-color: rgb(243 244 246)">
             <div class="text-2xl block md:flex justify-between pb-5 border-b-2 border-zinc-200">
               <div class="h-max my-auto">
                 <span class="md:text-balance"> <span id="nameUser"></span> عزیز؛ خوش اومدی 🙌 </span>
@@ -90,14 +84,16 @@
             <!-- ///// DivTiket -->
 
             <div id="tiket" class="hidden mt-8 Location">
-              <div class="w-full flex justify-end pb-6">
-                <div class="open-Modal p-6 rounded-xl text-2xl cursor-pointer bg-primary text-white w-max">
-                  <img src="../img/icons8-plus-64.png" alt="" class="w-8 inline" />
-                  تیکت جدید
-                </div>
-              </div>
               <div class="my-5 p-5 rounded-xl bg-white">
-                <div class="my-3 text-xl border-b-[1px] border-zinc-300 pb-5">تیکت های شما</div>
+                <div class="my-3 flex justify-between text-xl border-b-[1px] border-zinc-300">
+                  <div class="flex-none">تیکت های شما</div>
+                  <div class="w-full flex justify-end pb-6">
+                    <div class="open-Modal p-6 rounded-xl text-2xl cursor-pointer bg-primary text-white w-max">
+                      <img src="../img/icons8-plus-64.png" alt="" class="w-8 inline" />
+                      تیکت جدید
+                    </div>
+                  </div>
+                </div>
                 <div class="tikets"></div>
               </div>
               <div class="bg-white mt-10 p-5 rounded-xl containerChatUser hidden">
@@ -107,13 +103,7 @@
                 </div>
                 <div class="divChatUser"></div>
                 <div class="mt-20 containetInputNewTicket">
-                  <textarea
-                    name=""
-                    id=""
-                    cols="30"
-                    rows="10"
-                    class="inputNewTextTicket w-full outline-none border-[1px] border-zinc-300 bg-zinc-100 rounded-xl p-5"
-                  ></textarea>
+                  <textarea name="" id="" cols="30" rows="10" class="inputNewTextTicket w-full outline-none border-[1px] border-zinc-300 bg-zinc-100 rounded-xl p-5"></textarea>
                   <div class="flex justify-end">
                     <div class="my-5 text-white bg-primary p-4 rounded-xl text-center w-max cursor-pointer sendNewTextTicket">ارسال پیام</div>
                   </div>

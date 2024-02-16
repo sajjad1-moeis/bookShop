@@ -500,8 +500,22 @@ function pagination(arr1, parent, parentBtn) {
       };
     });
 
+    $.querySelectorAll(".addAdmin").forEach((btn) => {
+      btn.onclick = () => {
+        let id = btn.parentElement.dataset.id;
+        userToAdmin("setUserAdmin", id);
+      };
+    });
+    $.querySelectorAll(".closeAdmin").forEach((btn) => {
+      btn.onclick = () => {
+        let id = btn.parentElement.dataset.id;
+        userToAdmin("setAdminAsUser", id);
+      };
+    });
+
     $.querySelectorAll(".deleteUser").forEach((btn) => {
       btn.onclick = () => {
+        let id = btn.parentElement.dataset.id;
         //////////
         Toast.fire({title: "آیا مایلید حذف کنید ؟", icon: "warning"}).then((result) => {
           if (result.isConfirmed) {
@@ -510,7 +524,7 @@ function pagination(arr1, parent, parentBtn) {
               title: "با موفقیت حذف شد",
               icon: "success",
             }).then(() => {
-              fetch(`https://bookshop-backend.liara.run/api/v1/userdata/${btn.parentElement.dataset.id}`, {
+              fetch(`https://bookshop-backend.liara.run/api/v1/userdata/${id}`, {
                 method: "DELETE",
                 credentials: "include",
               })
@@ -534,7 +548,7 @@ function ItemDivUserAndAdmin(email, id, admin) {
     <div class="h-max my-auto md:text-xl w-[100px] md:w-max">${email}</div>
     <div class="justify-end my-3 md:my-0 flex gap-2" data-id="${id}">
       <div class="p-2 md:p-3 cursor-pointer bg-blue-600 md:text-base text-sm rounded w-max ${admin ? "closeAdmin" : "addAdmin"}">${admin ? "لغو ادمینی" : "ادد ادمین"}</div>
-      <div class="p-2 md:p-3 cursor-pointer bg-danger md:text-base text-sm rounded w-max ${admin ? "deleteAdmin" : "deleteUser"}">${admin ? "حذف ادمین" : "حذف کاربر"}</div>
+      <div class="p-2 md:p-3 cursor-pointer bg-danger md:text-base text-sm rounded w-max deleteUser">${admin ? "حذف ادمین" : "حذف کاربر"}</div>
     </div>
   </div>
 </div>`;
@@ -545,7 +559,18 @@ function ItemDivUserAndAdmin(email, id, admin) {
 /////// use ImportAll
 
 CreateDivsPanel(div, "");
-CheckAuth("../html/userPage.html");
+// CheckAuth("../html/userPage.html");
 moreDivCreatePanel(imgDiv);
 let aDiv = document.querySelectorAll(".panel a");
 funcLogOut(aDiv[6]);
+
+function userToAdmin(type, id) {
+  fetch(`https://bookshop-backend.liara.run/api/v1/userdata/${type}`, {
+    method: "PUT",
+    credentials: "include",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({userId: id}),
+  })
+    .then((res) => getUsers())
+    .then(console.log);
+}

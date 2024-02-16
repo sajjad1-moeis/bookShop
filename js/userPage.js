@@ -186,7 +186,7 @@ import {CreateDivMahsol} from "./Create-Div-Mahsol.js";
 let mahsolContainer = $.querySelector(".mahsol");
 let api = await fetch("https://bookshop-backend.liara.run/api/v1/books");
 let arrBook = await api.json();
-CreateDivMahsol(arrBook.slice(0, 2), mahsolContainer, ".");
+CreateDivMahsol(arrBook.slice(0, 4), mahsolContainer, ".");
 
 //////////////////Open Modal Tiket
 
@@ -263,7 +263,13 @@ const getTiketFunc = async () => {
     .then((result) => result.json())
     .then((data) => {
       if (data.tickets == "") {
-        tiketsContainer.innerHTML = `<div class="w-max my-10 text-xl mx-auto">تیکتی وجود ندارد</div>`;
+        tiketsContainer.innerHTML = `
+        <div class="w-max my-20 text-3xl mx-auto text-center">
+        <div>تیکتی وجود ندارد ...</div>
+        <div class="text-zinc-500 my-4 text-lg">برای ثبت تیکت دکمه تیکت جدید را بزنید</div>
+        </div>
+        
+        `;
       } else {
         let date = new Date(data.tickets[0].createDate).toLocaleString("fa-IR");
         let time = date.split(",");

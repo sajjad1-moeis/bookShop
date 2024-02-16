@@ -46,12 +46,14 @@ header li{
     background-color: var(--main-color);
 }
 .item-nav:hover::before{
+  
     width: 100%;
 }
-.item-nav:hover{
-    color: var(--main-color);
+.item-nav:hover .majmoee{
+display: block;
 
 }
+.item-nav:hover{color: var(--main-color);}
 header .active{
     color: var(--main-color);
 }
@@ -363,4 +365,26 @@ margin: auto;
   .notTicket{
     opacity: 0.5;
     text-decoration: line-through;
+  }
+  .maj{
+    transform: translate(34.5%, 0px);
+    z-index: 111111;
+    display: none;
+    padding-top: 25px;
+
+  }
+
+.majmoee{
+  z-index: 111111;
+  border-radius: 15px;
+  border-top-right-radius: 0!important;
+}
+  .img-majmoe{
+    transition: 0.3s;
+    transform:  rotateY(0deg);
+
+  }
+  .img-majmoe:hover{
+    transform:  rotateY(180deg);
+
   }

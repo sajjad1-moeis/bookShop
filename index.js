@@ -3,7 +3,7 @@ const $ = document;
 //////////////////////// import All
 
 import {headerAndIsLogin} from "./js/Header-Site.js";
-import {temp2, temp1} from "./components/temp1/temp1.js";
+import {temp2, temp1, tempMajmoeHeader} from "./components/temp1/temp1.js";
 import {CreateDivMahsol} from "./js/Create-Div-Mahsol.js";
 import {DivNeviSande} from "./components/nevisande/nevisande.js";
 import {itemFooter} from "./components/menuFoter/footerMenu.js";
@@ -12,6 +12,7 @@ customElements.define("majmoe-show", temp1);
 customElements.define("category-show", temp2);
 customElements.define("div-nevisande", DivNeviSande);
 customElements.define("item-footer", itemFooter);
+customElements.define("header-majmoee", tempMajmoeHeader);
 
 ////////////////IsLogin
 
@@ -79,6 +80,5 @@ const CreateDivSwiper1 = (arr) => {
 CreateDivSwiper1([1, 11, 11, 1, 1, 1]);
 let api = await fetch("https://bookshop-backend.liara.run/api/v1/books");
 let arrBook = await api.json();
-console.log(arrBook);
 CreateDivMahsol(arrBook.slice(0, 8), document.querySelector(".product"), "");
 TemplateFooter("");

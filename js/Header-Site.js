@@ -3,7 +3,7 @@ const Header = (dot, href, link) => {
   document.querySelector(".body").insertAdjacentHTML(
     "afterbegin",
     `
-    <header class="pe-8 w-full">
+    <header class="pe-8 w-full relative ">
         <div class="hidden lg:grid grid-cols-4 gap-14">
           <div class="md:col-span-3" style="border-bottom-left-radius: 70px; box-shadow: 0px 13px 26px 0px rgba(12, 12, 12, 0.06)">
             <div class="flex p-5 py-8">
@@ -11,12 +11,44 @@ const Header = (dot, href, link) => {
                 <img src="${dot}./img/logo-book-shop.png" class="" alt="" />
               </div>
               <div class="flex gap-8 text-lg text-zinc-500">
-                <div class="item-nav h-max m-auto flex-none active"><a href="${dot}./index.html">صفحه اصلی</a></div>
-                <div class="item-nav h-max m-auto"><a href="${dot}./html/store.html">کتاب ها</a></div>
-                <div class="item-nav h-max m-auto">مجموعه<img class="w-3 ms-1 inline" src="${dot}./img/arrow.png" alt="" /></div>
-                <div class="item-nav h-max m-auto">دسته بندی<img class="w-3 ms-1 inline" src="${dot}./img/arrow.png" alt="" /></div>
-                <div class="item-nav h-max m-auto">صفحات<img class="w-3 ms-1 inline" src="${dot}./img/arrow.png" alt="" /></div>
-                <div class="item-nav h-max m-auto">درباره ما</div>
+                <div id="home" class="item-nav h-max m-auto flex-none active"><a href="${dot}./index.html" >صفحه اصلی</a></div>
+                <div id="store" class="item-nav h-max m-auto"><a href="${dot}./html/store.html?id=store" >کتاب ها</a></div>
+                <div class="hidden xl:flex gap-8">
+                <div class="item-nav h-max m-auto  ">مجموعه<img class="w-3 ms-1 inline" src="${dot}./img/arrow.png" alt="" />
+                <div class=" absolute w-max  majmoee maj">
+                  <div class="bg-white py-10 container  w-max grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <header-majmoee bg="bg-warning" title="کتاب غار"></header-majmoee>
+                  <header-majmoee bg="bg-warning" title="کتاب غار"></header-majmoee>
+                  <header-majmoee bg="bg-warning" title="کتاب غار"></header-majmoee>
+                  <header-majmoee bg="bg-warning" title="کتاب غار"></header-majmoee>
+                  </div>
+               </div>
+                </div>
+                <div class="item-nav h-max m-auto relative" id="pages">
+                <div class=" absolute w-max pt-14">
+                <div class="p-5 bg-primary text-white   hidden majmoee ">
+                   <a href="#"><div class="pe-20 my-3">وبلاگ</div></a>
+                   <a href="#"><div class="pe-20 my-3">درباره ما</div></a>
+                   <a href="#"><div class="pe-20 my-3">سوالات متداول</div></a>
+                </div>
+                </div>
+                صفحات<img class="w-3 ms-1 inline" src="${dot}./img/arrow.png" alt="" />
+                </div>
+                </div>
+                <div class="item-nav h-max m-auto relative" id="category">
+                <div class=" absolute w-max pt-14" style="z-index:11111">
+                <div class="p-5 bg-primary text-white   hidden majmoee ">
+                   <a href="#"><div class="pe-20 my-3">وبلاگ</div></a>
+                   <a href="#"><div class="pe-20 my-3">درباره ما</div></a>
+                   <a href="#"><div class="pe-20 my-3">سوالات متداول</div></a>
+                </div>
+                </div>
+                دسته بندی<img class="w-3 ms-1 inline" src="${dot}./img/arrow.png" alt="" /></div>
+                <div class="item-nav h-max m-auto z-[11111]" id="abutMe" >
+                <a href="${dot}./html/abutMe.html?id=abutMe">
+                درباره ما
+                </a>
+                </div>
               </div>
             </div>
           </div>
@@ -55,13 +87,16 @@ const Header = (dot, href, link) => {
         <div class="text-xl h-max my-auto">منوها</div>
         <div class="closeBtnMenuMobile"><img src="${dot}./img/close-icon.png" alt="" class="w-8" /></div>
       </div>
-     <div class="my-5 p-3 border-b-2 text-white border-white">
-     <a href="${dot}${link}"><span class="my-auto">${href}</span></a>
-     </div>
-     <div class="my-5 p-3 border-b-2 text-white border-white">
-     <a href="${dot}./html/store.html"><span class="my-auto">کتاب ها</span></a>
-     </div>
-
+      <a href="${dot}${link}">
+        <div class="my-5 p-3 border-b-2 text-white border-white">
+          <span class="my-auto">${href}</span>
+        </div>
+     </a>
+     <a href="${dot}./html/store.html">
+        <div class="my-5 p-3 border-b-2 text-white border-white">
+          <span class="my-auto">کتاب ها</span>
+       </div>
+     </a>
     </div>
 `
   );
@@ -132,6 +167,18 @@ function LodingSite(bg) {
   }
 }
 
+function ActiveItemNav() {
+  document.querySelectorAll(".item-nav").forEach((item) => item.classList.remove("active"));
+  let locationSite = location.search;
+  let IdLocation = new URLSearchParams(locationSite);
+  let SearchLocation = IdLocation.get("id");
+  if (SearchLocation === null) {
+    document.querySelector(`#home`).classList.add("active");
+  } else {
+    document.querySelector(`#${SearchLocation}`).classList.add("active");
+  }
+}
+
 const headerAndIsLogin = (dot) => {
   fetch("https://bookshop-backend.liara.run/api/v1/userdata/mydata", {credentials: "include"})
     .then((result) => {
@@ -139,9 +186,8 @@ const headerAndIsLogin = (dot) => {
     })
     .then((data) => {
       if (data.login) {
-        console.log(data);
         if (data.userdata.isAdmin) {
-          Header(dot, "پنل مدیریت", "./html/Panel-Admin.html");
+          Header(dot, "پنل مدیریت", "./html/panel-Admin.html");
         } else {
           Header(dot, "حساب کاربری", "./html/userPage.html");
         }
@@ -152,6 +198,7 @@ const headerAndIsLogin = (dot) => {
       showMenuMobileBtn();
       closeMenuMobile();
       LodingSite("s");
+      ActiveItemNav();
     })
     .catch((err) => {
       console.log(err);
