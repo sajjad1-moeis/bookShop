@@ -3,7 +3,7 @@ const Header = (dot, href, link) => {
   document.querySelector(".body").insertAdjacentHTML(
     "afterbegin",
     `
-    <header class="pe-8 w-full relative ">
+    <header class="w-full relative ">
         <div class="hidden lg:grid grid-cols-4 gap-14">
           <div class="md:col-span-3" style="border-bottom-left-radius: 70px; box-shadow: 0px 13px 26px 0px rgba(12, 12, 12, 0.06)">
             <div class="flex p-5 py-8">
@@ -19,16 +19,16 @@ const Header = (dot, href, link) => {
                   <div class="bg-white py-10 container  w-max grid grid-cols-2 md:grid-cols-4 gap-4">
                   <div class="img-majmoe">
                      <img src="${dot}./img/book-11-600x600.jpg"   alt="" />
-                     <div class="bg w-2/3 p-3 py-4 rounded-full text-center  mx-auto mt-[-20px] relative text-white text-xl bg-warning">کتاب رمز ارز</div>
+                     <div class="bg w-2/3 p-3 py-4 rounded-full text-center  mx-auto mt-[-20px] relative text-white text-xl bg-orange-600">کتاب بیوگرافی</div>
                    </div><div class="img-majmoe">
                      <img src="${dot}./img/book-12-600x600.jpg"   alt="" />
-                   <div class="bg w-2/3 p-3 py-4 rounded-full text-center  mx-auto mt-[-20px] relative text-white text-xl bg-warning">کتاب رمز ارز</div>
+                   <div class="bg w-2/3 p-3 py-4 rounded-full text-center  mx-auto mt-[-20px] relative text-white text-xl bg-green-700"> کتاب جئوگرافی</div>
                  </div><div class="img-majmoe">
                       <img src="${dot}./img/book-10-600x600.jpg"   alt="" />
                      <div class="bg w-2/3 p-3 py-4 rounded-full text-center  mx-auto mt-[-20px] relative text-white text-xl bg-warning">کتاب رمز ارز</div>
                </div><div class="img-majmoe">
                     <img src="${dot}./img/package2-1-600x600.jpg"   alt="" />
-                  <div class="bg w-2/3 p-3 py-4 rounded-full text-center  mx-auto mt-[-20px] relative text-white text-xl bg-warning">کتاب رمز ارز</div>
+                  <div class="bg w-2/3 p-3 py-4 rounded-full text-center  mx-auto mt-[-20px] relative text-white text-xl bg-slate-800">کتاب تاریخی</div>
                 </div>
                   </div>
                </div>

@@ -22,7 +22,7 @@ body{
 main{
     height: 100vh;
 }
-main,.header-mobile{
+main,.header-mobile,.item-tick{
     transition: 0.3s;
 }
 
@@ -388,3 +388,11 @@ margin: auto;
     transform:  rotateY(180deg);
 
   }
+
+  .item-tick{
+    background-color: var(--main-color);
+  }
+  .item-tick:hover{
+    background-color: #000;
+  }
+  /* "" */

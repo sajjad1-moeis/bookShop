@@ -3,14 +3,14 @@ const TemplateFooter = (dot) => {
     "beforeend",
     `
     <footer class="container">
-      <div class="md:px-10 container mt-44 relative">
+      <div class="md:px-10  mt-44 relative">
         <div class="w-full ozviat p-5 md:p-20">
           <div class="text-white px-4 rounded-full bg-[#27187e] p-2 w-max mx-auto md:text-balance text-sm flex-none">دریافت تخفیف</div>
           <h1 class="text-3xl md:text-5xl text-white mx-auto my-8 text-center">به ما بپیوندید</h1>
-          <div class="gap-3 overflow-hidden max-w-[550px] mx-auto w-full p-1 bg-white rounded-full flex justify-between">
-            <div class="w-full"><input placeholder="ارسال ایمیل" type="text" class="w-full h-full p-3 outline-none" required /></div>
-            <div class="cursor-pointer bg-primary p-3 rounded-full flex w-max text-white ps-5 pe-9">
-              <div class="h-max my-auto">عضویت</div>
+          <div class="gap-3 overflow-hidden max-w-[550px] mx-auto w-full p-1 md:bg-white md:rounded-full md:flex justify-between">
+            <div class="w-full"><input placeholder="ارسال ایمیل" type="text" class="w-full rounded-lg h-full p-3 outline-none" required /></div>
+            <div class="cursor-pointer bg-black md:bg-primary p-3 rounded-lg md:rounded-full flex w-full justify-center text-center md:w-max text-white md:ps-9 md:pe-7 md:mx-0 mx-auto my-3 md:my-0">
+              <div class="h-max my-auto ">عضویت</div>
               <img src="${dot}./img/search3.png" class="w-7 inline ms-2" alt="" />
             </div>
           </div>
@@ -22,9 +22,9 @@ const TemplateFooter = (dot) => {
           <div class="my-8">"همان باشید که هستید و آنچه را که احساس می کنید بگویید ، زیرا کسانی که اهمیت می دهند اهمیتی ندارند ."</div>
           <span class="text-primary">برنارد</span>
         </div>
-        <item-footer></item-footer>
-        <item-footer></item-footer>
-        <item-footer></item-footer>
+        <item-footer tail="${dot}./css/tailwind.css" css="${dot}./css/style.css"></item-footer>
+        <item-footer tail="${dot}./css/tailwind.css" css="${dot}./css/style.css"></item-footer>
+        <item-footer tail="${dot}./css/tailwind.css" css="${dot}./css/style.css"></item-footer>
       </div>
       <div class="md:px-10">
         <div class="text-white bg-primary end-footer pt-12 pb-9 p-14 grid grid-cols-1 md:grid-cols-3 gap-2">

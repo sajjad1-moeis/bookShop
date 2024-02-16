@@ -1,7 +1,7 @@
 let template = document.createElement("template");
 template.innerHTML = `
-<link rel="stylesheet" href="./css/tailwind.css" />
-<link rel="stylesheet" href="./css/style.css" />
+<link rel="stylesheet" href="" />
+<link rel="stylesheet" href="" />
 <div class="">
 <div class="h-max border-s-2 border-zinc-300"></div>
 <div class="">
@@ -25,6 +25,9 @@ class itemFooter extends HTMLElement {
     this.attachShadow({mode: "open"});
     this.shadowRoot.append(template.content.cloneNode(true));
   }
-  connectedCallback() {}
+  connectedCallback() {
+    this.shadowRoot.querySelectorAll("link")[0].href = this.getAttribute("tail");
+    this.shadowRoot.querySelectorAll("link")[1].href = this.getAttribute("css");
+  }
 }
 export {itemFooter};

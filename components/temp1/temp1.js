@@ -52,4 +52,26 @@ class temp2 extends HTMLElement {
   }
 }
 
-export {temp2, temp1};
+let tempAboutMe = document.createElement("template");
+tempAboutMe.innerHTML = `
+    <link rel="stylesheet" href="../css/tailwind.css" />
+   <link rel="stylesheet" href="../css/style.css" />
+                 <div class="flex mt-3">
+                      <div class="p-2  rounded-full item-tick">
+                        <img src="../img/icons8-tick-64.png" class=" w-[30px]" alt="" />
+                      </div>
+                      <div class="h-max my-auto ms-3 text-lg">مسئولیت محدود</div>
+                    </div>
+         
+`;
+class tempAboutMeCls extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({mode: "open"});
+    this.shadowRoot.append(tempAboutMe.content.cloneNode(true));
+  }
+  connectedCallback() {
+    this.shadowRoot.querySelector(".text-lg").textContent = this.getAttribute("title");
+  }
+}
+export {temp2, temp1, tempAboutMeCls};
