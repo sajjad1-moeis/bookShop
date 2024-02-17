@@ -74,4 +74,35 @@ class tempAboutMeCls extends HTMLElement {
     this.shadowRoot.querySelector(".text-lg").textContent = this.getAttribute("title");
   }
 }
-export {temp2, temp1, tempAboutMeCls};
+
+let DivTextAboutMe = document.createElement("template");
+DivTextAboutMe.innerHTML = `
+<link rel="stylesheet" href="../css/tailwind.css" />
+   <link rel="stylesheet" href="../css/style.css" />
+<div class="relative px-5 md:px-3">
+<div class="p-10 rounded-[40px] bg-primary text-xl md:text-2xl" style="line-height: 45px">"موفقیت نهایی نیست ؛ شکست کشنده نیست: این شجاعت ادامه دادن است که اهمیت دارد."</div>
+<div class="w-6 h-20 text"></div>
+<div class="flex mt-[-20px] ms-4">
+  <div><img src="" class="w-20 h-20 rounded-full" alt="" /></div>
+  <div class="ms-3 h-max my-auto">
+    <span class="text-xl text-black block t1"></span>
+    <span class="text-zinc-500 t2"></span>
+  </div>
+</div>
+</div>
+`;
+
+class classTextAboutMe extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({mode: "open"});
+    this.shadowRoot.append(DivTextAboutMe.content.cloneNode(true));
+  }
+  connectedCallback() {
+    this.shadowRoot.querySelector("img").src = this.getAttribute("img");
+    this.shadowRoot.querySelector(".t1").textContent = this.getAttribute("t1");
+    this.shadowRoot.querySelector(".t2").textContent = this.getAttribute("t2");
+  }
+}
+
+export {temp2, temp1, tempAboutMeCls, classTextAboutMe};

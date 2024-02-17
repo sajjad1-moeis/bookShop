@@ -2,7 +2,7 @@ let template = document.createElement("template");
 template.innerHTML = `
 <link rel="stylesheet" href="" />
 <link rel="stylesheet" href="" />
-<div class="">
+<div class="text-xl text-center">
 <div class="h-max border-s-2 border-zinc-300"></div>
 <div class="">
   <div class="h-5 border-s-2 border-zinc-200"></div>

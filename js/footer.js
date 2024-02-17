@@ -2,9 +2,9 @@ const TemplateFooter = (dot) => {
   document.querySelector("main").insertAdjacentHTML(
     "beforeend",
     `
-    <footer class="container">
-      <div class="md:px-10  mt-44 relative">
-        <div class="w-full ozviat p-5 md:p-20">
+    <footer class="max-w-[1550px] w-full mx-auto">
+      <div class="px-5 md:px-20  mt-44 relative">
+        <div class="w-full ozviat p-5 md:p-40">
           <div class="text-white px-4 rounded-full bg-[#27187e] p-2 w-max mx-auto md:text-balance text-sm flex-none">دریافت تخفیف</div>
           <h1 class="text-3xl md:text-5xl text-white mx-auto my-8 text-center">به ما بپیوندید</h1>
           <div class="gap-3 overflow-hidden max-w-[550px] mx-auto w-full p-1 md:bg-white md:rounded-full md:flex justify-between">
@@ -16,9 +16,11 @@ const TemplateFooter = (dot) => {
           </div>
         </div>
       </div>
-      <div class="bg-[#f1f2f6] gap-7 px-5 md:px-20 pt-44 pb-20 footer grid grid-cols-2 md:grid-cols-4">
-        <div>
-          <div><img src="${dot}./img/logo-book-shop.png" alt="" /></div>
+      <div class="bg-[#f1f2f6] gap-7 px-5 py-44 md:px-20   footer grid grid-cols-2 md:grid-cols-4">
+
+      
+        <div class="text-center">
+          <div class="w-max mx-auto"><img src="${dot}./img/logo-book-shop.png" alt="" /></div>
           <div class="my-8">"همان باشید که هستید و آنچه را که احساس می کنید بگویید ، زیرا کسانی که اهمیت می دهند اهمیتی ندارند ."</div>
           <span class="text-primary">برنارد</span>
         </div>
