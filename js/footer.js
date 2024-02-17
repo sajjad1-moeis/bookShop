@@ -3,7 +3,7 @@ const TemplateFooter = (dot) => {
     "beforeend",
     `
     <footer class="max-w-[1550px] w-full mx-auto">
-      <div class="px-5 md:px-20  mt-44 relative">
+      <div class="px-5 md:px-20  mt-20 md:mt-44 relative">
         <div class="w-full ozviat p-5 md:p-40">
           <div class="text-white px-4 rounded-full bg-[#27187e] p-2 w-max mx-auto md:text-balance text-sm flex-none">دریافت تخفیف</div>
           <h1 class="text-3xl md:text-5xl text-white mx-auto my-8 text-center">به ما بپیوندید</h1>

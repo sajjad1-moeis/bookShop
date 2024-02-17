@@ -34,11 +34,11 @@ const Header = (dot, href, link) => {
                </div>
                 </div>
                 <div class="item-nav h-max m-auto relative" id="pages">
-                <div class=" absolute w-max pt-14">
+                <div class=" absolute w-max pt-14 " >
                 <div class="p-5 bg-primary text-white   hidden majmoee ">
                    <a href="#"><div class="pe-20 my-3">وبلاگ</div></a>
-                   <a href="#"><div class="pe-20 my-3">درباره ما</div></a>
-                   <a href="#"><div class="pe-20 my-3">سوالات متداول</div></a>
+                   <a href="${dot}./html/abutMe.html?id=pages"><div class="pe-20 my-3">درباره ما</div></a>
+                   <a href="${dot}./html/questionYou.html?id=pages"><div class="pe-20 my-3">سوالات متداول</div></a>
                 </div>
                 </div>
                 صفحات<img class="w-3 ms-1 inline" src="${dot}./img/arrow.png" alt="" />
@@ -47,16 +47,14 @@ const Header = (dot, href, link) => {
                 <div class="item-nav h-max m-auto relative" id="category">
                 <div class=" absolute w-max pt-14" style="z-index:11111">
                 <div class="p-5 bg-primary text-white   hidden majmoee ">
-                   <a href="#"><div class="pe-20 my-3">وبلاگ</div></a>
-                   <a href="#"><div class="pe-20 my-3">درباره ما</div></a>
-                   <a href="#"><div class="pe-20 my-3">سوالات متداول</div></a>
+                   <a href="#"><div class="pe-20 my-3">تاریخی</div></a>
+                   <a href="#"><div class="pe-20 my-3">مذهبی</div></a>
+                   <a href="#"><div class="pe-20 my-3">تخیلی</div></a>
                 </div>
                 </div>
                 دسته بندی<img class="w-3 ms-1 inline" src="${dot}./img/arrow.png" alt="" /></div>
-                <div class="item-nav h-max m-auto z-[11111]" id="abutMe" >
-                <a href="${dot}./html/abutMe.html?id=abutMe">
-                درباره ما
-                </a>
+                <div class="item-nav h-max m-auto z-[11111]" id="callToMe" >
+                <a href="${dot}./html/callToMe.html?id=callToMe">تماس با ما</a>
                 </div>
               </div>
             </div>

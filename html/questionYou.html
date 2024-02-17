@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <title>سوالات شما - فروشگاه کتاب</title>
+    <link rel="icon" href="https://xtratheme.com/wp-content/uploads/2018/03/favicon.png" sizes="32x32" />
+    <link rel="stylesheet" href="../css/tailwind.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body dir="rtl" class="bg-primary">
+    <div class="body container"></div>
+    <div class="load">
+      <hr />
+      <hr />
+      <hr />
+      <hr />
+    </div>
+    <main class="h-max hidden">
+      <div class="body container">
+        <div-next-header title="سوالات شما"></div-next-header>
+        <div class="my-32">
+          <section class="max-w-[600px] w-full mx-auto">
+            <div class="w-full flex gap-5">
+              <div class="w-full border-[1px] border-zinc-200 m-auto"></div>
+              <div class="flex-none p-2 rounded-full px-3 bg-primary text-white onvan">سوالات متداول</div>
+              <div class="w-full border-[1px] border-zinc-200 m-auto"></div>
+            </div>
+            <div class="my-8 text-2xl md:text-4xl text-center">
+              <span class="">آیا شما هم سوالی دارید؟ از ما بپرسید !؟ </span>
+            </div>
+          </section>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-10 my-20">
+            <div class="md:col-span-2">
+              <div-call-me img="../img/icons8-question-50.png" t1="سوالات متداول" t2="پاسخ به سوالات متداول"></div-call-me>
+              <div class="my-10 containerAccordian1"></div>
+              <div class="my-10">
+                <div-call-me img="../img/icons8-info-50.png" t1=" سایر سوالات" t2="سوالات عمومی"></div-call-me>
+              </div>
+              <div class="my-10 containerAccordian2"></div>
+            </div>
+            <div class="md:col-span-1">
+              <div class="p-5 bg-[#f5f5f5] rounded-[40px]">
+                <div-call-me img="../img/icons8-email-open-50.png" t1="از ما بپرسید ..." t2="سوالی دارید؟"></div-call-me>
+                <div class="my-6 text-lg leading-10">
+                  البته لازم است توجه کنیم که هر کتاب می‌تواند در چند ژانر قرار بگیرد. در واقع نویسنده با ترکیب ژانرهای مختلف به گستردگی رمان خود و پیچیدگی شخصیت‌ها و رفتارهای آنان
+                  پرداخته است.
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div>
+                    <p class="text-zinc-400 text-lg md:text-xl my-5 outline-none">نام شما (*)</p>
+                    <input type="text" class="p-4 rounded-2xl w-full border-2 border-zinc-200 outline-none" />
+                  </div>
+                  <div>
+                    <p class="text-zinc-400 text-lg md:text-xl my-5 outline-none">پست الکترونیکی (*)</p>
+                    <input type="text" class="p-4 rounded-2xl w-full border-2 border-zinc-200 outline-none" />
+                  </div>
+                </div>
+                <div>
+                  <p class="text-zinc-400 text-lg md:text-xl my-5 outline-none">موضوع</p>
+                  <input type="text" class="p-4 rounded-2xl w-full border-2 border-zinc-200 outline-none" />
+                </div>
+                <div>
+                  <p class="text-zinc-300 text-xl my-5">دپارتمان</p>
+                  <select class="p-4 rounded-3xl w-full outline-none">
+                    <option value="دپارتمان فروش">دپارتمان فروش</option>
+                    <option value="مشتری مداری">مشتری مداری</option>
+                    <option value="پشتیبانی">پشتیبانی</option>
+                    <option value="سایر">سایر</option>
+                  </select>
+                </div>
+                <div class="my-10">
+                  <p class="text-zinc-300 text-xl my-5">سوال شما</p>
+                  <textarea name="" id="" cols="30" rows="10" class="p-4 rounded-3xl w-full outline-none"></textarea>
+                </div>
+                <button class="px-6 bg-[#27187e] rounded-full w-max py-3 text-white">ارسال</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script type="module" src="../js/module.js"></script>
+    <script type="module" src="../js/questionYou.js"></script>
+  </body>
+</html>

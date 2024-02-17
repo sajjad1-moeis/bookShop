@@ -2,11 +2,11 @@ let template = document.createElement("template");
 template.innerHTML = `
 <link rel="stylesheet" href="" />
 <link rel="stylesheet" href="" />
-<div class="text-xl text-center">
+<div class="text-xl">
 <div class="h-max border-s-2 border-zinc-300"></div>
 <div class="">
   <div class="h-5 border-s-2 border-zinc-200"></div>
-  <div class="border-s-4 border-primary ps-8">منو سفارشی</div>
+  <div class="border-s-4 border-primary ps-8 ">منو سفارشی</div>
   <div class="text-zinc-500 ps-8 border-s-2 border-zinc-200">
     <div class="py-10 leading-8">
       <div>صفحه اصلی</div>

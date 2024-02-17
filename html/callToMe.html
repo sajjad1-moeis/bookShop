@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تماس با ما - فروشگاه کتاب</title>
+    <link rel="icon" href="https://xtratheme.com/wp-content/uploads/2018/03/favicon.png" sizes="32x32" />
+
+    <link rel="stylesheet" href="../css/tailwind.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body dir="rtl" class="bg-primary">
+    <div class="load">
+      <hr />
+      <hr />
+      <hr />
+      <hr />
+    </div>
+    <main class="h-max hidden">
+      <div class="body container">
+        <div-next-header title="تماس با ما"></div-next-header>
+        <div class="mt-40 grid grid-cols-1 md:gap-0 gap-5 md:grid-cols-3">
+          <call-to-me img="../img/icons8-email-50.png" t1="پشتیبانی" t2="sajjad@gmail.com"></call-to-me>
+          <call-to-me img="../img/icons8-phone-50.png" t1="تلفن" t2="091255555"></call-to-me>
+          <call-to-me img="../img/icons8-location-50.png" t1="آدرس" t2="تهران- خیابان آزادی- خیابان بهبودی"></call-to-me>
+        </div>
+        <div class="mt-40 grid grid-cols-1 md:grid-cols-3">
+          <div class="md:col-span-2 rounded-[30px] bg-primary p-4 md:p-10 md:ps-20 md:pe-[160px]">
+            <div class="my-6 text-white text-4xl md:text-right text-center">با ما در تماس باشید</div>
+            <div class="grid grid-cols-1 gap-10 md:grid-cols-2">
+              <div>
+                <p class="text-zinc-300 text-xl my-5 outline-none">نام شما (*)</p>
+                <input type="text" class="p-4 rounded-3xl w-full" />
+              </div>
+              <div>
+                <p class="text-zinc-300 text-xl my-5 outline-none">پست الکترونیکی (*)</p>
+                <input type="text" class="p-4 rounded-3xl w-full" />
+              </div>
+              <div>
+                <p class="text-zinc-300 text-xl my-5 outline-none">موضوع</p>
+                <input type="text" class="p-4 rounded-3xl w-full" />
+              </div>
+              <div>
+                <p class="text-zinc-300 text-xl my-5">دپارتمان</p>
+                <select class="p-4 rounded-3xl w-full outline-none">
+                  <option value="دپارتمان فروش">دپارتمان فروش</option>
+                  <option value="مشتری مداری">مشتری مداری</option>
+                  <option value="پشتیبانی">پشتیبانی</option>
+                  <option value="سایر">سایر</option>
+                </select>
+              </div>
+            </div>
+            <div class="my-10">
+              <p class="text-zinc-300 text-xl my-5">سوال شما</p>
+              <textarea name="" id="" cols="30" rows="10" class="p-4 rounded-3xl w-full outline-none"></textarea>
+            </div>
+            <button class="px-6 bg-[#27187e] rounded-full w-max py-3 text-white">ارسال</button>
+          </div>
+          <div class="md:col-span-1 py-20 ms-[-80px] md:block hidden">
+            <div class="relative text-center w-full h-full bg-[#e8eaed] rounded-[30px] p-20 shadow-2xl">
+              <div class="absolute h-max max-w-[390px] w-full inset-0 m-auto">
+                <img src="../img/icon_error.png" alt="" />
+                <p class="text-xl">Oops! Something went wrong.</p>
+                <p class="my-5 text-zinc-400">This page didn't load Google Maps correctly. See the JavaScript console for technical details.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script type="module" src="../js/module.js"></script>
+    <script type="module" src="../js/callToMe.js"></script>
+  </body>
+</html>

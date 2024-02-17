@@ -408,3 +408,46 @@ margin: auto;
     will-change: transform ;
     transition: 0.2s;
   }
+.imgCallMe{
+  transition: 0.3s;
+  background-color: var(--main-color);
+}
+.t1CallMe{
+  transition: 0.3s;
+
+}
+  
+  .divCallMe:hover .imgCallMe{
+    transform: translateY(-20px);
+    background-color: #000;
+  }
+.t1CallMe:hover{
+  color: var(--main-color);
+}
+.itemAccordian{
+  height: 0;
+  padding:0px;
+  transition: 0.4s;
+  margin:0px 0px;
+}
+.parentAccordian img{
+  transition: 0.4s;
+
+}
+.parentAccordian{
+  transition: 0.4s;
+  overflow: hidden;
+}
+.showAcord{
+  margin:20px 0px;
+  color: white;
+
+}
+.show{
+  background-color: var(--main-color);
+  color: white;
+
+}
+.show img{
+  transform: rotate(-90deg);
+}
