@@ -104,6 +104,21 @@ const Header = (dot, href, link) => {
           <span class="my-auto">کتاب ها</span>
        </div>
      </a>
+     <a href="${dot}./html/abutMe.html?id=pages">
+        <div class="my-5 p-3 border-b-2 text-white border-white">
+          <span class="my-auto">درباره ما</span>
+       </div>
+     </a>
+     <a href="${dot}./html/questionYou.html?id=pages">
+        <div class="my-5 p-3 border-b-2 text-white border-white">
+          <span class="my-auto">سوالات متداول</span>
+       </div>
+     </a>
+     <a href="${dot}./html/callToMe.html?id=callToMe">
+        <div class="my-5 p-3 border-b-2 text-white border-white">
+          <span class="my-auto">تماس با ما</span>
+       </div>
+     </a>
     </div>
 `
   );

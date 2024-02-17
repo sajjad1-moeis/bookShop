@@ -15,10 +15,54 @@
       <hr />
       <hr />
     </div>
-    <main class="relative h-max hidden">
-      <div class="body container"></div>
+    <main class="h-max hidden">
+      <div class="body container">
+        <div-next-header title="فروشگاه"></div-next-header>
+        <div class="my-20">
+          <div class="block md:flex justify-between pb-2 border-b-[1px] border-zinc-200">
+            <div class="my-2 h-max md:my-auto text-center">نمایش ۱–۶ از ۱۲ نتیجه</div>
+            <div class="md:flex block gap-3">
+              <div class="my-3 p-4 rounded-3xl border-[1px] border-zinc-200 bg-white">
+                <select name="" id="" class="w-full outline-none">
+                  <option value="6">تعداد محصول در هر صفحه</option>
+                  <option value="9">9 محصول در هر صفحه</option>
+                  <option value="12">12 محصول در هر صفحه</option>
+                  <option value="15">15 محصول در هر صفحه</option>
+                </select>
+              </div>
+              <div class="my-3 p-4 rounded-3xl border-[1px] border-zinc-200 bg-white">
+                <select name="" id="" class="w-ful outline-none">
+                  <option value="">مرتب سازی پیش فرض</option>
+                  <option value="pluber">مرتب سازی بر اساس محبوبیت</option>
+                  <option value="score">مرتب سازی بر اساس امتیاز</option>
+                  <option value="new">مرتب سازی بر اساس جدید ترین</option>
+                  <option value="low">مرتب سازی بر اساس ارزان ترین</option>
+                  <option value="much">مرتب سازی بر اساس گران ترین</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="my-10 containerProduct grid md:grid-cols-3 grid-cols-1 gap-8"></div>
+
+          <div class="w-max mx-auto flex gap-3">
+            <div class="w-10 h-10 bg-primary text-base rounded-full rotate-180 hidden cursor-pointer" id="prevPagination">
+              <div class="w-max mx-auto pt-2.5">
+                <img src="../img/pageImg.png" class="w-5" alt="" />
+              </div>
+            </div>
+            <div class="containerPagination flex gap-2"></div>
+            <div class="w-10 h-10 bg-primary text-base rounded-full cursor-pointer" id="nextPagination">
+              <div class="w-max mx-auto pt-2.5">
+                <img src="../img/pageImg.png" class="w-5" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
     <script type="module" src="../js/module.js"></script>
-    <!-- <script type="module" src="../js/module.js"></script> -->
+    <script type="module" src="../js/store.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
   </body>
 </html>

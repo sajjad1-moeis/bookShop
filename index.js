@@ -17,20 +17,6 @@ customElements.define("item-footer", itemFooter);
 
 headerAndIsLogin("");
 
-tippy("#love", {
-  theme: "tomato",
-  content: "افزودن به علاقه مندی",
-  placement: "right",
-});
-tippy("#moghaiese", {
-  content: "مقایسه کردن",
-  placement: "right",
-});
-tippy("#search", {
-  content: "مشاهده سریع",
-  placement: "right",
-});
-
 ////////////////// Swiper 1
 
 let mySwiper1 = $.querySelector(".mySwiper1");
@@ -81,3 +67,16 @@ let api = await fetch("https://bookshop-backend.liara.run/api/v1/books");
 let arrBook = await api.json();
 CreateDivMahsol(arrBook.slice(0, 8), document.querySelector(".product"), "");
 TemplateFooter("");
+tippy("#love", {
+  theme: "tomato",
+  content: "افزودن به علاقه مندی",
+  placement: "right",
+});
+tippy("#moghaiese", {
+  content: "مقایسه کردن",
+  placement: "right",
+});
+tippy("#search", {
+  content: "مشاهده سریع",
+  placement: "right",
+});

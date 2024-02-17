@@ -17,7 +17,7 @@
 }
 body{
     background-color: rgba(241, 242, 246, 0.5)
-
+/* background-color: white; */
 }
 main{
     height: 100vh;
@@ -450,4 +450,10 @@ margin: auto;
 }
 .show img{
   transform: rotate(-90deg);
+}
+.pageItemStore{
+  opacity: 0.5;
+}
+.pageItemActive{
+  opacity: 1;
 }
