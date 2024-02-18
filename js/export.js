@@ -96,4 +96,78 @@ const funcLogOut = (elm) => {
   };
 };
 
-export {CreateDivsPanel, moreDivCreatePanel, CheckAuth, setUiUser, funcLogOut};
+import {countBasket} from "./Header-Site.js";
+
+function containerProduct(arrMahsol, btn) {
+  let idMahsol = btn.dataset.num;
+  console.log(idMahsol);
+  fetch(`https://bookshop-backend.liara.run/api/v1/books/${idMahsol}`, {
+    credentials: "include",
+  })
+    .then((result) => result.json())
+    .then((data) => {
+      addTobascket(data, arrMahsol);
+    })
+    .catch((err) => {});
+}
+
+function setlocal(arr) {
+  localStorage.setItem("mahsol", JSON.stringify(arr));
+}
+
+function addTobascket(respons, arrMahsol) {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 2000,
+
+    showClass: {
+      popup: `
+        animate__animated
+        animate__bounceInRight
+        animate__faster
+      `,
+    },
+    hideClass: {
+      popup: `
+        animate__animated
+        animate__bounceOutRight
+        animate__faster
+      `,
+    },
+    color: "#fff",
+    background: "#198754",
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    },
+  });
+
+  fetch(`https://bookshop-backend.liara.run/api/v1/books`, {
+    credentials: "include",
+  })
+    .then((result) => result.json())
+    .then((arr) => {
+      let newProduct = {
+        id: respons.foundBook._id,
+        name: respons.foundBook.name,
+        price: respons.foundBook.price,
+        img: respons.foundBook.imagePath,
+        count: 1,
+      };
+      let someLocal = arrMahsol.some((item) => item.id === newProduct.id);
+      if (someLocal) {
+        let findIndexLocal = arrMahsol.findIndex((item) => item.id === newProduct.id);
+        arrMahsol[findIndexLocal].count++;
+      } else {
+        arrMahsol.push(newProduct);
+      }
+      countBasket(arrMahsol);
+      setlocal(arrMahsol);
+      Toast.fire({title: "با موفقیت به سبد خرید اضافه شد", icon: "success"});
+    });
+}
+
+export {CreateDivsPanel, moreDivCreatePanel, CheckAuth, setUiUser, funcLogOut, containerProduct};

@@ -22,7 +22,7 @@ background-color: white;
 main{
     height: 100vh;
 }
-main,.header-mobile,.item-tick{
+main,.header-mobile,.item-tick,#pages{
     transition: 0.3s;
 }
 

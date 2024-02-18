@@ -2,5 +2,5 @@ import {headerAndIsLogin} from "./Header-Site.js";
 import {TemplateFooter} from "./footer.js";
 import {itemFooter} from "../components/menuFoter/footerMenu.js";
 TemplateFooter(".");
-headerAndIsLogin(".");
+headerAndIsLogin(".", JSON.parse(localStorage.getItem("mahsol")));
 customElements.define("item-footer", itemFooter);

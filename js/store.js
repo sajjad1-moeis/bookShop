@@ -105,3 +105,11 @@ const prev = () => {
 };
 
 prevBtn.onclick = prev;
+
+import {containerProduct} from "./export.js";
+let btnMahsol = document.querySelectorAll(".btnMahsol");
+
+let arrMahsol = [];
+arrMahsol = JSON.parse(localStorage.getItem("mahsol"));
+
+btnMahsol.forEach((item) => (item.onclick = () => containerProduct(arrMahsol, item)));

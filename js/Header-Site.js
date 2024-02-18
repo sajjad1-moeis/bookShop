@@ -1,5 +1,5 @@
 const $ = document;
-const Header = (dot, href, link) => {
+const Header = (dot, href, link, arr) => {
   document.querySelector(".body").insertAdjacentHTML(
     "afterbegin",
     `
@@ -61,11 +61,13 @@ const Header = (dot, href, link) => {
           </div>
           <div class="md:col-span-1 py-8">
             <div class="flex m-auto h-max gap-5">
-              <div class="basketBtn cursor-pointer my-auto p-0 xl:p-4 rounded-full border-[1px] border-zinc-200 relative">
-                <div class="w-5 h-5 bottom-0 left-[-5px] text-white rounded-full bg-[#ff006f] absolute text-sm leading-6"><span class="mr-[7px]">1</span></div>
+              <a href="${dot}./html/basket.html?id=basket">
+              <div class="basketBtn cursor-pointer my-auto p-0 xl:p-4 rounded-full border-[1px] border-zinc-200 relative" >
+                <div class="w-5 h-5 bottom-0 left-[-5px] text-white rounded-full bg-[#ff006f] absolute text-sm leading-6"><p class="w-max mx-auto " id="countBasket"></p></div>
 
                 <img src="${dot}./img/download.png" class="w-9" />
               </div>
+              </a>
               <div class="login m-auto  w-full h-full cursor-pointer bg-primary text-white rounded-full">
               <a href="${dot}${link}">  
               <div class="text-center w-max m-auto  p-4">
@@ -82,46 +84,74 @@ const Header = (dot, href, link) => {
   document.body.insertAdjacentHTML(
     "afterbegin",
     `
-    <div class="hidden header-mobile w-full lg:hidden bg-white shadow-xl p-5  justify-between fixed" style="z-index: 55555">
+    <div class="p-5 fixed w-full px-4"  style="z-index: 55555">
+    <div class="hidden header-mobile w-full rounded-[30px] lg:hidden bg-white shadow-xl p-5  justify-between ">
   <div><img src="${dot}./img/logo-book-shop.png" class="w-28" alt="" /></div>
   <div class="flex gap-1">
     <div class="cursor-pointer p-3 rounded-full bg-primary"><img src="${dot}./img/book-header.png" class="w-6" alt="" /></div>
     <div class="cursor-pointer p-3 rounded-full bg-primary showMenuMobile"><img src="${dot}./img/menu-svgrepo-com (1).svg" class="w-6" alt="" /></div>
   </div>
 </div>
+</div>
 <div class="lg:hidden block max-w-[300px] w-full p-5 fixed h-[100vh] bg-primary left-0 menu-mobile">
       <div class="flex justify-between text-white">
         <div class="text-xl h-max my-auto">منوها</div>
         <div class="closeBtnMenuMobile"><img src="${dot}./img/close-icon.png" alt="" class="w-8" /></div>
       </div>
-      <a href="${dot}${link}">
-        <div class="my-5 p-3 border-b-2 text-white border-white">
-          <span class="my-auto">${href}</span>
+      <a href="${dot}./html/store.html">
+         <div class="my-5 p-3  text-white">
+           <span class="my-auto">کتاب ها</span>
         </div>
-     </a>
-     <a href="${dot}./html/store.html">
-        <div class="my-5 p-3 border-b-2 text-white border-white">
-          <span class="my-auto">کتاب ها</span>
-       </div>
-     </a>
-     <a href="${dot}./html/abutMe.html?id=pages">
-        <div class="my-5 p-3 border-b-2 text-white border-white">
-          <span class="my-auto">درباره ما</span>
-       </div>
-     </a>
-     <a href="${dot}./html/questionYou.html?id=pages">
-        <div class="my-5 p-3 border-b-2 text-white border-white">
-          <span class="my-auto">سوالات متداول</span>
-       </div>
-     </a>
-     <a href="${dot}./html/callToMe.html?id=callToMe">
-        <div class="my-5 p-3 border-b-2 text-white border-white">
-          <span class="my-auto">تماس با ما</span>
-       </div>
-     </a>
+      </a>
+      <a href="${dot}./html/basket.html?id=basket">
+      <div class="my-5 p-3  text-white">
+           <span class="my-auto"> سبد خرید</span>
+        </div>
+      </a>
+         <div class="my-5 p-3  text-white" id="pages">
+           <div class="w-full my-auto py-5">صفحات</div>
+       <div style="height:0px;transition: 0.3s;" class="overflow-hidden" id="itemPage">
+         <a href="${dot}./html/abutMe.html?id=pages">
+             <div class="my-5 p-3 border-b-2 text-white">
+               <span class="my-auto">درباره ما</span>
+            </div>
+          </a>
+          <a href="${dot}./html/questionYou.html?id=pages">
+             <div class="my-5 p-3 border-b-2 text-white">
+               <span class="my-auto">سوالات متداول</span>
+            </div>
+          </a>
+          <a href="${dot}./html/callToMe.html?id=callToMe">
+             <div class="my-5 p-3 border-b-2 text-white ">
+               <span class="my-auto">تماس با ما</span>
+            </div>
+          </a>
+      </div>
+        </div>
+        <a href="${dot}${link}">
+        <div class="my-5 p-3  text-white">
+        <span class="my-auto">${href}</span>
+        </div>
+       </a>
+     <a href="${dot}./index.html">
+         <div class="my-5 p-3  text-white">
+          <span class="my-auto"> صفحه اصلی</span>
+       </div></a>
     </div>
+    
 `
   );
+  let pages = document.querySelector("#pages");
+  pages.onclick = () => {
+    document.querySelector("#pages").classList.toggle("showA");
+    if (pages.className.includes("showA")) {
+      document.querySelector("#itemPage").style.height = `${document.querySelector("#itemPage").scrollHeight}px`;
+    } else {
+      document.querySelector("#itemPage").style.height = "0px";
+    }
+  };
+
+  document.querySelector("#countBasket").textContent = arr.length;
 };
 
 const DivScroll = (dot) => {
@@ -196,12 +226,14 @@ function ActiveItemNav() {
   let SearchLocation = IdLocation.get("id");
   if (SearchLocation === null) {
     document.querySelector(`#home`).classList.add("active");
-  } else {
+  } else if (SearchLocation) {
     document.querySelector(`#${SearchLocation}`).classList.add("active");
+  } else {
+    console.log("object");
   }
 }
 
-const headerAndIsLogin = (dot) => {
+const headerAndIsLogin = (dot, arr) => {
   fetch("https://bookshop-backend.liara.run/api/v1/userdata/mydata", {credentials: "include"})
     .then((result) => {
       return result.json();
@@ -209,12 +241,12 @@ const headerAndIsLogin = (dot) => {
     .then((data) => {
       if (data.login) {
         if (data.userdata.isAdmin) {
-          Header(dot, "پنل مدیریت", "./html/panel-Admin.html");
+          Header(dot, "پنل مدیریت", "./html/panel-Admin.html", arr);
         } else {
-          Header(dot, "حساب کاربری", "./html/userPage.html");
+          Header(dot, "حساب کاربری", "./html/userPage.html", arr);
         }
       } else {
-        Header(dot, "ورود / ثبت نام", "./html/login.html");
+        Header(dot, "ورود / ثبت نام", "./html/login.html", arr);
       }
       DivScroll(dot);
       showMenuMobileBtn();
@@ -226,5 +258,8 @@ const headerAndIsLogin = (dot) => {
       console.log(err);
     });
 };
+function countBasket(arr) {
+  document.querySelector("#countBasket").textContent = arr.length;
+}
 
-export {headerAndIsLogin, LodingSite};
+export {headerAndIsLogin, LodingSite, countBasket};

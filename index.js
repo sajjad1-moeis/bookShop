@@ -14,8 +14,10 @@ customElements.define("div-nevisande", DivNeviSande);
 customElements.define("item-footer", itemFooter);
 
 ////////////////IsLogin
+let local = JSON.parse(localStorage.getItem("mahsol"));
+local === null ? localStorage.setItem("mahsol", JSON.stringify([])) : undefined;
 
-headerAndIsLogin("");
+headerAndIsLogin("", JSON.parse(localStorage.getItem("mahsol")));
 
 ////////////////// Swiper 1
 
@@ -90,10 +92,10 @@ var swiper = new Swiper(".mySwiper2", {
     el: ".swiper2 .swiper-pagination",
     clickable: true,
   },
-  autoplay: {
-    delay: 3000,
-    disableOnInteraction: false,
-  },
+  // autoplay: {
+  //   delay: 3000,
+  //   disableOnInteraction: false,
+  // },
   breakpoints: {640: {slidesPerView: 2}, 768: {slidesPerView: 3}, 1024: {slidesPerView: 4}},
 });
 CreateDivMahsol(arrBook.slice(0, 8), document.querySelector(".mySwiper2 .swiper-wrapper"), "", " swiper-slide overflow-hidden bg-transparent");
@@ -112,3 +114,10 @@ var swiper = new Swiper(".mySwiper3", {
   breakpoints: {640: {slidesPerView: 2}, 768: {slidesPerView: 3}, 1024: {slidesPerView: 4}},
 });
 CreateDivMahsol(arrBook.slice(0, 8), document.querySelector(".mySwiper3 .swiper-wrapper"), "", " swiper-slide overflow-hidden bg-transparent");
+import {containerProduct} from "./js/export.js";
+let btnMahsol = document.querySelectorAll(".btnMahsol");
+
+let arrMahsol = [];
+arrMahsol = JSON.parse(localStorage.getItem("mahsol"));
+
+btnMahsol.forEach((item) => (item.onclick = () => containerProduct(arrMahsol, item)));

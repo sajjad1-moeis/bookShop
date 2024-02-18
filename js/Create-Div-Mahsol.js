@@ -5,7 +5,7 @@ const CreateDivMahsol = (arr, parent, dot, clas) => {
     let div = document.createElement("div");
     div.className = clas;
     div.innerHTML = `
-      <div data-num="${item._id}"> 
+      <div class="containerProduct" data-num="${item._id}"> 
               <div class="bg-white p-6 px-8 py-8 border-[1px] border-zinc-200" style="border-radius: 40px">
                 <div class="item-mahsol relative overflow-hidden border-b-[1px] border-zinc-300">
                   <div  class="hoverLeft bg-primary absolute h-max p-2 rounded-full">
@@ -22,7 +22,7 @@ const CreateDivMahsol = (arr, parent, dot, clas) => {
                   <div class="text-xl">${item.price.toLocaleString()} تومان</div>
                 </div>
               </div>
-              <div style="margin-top: -20px" class="flex btnMahsol cursor-pointer mx-auto p-3 px-6 w-max rounded-full bg-primary text-white " >
+              <div data-num="${item._id}" style="margin-top: -20px" class="flex btnMahsol cursor-pointer mx-auto p-3 px-6 w-max rounded-full bg-primary text-white " >
                 <div class="h-max flex"><img src="${dot}./img/shop.png" class="w-6 inline me-2" alt="" />افزودن به سبد خرید</div>
               </div>
             </div>
