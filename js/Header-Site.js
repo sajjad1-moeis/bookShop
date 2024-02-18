@@ -241,7 +241,7 @@ const headerAndIsLogin = (dot, arr) => {
     .then((data) => {
       if (data.login) {
         if (data.userdata.isAdmin) {
-          Header(dot, "پنل مدیریت", "./html/panel-Admin.html", arr);
+          Header(dot, "پنل مدیریت", "./html/panelAdmin.html", arr);
         } else {
           Header(dot, "حساب کاربری", "./html/userPage.html", arr);
         }
