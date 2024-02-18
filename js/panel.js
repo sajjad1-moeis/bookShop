@@ -2,12 +2,12 @@ const $ = document;
 import {CreateDivsPanel, moreDivCreatePanel, CheckAuth, funcLogOut} from "./export.js";
 import {LodingSite} from "./Header-Site.js";
 let div = [
-  {notification: false, title: "پیشخوان", href: "../html/Panel-Admin.html?id=pishkhan"},
-  {notification: false, title: "محصول", href: "../html/Panel-Admin.html?id=mahsol"},
-  {notification: true, title: "تیکت ها ", href: "../html/Panel-Admin.html?id=ticket"},
-  {notification: false, title: "کاربران ", href: "../html/Panel-Admin.html?id=Users"},
+  {notification: false, title: "پیشخوان", href: "../html/panelAdmin.html?id=pishkhan"},
+  {notification: false, title: "محصول", href: "../html/panelAdmin.html?id=mahsol"},
+  {notification: true, title: "تیکت ها ", href: "../html/panelAdmin.html?id=ticket"},
+  {notification: false, title: "کاربران ", href: "../html/panelAdmin.html?id=Users"},
   {notification: false, title: "صفحه اصلی ", href: "../index.html"},
-  {notification: false, title: "تنظیمات ", href: "../html/Panel-Admin.html?id=settings"},
+  {notification: false, title: "تنظیمات ", href: "../html/panelAdmin.html?id=settings"},
   {notification: false, title: "خروج ", href: "#"},
 ];
 let imgDiv = [
