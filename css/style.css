@@ -15,10 +15,10 @@
     box-sizing: border-box;
     font-family: iranSans;
 }
-body{
+/* body{
     background-color: rgba(241, 242, 246, 0.5)
-/* background-color: white; */
-}
+background-color: white;
+} */
 main{
     height: 100vh;
 }
@@ -61,6 +61,18 @@ header .active::before{
     width: 100%;
 
 }
+
+.backImgGril{
+  top: 22%;
+  right: 10%;
+  border-radius: 100px;
+  z-index: 5;
+  transform: rotate(341deg);
+  width: 80%;
+  height: 90%;
+}
+
+
 .login{transition: 0.3s;}
 .login:hover{
     background-color: black;
@@ -151,7 +163,6 @@ header .active::before{
   .swiper-slide {
     text-align: center;
     font-size: 18px;
-    background: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -168,6 +179,10 @@ header .active::before{
   .swiper-button-prev::after,.swiper-button-next::after{
     color: white;
 font-size: 25px !important;
+}
+
+.swiper2,.swiper3{
+  padding: 30px
 }
   .swiper-button-prev,.swiper-button-next{
     transform: rotate(180deg);

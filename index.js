@@ -46,7 +46,7 @@ const CreateDivSwiper1 = (arr) => {
     div.className = "swiper-slide py-2";
     div.innerHTML = `
              <div>
-                <div class="bg-white p-14" style="border-radius: 40px; box-shadow: -1px 5px 14px 0px rgba(12, 12, 12, 0.06)">
+                <div class="bg-white p-14 shadow-lg" style="border-radius: 40px;">
                   <div class="text-xl">"بهترین. واقعاً خوب. ای کاش اول به آن فکر می کردم. فروشگاه اکسترا را به شما هم پیشنهاد می کنم."</div>
                   <p class="text-primary my-2">
                     سارا بهرامی
@@ -65,7 +65,7 @@ const CreateDivSwiper1 = (arr) => {
 CreateDivSwiper1([1, 11, 11, 1, 1, 1]);
 let api = await fetch("https://bookshop-backend.liara.run/api/v1/books");
 let arrBook = await api.json();
-CreateDivMahsol(arrBook.slice(0, 8), document.querySelector(".product"), "");
+CreateDivMahsol(arrBook.slice(0, 8), document.querySelector(".product"), "", "relative overflow-hidden ");
 TemplateFooter("");
 tippy("#love", {
   theme: "tomato",
@@ -80,3 +80,35 @@ tippy("#search", {
   content: "مشاهده سریع",
   placement: "right",
 });
+
+//////////////
+
+var swiper = new Swiper(".mySwiper2", {
+  slidesPerView: 1,
+  spaceBetween: 20,
+  pagination: {
+    el: ".swiper2 .swiper-pagination",
+    clickable: true,
+  },
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+  },
+  breakpoints: {640: {slidesPerView: 2}, 768: {slidesPerView: 3}, 1024: {slidesPerView: 4}},
+});
+CreateDivMahsol(arrBook.slice(0, 8), document.querySelector(".mySwiper2 .swiper-wrapper"), "", " swiper-slide overflow-hidden bg-transparent");
+
+var swiper = new Swiper(".mySwiper3", {
+  slidesPerView: 1,
+  spaceBetween: 20,
+  pagination: {
+    el: ".swiper3 .swiper-pagination",
+    clickable: true,
+  },
+  autoplay: {
+    delay: 4000,
+    disableOnInteraction: false,
+  },
+  breakpoints: {640: {slidesPerView: 2}, 768: {slidesPerView: 3}, 1024: {slidesPerView: 4}},
+});
+CreateDivMahsol(arrBook.slice(0, 8), document.querySelector(".mySwiper3 .swiper-wrapper"), "", " swiper-slide overflow-hidden bg-transparent");
