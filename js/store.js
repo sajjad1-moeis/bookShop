@@ -1,6 +1,10 @@
 import {divNextHeader} from "../components/templatNextHeader/divNextHeader.js";
 customElements.define("div-next-header", divNextHeader);
 import {CreateDivMahsol} from "./Create-Div-Mahsol.js";
+import {containerProduct} from "./export.js";
+let arrMahsol = [];
+arrMahsol = JSON.parse(localStorage.getItem("mahsol"));
+
 let api = await fetch("https://bookshop-backend.liara.run/api/v1/books");
 let arrBook = await api.json();
 tippy("#love", {
@@ -20,14 +24,15 @@ tippy("#search", {
 let page = 1;
 let current = 9;
 
-const pagination = (arr) => {
+const pagination = () => {
   let end = page * current;
   let start = end - current;
-  //////////////////////// Btns
 
   CreateDivMahsol(arrBook.slice(start, end), document.querySelector(".containerProduct"), ".");
+  document.querySelectorAll(".btnMahsol").forEach((item) => (item.onclick = () => containerProduct(arrMahsol, item)));
 };
 pagination(arrBook);
+let btnMahsol = document.querySelectorAll(".btnMahsol");
 
 /////////////Page btns
 let btns = 0;
@@ -105,11 +110,4 @@ const prev = () => {
 };
 
 prevBtn.onclick = prev;
-
-import {containerProduct} from "./export.js";
-let btnMahsol = document.querySelectorAll(".btnMahsol");
-
-let arrMahsol = [];
-arrMahsol = JSON.parse(localStorage.getItem("mahsol"));
-
 btnMahsol.forEach((item) => (item.onclick = () => containerProduct(arrMahsol, item)));

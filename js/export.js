@@ -170,4 +170,8 @@ function addTobascket(respons, arrMahsol) {
     });
 }
 
-export {CreateDivsPanel, moreDivCreatePanel, CheckAuth, setUiUser, funcLogOut, containerProduct};
+const empityLocal = () => {
+  let local = JSON.parse(localStorage.getItem("mahsol"));
+  local === null ? localStorage.setItem("mahsol", JSON.stringify([])) : undefined;
+};
+export {CreateDivsPanel, moreDivCreatePanel, CheckAuth, setUiUser, funcLogOut, containerProduct, empityLocal};

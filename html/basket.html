@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="../css/tailwind.css" />
     <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   </head>
   <body dir="rtl" class="bg-primary">
     <div class="load">
@@ -18,26 +19,51 @@
     </div>
     <main class="h-max hidden">
       <div class="body container">
-        <div class="w-full p-10 pt-32 md:p-20">
+        <div class="w-full p-10 pt-16 md:p-20">
           <div-next-header title="فروشگاه"></div-next-header>
-          <div class="text-xl hidden md:flex justify-center gap-4 mt-20">
-            <div class="flex">
+        </div>
+        <div id="divAsli" class="hidden">
+          <div class="text-xl block md:flex justify-center gap-12 mt-20">
+            <div class="flex gap-2 my-3">
               <div class="w-8 h-8 pt-1.5 bg-black text-white rounded-full"><p class="w-max mx-auto">1</p></div>
               سبد خرید
             </div>
-            <div class="flex">
+            <div class="flex gap-2 my-3">
               <div class="w-8 h-8 pt-1.5 bg-black text-white rounded-full"><p class="w-max mx-auto">1</p></div>
               جزيیات تسویه حساب
             </div>
-            <div class="flex">
+            <div class="flex gap-2 my-3">
               <div class="w-8 h-8 pt-1.5 bg-black text-white rounded-full"><p class="w-max mx-auto">1</p></div>
               ثبت سفارش
             </div>
           </div>
+
+          <div class="lg:p-0 px-3 max-w-[1600px] lg:container mt-20 border-[1px] border-zinc-200 border-b-0 hidden md:block">
+            <div class="grid grid-cols-12 text-center border-b-[1px] border-zinc-200">
+              <div class="col-span-1 p-5 bg-zinc-100"></div>
+              <div class="col-span-3 p-5 bg-zinc-100 header-table">عکس محصول</div>
+              <div class="col-span-2 p-5 bg-zinc-100 header-table">نام محصول</div>
+              <div class="col-span-2 p-5 bg-zinc-100 header-table">قیمت</div>
+              <div class="col-span-2 p-5 bg-zinc-100 header-table">تعداد</div>
+              <div class="col-span-2 p-5 bg-zinc-100 header-table">جمع</div>
+            </div>
+            <div id="tableMahsol"></div>
+          </div>
         </div>
+        <div id="empityBasketImg">
+          <div class="w-max mx-auto">
+            <img src="../img/svgviewer-output.png" alt="" />
+          </div>
+          <div class="w-max mx-auto text-xl md:text-4xl mt-14">سبد خرید شما خالی است!</div>
+          <div class="w-max mx-auto text-base md:text-xl text-zinc-300 mt-5">زمان اون رسیده که خریدتون رو شروع کنید</div>
+        </div>
+
+        <div class="w-full p-4 rounded-full bg-primary text-center mt-20 text-white">محصولاتی که ممکن است دوست داشته باشید</div>
+        <div id="mahsol" class="grid grid-cols-1 gap-6 mt-5 md:grid-cols-4"></div>
       </div>
     </main>
     <script type="module" src="../js/module.js"></script>
     <script type="module" src="../js/basket.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>

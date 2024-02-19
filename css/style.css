@@ -472,3 +472,18 @@ margin: auto;
 .pageItemActive{
   opacity: 1;
 }
+table{
+  border-bottom: 0px;
+}
+.header-table{
+  display: flex;
+  border-right:2px solid rgba(167,167,167,.2) ;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+table :is(tr){
+  border-bottom:1px  solid rgba(167,167,167,.2) ;
+
+}

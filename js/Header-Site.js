@@ -259,7 +259,9 @@ const headerAndIsLogin = (dot, arr) => {
     });
 };
 function countBasket(arr) {
-  document.querySelector("#countBasket").textContent = arr.length;
+  if (arr) {
+    document.querySelector("#countBasket").textContent = arr.length;
+  }
 }
 
 export {headerAndIsLogin, LodingSite, countBasket};

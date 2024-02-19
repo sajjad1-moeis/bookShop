@@ -1,7 +1,7 @@
 const $ = document;
 
 //////////////////////// import All
-
+import {empityLocal} from "./js/export.js";
 import {headerAndIsLogin} from "./js/Header-Site.js";
 import {temp2, temp1} from "./components/temp1/temp1.js";
 import {CreateDivMahsol} from "./js/Create-Div-Mahsol.js";
@@ -14,11 +14,9 @@ customElements.define("div-nevisande", DivNeviSande);
 customElements.define("item-footer", itemFooter);
 
 ////////////////IsLogin
-let local = JSON.parse(localStorage.getItem("mahsol"));
-local === null ? localStorage.setItem("mahsol", JSON.stringify([])) : undefined;
 
 headerAndIsLogin("", JSON.parse(localStorage.getItem("mahsol")));
-
+empityLocal();
 ////////////////// Swiper 1
 
 let mySwiper1 = $.querySelector(".mySwiper1");
