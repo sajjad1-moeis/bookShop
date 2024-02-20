@@ -128,3 +128,28 @@ btnLove.forEach((item) => {
     addToLove(arrBookUser, item);
   };
 });
+
+///////////////////////////////////////
+const searchBookInput = $.getElementById("searchBookInput");
+const searchBookBtn = $.getElementById("searchBookBtn");
+
+function SerachBook() {
+  if (searchBookInput.value) {
+    location.href = `../html/search.html?id=${searchBookInput.value}`;
+  }
+}
+
+searchBookInput.onkeydown = (e) => {
+  if (e.key === "Enter") {
+    SerachBook();
+  }
+};
+searchBookBtn.onclick = SerachBook;
+
+$.querySelectorAll(".fastShow").forEach((btn) => {
+  btn.onclick = () => {
+    let id = btn.parentElement.dataset.num;
+    location.href = `../html/fastShow.html?id=${id}`;
+    console.log();
+  };
+});

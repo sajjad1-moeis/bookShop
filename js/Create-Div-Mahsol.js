@@ -12,7 +12,7 @@ const CreateDivMahsol = (arr, parent, dot, clas, current, arr2) => {
                   <div  class="hoverLeft bg-primary absolute h-max p-2 rounded-full ${current ? "hidden" : "block"}" data-num="${item._id}">
                     <div id="love" class="cursor-pointer rounded-full love"><img src="${dot}./img/heart-svgrepo-com (8).svg" class="md:w-5 w-7 mx-auto my-2" alt="" /></div>
                     <div id="moghaiese" class="cursor-pointer rounded-full"><img src="${dot}./img/compare.png" class="md:w-6 w-8 my-3" alt="" /></div>
-                    <div id="search" class="cursor-pointer rounded-full"><img src="${dot}./img/search3.png" class="md:w-5 w-7 mx-auto my-2" alt="" /></div>
+                    <div id="search" class="cursor-pointer rounded-full fastShow"><img src="${dot}./img/search3.png" class="md:w-5 w-7 mx-auto my-2" alt="" /></div>
                   </div>
 
                   <img src="https://bookshop-backend.liara.run${item.imagePath}" alt="" class="my-5 w-full h-full object-cover max-h-[305px]" />

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>سبد خرید - فروشگاه کتاب</title>
+    <link rel="icon" href="https://xtratheme.com/wp-content/uploads/2018/03/favicon.png" sizes="32x32" />
+    <link rel="stylesheet" href="../css/tailwind.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  </head>
+  <body dir="rtl" class="bg-primary">
+    <div class="load">
+      <hr />
+      <hr />
+      <hr />
+      <hr />
+    </div>
+    <main class="h-max hidden">
+      <div class="body container">
+        <div-next-header title="جستجو"></div-next-header>
+        <div class="rounded-2xl border-[1px] overflow-hidden border-zinc-200 mt-10 flex justify-between">
+          <div class="w-full"><input placeholder="نام کتاب " id="searchBookInput" type="text" class="p-5 w-full outline-none" /></div>
+          <div class="bg-primary p-4 cursor-pointer" id="searchBookBtn" style="border-top-left-radius: 15px; border-bottom-left-radius: 15px">
+            <img class="w-8" src="../img/search3.png" alt="" />
+          </div>
+        </div>
+        <div class="flex mt-20">
+          <div class="w-full border-b-2 border-zinc-200 pb-5"></div>
+          <div class="pb-5 border-b-2 border-primary flex-none text-xl md:text-3xl">نتیجه حستجو</div>
+          <div class="w-full border-b-2 border-zinc-200 pb-5"></div>
+        </div>
+        <div class="container mt-20 grid grid-cols-1 md:grid-cols-4 gap-5" id="searchProduct"></div>
+      </div>
+    </main>
+    <script type="module" src="../js/module.js"></script>
+    <script type="module" src="../js/search.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>

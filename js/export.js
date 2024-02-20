@@ -100,7 +100,6 @@ import {countBasket} from "./Header-Site.js";
 
 function containerProduct(arrMahsol, btn) {
   let idMahsol = btn.dataset.num;
-  console.log(idMahsol);
   fetch(`https://bookshop-backend.liara.run/api/v1/books/${idMahsol}`, {
     credentials: "include",
   })
