@@ -3,6 +3,7 @@ const $ = document;
 import {divNextHeader} from "../components/templatNextHeader/divNextHeader.js";
 import {CreateDivMahsol} from "./Create-Div-Mahsol.js";
 import {countBasket} from "./Header-Site.js";
+import {addToLove} from "./export.js";
 customElements.define("div-next-header", divNextHeader);
 
 let api = await fetch("https://bookshop-backend.liara.run/api/v1/books");
@@ -42,6 +43,8 @@ var Toast = Swal.mixin({
 
 function renderDivMahsol() {
   tableMahsol.innerHTML = "";
+  $.querySelector("#mobileBasket").innerHTML = "";
+
   arrMahsol.forEach((item) => {
     tableMahsol.innerHTML += `
     <div data-id="${item.id}" class="grid grid-cols-12 text-center border-b-[1px] border-zinc-200">
@@ -56,6 +59,32 @@ function renderDivMahsol() {
   </div>
     <div class="col-span-2 p-5 header-table">${(item.count * item.price).toLocaleString()}</div>
   </div>
+    `;
+    $.querySelector("#mobileBasket").innerHTML += `
+    <div class="border-zinc-200 border-[1px] rounded-xl my-4">
+              <div class="flex justify-between">
+                <div><img src="https://bookshop-backend.liara.run${item.img}" class="w-28" alt="" /></div>
+                <div class="p-5" data-id="${item.id}"><img src="../img/close-red.png" class="w-6 removeProduct" alt="" /></div>
+              </div>
+              <div class="grid grid-cols-3 mt-3">
+                <div class="col-span-1 border-l-[1px] border-zinc-200">
+                  <div class="mobileItemBasket">محصول</div>
+                  <div class="mobileItemBasket">قیمت</div>
+                  <div class="mobileItemBasket">تعداد</div>
+                  <div class="mobileItemBasket">جمع جزِ</div>
+                </div>
+                <div class="col-span-2" data-id="${item.id}">
+                  <div class="mobileItemBasket">${item.name}</div>
+                  <div class="mobileItemBasket">${item.price.toLocaleString()}</div>
+                  <div class="p-[14px] flex gap-3 justify-center">
+                    <img src="../img/icons8-minus-24.png" class="cursor-pointer minusProduct my-auto w-4 h-4" alt="" />
+                    <input readonly type="text" value="${item.count}" class="text-center w-14 outline-none p-1.5 rounded-full border-zinc-200 border-[1px]" />
+                    <img src="../img/icons8-close-50.png" class="cursor-pointer plusProduct my-auto w-3 h-3 rotate-45" alt="" />
+                  </div>
+                  <div class="mobileItemBasket">${item.count * item.price} تومان</div>
+                </div>
+              </div>
+            </div>
     `;
   });
 
@@ -181,3 +210,12 @@ function total(arr) {
   `;
   console.log(priceTotal);
 }
+
+let btnLove = document.querySelectorAll(".love");
+let arrBookUser = [];
+arrBookUser = JSON.parse(localStorage.getItem("love"));
+btnLove.forEach((item) => {
+  item.onclick = () => {
+    addToLove(arrBookUser, item);
+  };
+});

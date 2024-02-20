@@ -488,9 +488,9 @@ table :is(tr){
 
 }
 
-@media (max-width:1024px) {
+@media (max-width:1023px) {
   body.swal2-toast-shown .swal2-container.swal2-top-end, body.swal2-toast-shown .swal2-container.swal2-top-right{
-    inset: 25% 0 auto auto !important;
+    inset: 10% 0 auto auto !important;
   }
   
 }
@@ -499,4 +499,15 @@ table :is(tr){
     inset: 20% 0 auto auto !important;
   }
   
+}
+@media (max-width:576px) {
+  body.swal2-toast-shown .swal2-container.swal2-top-end, body.swal2-toast-shown .swal2-container.swal2-top-right{
+    inset: 13% 0 auto auto !important;
+  }
+  
+}
+.mobileItemBasket{
+  padding: 20px;
+  border-top: 1px solid #f1f2f6;
+  border-bottom: 1px solid #f1f2f6;
 }
