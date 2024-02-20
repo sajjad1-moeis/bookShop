@@ -63,7 +63,7 @@ const Header = (dot, href, link, arr) => {
             <div class="flex m-auto h-max gap-5">
               <a href="${dot}./html/basket.html?id=basket">
               <div class="basketBtn cursor-pointer my-auto p-0 xl:p-4 rounded-full border-[1px] border-zinc-200 relative" >
-                <div class="w-5 h-5 bottom-0 left-[-5px] text-white rounded-full bg-[#ff006f] absolute text-sm leading-6"><p class="w-max mx-auto " id="countBasket"></p></div>
+                <div class="w-5 h-5 bottom-0 left-[-5px] text-white rounded-full bg-[#ff006f] absolute text-sm leading-6"><p class="w-max mx-auto  countBasket"></p></div>
 
                 <img src="${dot}./img/download.png" class="w-9" />
               </div>
@@ -104,8 +104,10 @@ const Header = (dot, href, link, arr) => {
         </div>
       </a>
       <a href="${dot}./html/basket.html?id=basket">
-      <div class="my-5 p-3  text-white">
+      <div class="my-5 p-3  text-white relative">
            <span class="my-auto"> سبد خرید</span>
+           <div class="w-5 h-5 top-2 right-1/3 text-white rounded-full bg-[#ff006f] absolute text-sm leading-6"><p class="w-max mx-auto  countBasket"></p></div>
+
         </div>
       </a>
          <div class="my-5 p-3  text-white pages" >
@@ -151,7 +153,7 @@ const Header = (dot, href, link, arr) => {
     }
   };
 
-  document.querySelector("#countBasket").textContent = arr.length;
+  document.querySelectorAll(".countBasket").forEach((span) => (span.textContent = arr.length));
 };
 
 const DivScroll = (dot) => {
@@ -258,8 +260,8 @@ const headerAndIsLogin = (dot, arr) => {
 };
 function countBasket(arr) {
   if (arr) {
-    if (document.querySelector("#countBasket")) {
-      document.querySelector("#countBasket").textContent = arr.length;
+    if (document.querySelectorAll(".countBasket")) {
+      document.querySelectorAll(".countBasket").forEach((span) => (span.textContent = arr.length));
     }
   }
 }
