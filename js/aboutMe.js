@@ -9,8 +9,6 @@ const translateImg = (e) => {
   let top = Math.floor((e.pageY - imgTranslate.offsetTop) / 180);
   let left = Math.floor((e.pageX - imgTranslate.offsetLeft) / 180);
   imgTranslate.style.cssText = `transform : perspective(250px)  rotateX(${top}deg) rotateY(${left}deg)`;
-  console.log(top);
-  console.log(left);
 };
 imgTranslate.onmousemove = translateImg;
 imgTranslate.onmouseleave = () => {

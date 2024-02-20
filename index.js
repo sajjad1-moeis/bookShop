@@ -1,13 +1,14 @@
 const $ = document;
 
 //////////////////////// import All
-import {empityLocal} from "./js/export.js";
+import {empityLocal, addToLove} from "./js/export.js";
 import {headerAndIsLogin} from "./js/Header-Site.js";
 import {temp2, temp1} from "./components/temp1/temp1.js";
 import {CreateDivMahsol} from "./js/Create-Div-Mahsol.js";
 import {DivNeviSande} from "./components/nevisande/nevisande.js";
 import {itemFooter} from "./components/menuFoter/footerMenu.js";
 import {TemplateFooter} from "./js/footer.js";
+
 customElements.define("majmoe-show", temp1);
 customElements.define("category-show", temp2);
 customElements.define("div-nevisande", DivNeviSande);
@@ -111,11 +112,19 @@ var swiper = new Swiper(".mySwiper3", {
   },
   breakpoints: {640: {slidesPerView: 2}, 768: {slidesPerView: 3}, 1024: {slidesPerView: 4}},
 });
-CreateDivMahsol(arrBook.slice(0, 8), document.querySelector(".mySwiper3 .swiper-wrapper"), "", " swiper-slide overflow-hidden bg-transparent");
+CreateDivMahsol(arrBook.slice(0, 8), document.querySelector(".mySwiper3 .swiper-wrapper"), "", " swiper-slide overflow-hidden bg-transparent", false);
 import {containerProduct} from "./js/export.js";
 let btnMahsol = document.querySelectorAll(".btnMahsol");
 
 let arrMahsol = [];
 arrMahsol = JSON.parse(localStorage.getItem("mahsol"));
 
+let btnLove = document.querySelectorAll(".love");
+let arrBookUser = [];
+arrBookUser = JSON.parse(localStorage.getItem("love"));
 btnMahsol.forEach((item) => (item.onclick = () => containerProduct(arrMahsol, item)));
+btnLove.forEach((item) => {
+  item.onclick = () => {
+    addToLove(arrBookUser, item);
+  };
+});

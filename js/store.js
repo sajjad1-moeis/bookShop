@@ -1,7 +1,7 @@
 import {divNextHeader} from "../components/templatNextHeader/divNextHeader.js";
 customElements.define("div-next-header", divNextHeader);
 import {CreateDivMahsol} from "./Create-Div-Mahsol.js";
-import {containerProduct} from "./export.js";
+import {containerProduct, addToLove} from "./export.js";
 let arrMahsol = [];
 arrMahsol = JSON.parse(localStorage.getItem("mahsol"));
 
@@ -111,3 +111,12 @@ const prev = () => {
 
 prevBtn.onclick = prev;
 btnMahsol.forEach((item) => (item.onclick = () => containerProduct(arrMahsol, item)));
+
+let btnLove = document.querySelectorAll(".love");
+let arrBookUser = [];
+arrBookUser = JSON.parse(localStorage.getItem("love"));
+btnLove.forEach((item) => {
+  item.onclick = () => {
+    addToLove(arrBookUser, item);
+  };
+});

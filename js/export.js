@@ -116,7 +116,7 @@ function setlocal(arr) {
 }
 
 function addTobascket(respons, arrMahsol) {
-  const Toast = Swal.mixin({
+  var Toast = Swal.mixin({
     toast: true,
     position: "top-end",
     showConfirmButton: false,
@@ -170,8 +170,59 @@ function addTobascket(respons, arrMahsol) {
     });
 }
 
+function addToLove(arrBookUser, btn) {
+  var Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 2000,
+
+    showClass: {
+      popup: `
+        animate__animated
+        animate__bounceInRight
+        animate__faster
+      `,
+    },
+    hideClass: {
+      popup: `
+        animate__animated
+        animate__bounceOutRight
+        animate__faster
+      `,
+    },
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    },
+  });
+  let idMahsol = btn.parentElement.dataset.num;
+  console.log(idMahsol);
+  fetch(`https://bookshop-backend.liara.run/api/v1/books/${idMahsol}`, {
+    credentials: "include",
+  })
+    .then((result) => result.json())
+    .then((mahsol) => {
+      let localLove = JSON.parse(localStorage.getItem("love"));
+      let some = arrBookUser.some((item) => item._id === mahsol.foundBook._id);
+
+      if (!some) {
+        arrBookUser.push(mahsol.foundBook);
+        localStorage.setItem("love", JSON.stringify(arrBookUser));
+        console.log(localLove);
+        Toast.fire({title: "به علاقه مندی ها  اضافه شد", icon: "success", background: "#198754", color: "#fff"});
+      } else {
+        Toast.fire({title: "در علاقه مندی وجود دارد", icon: "warning", background: "#fff", color: "#000"});
+      }
+    })
+    .catch((err) => {});
+}
+
 const empityLocal = () => {
-  let local = JSON.parse(localStorage.getItem("mahsol"));
-  local === null ? localStorage.setItem("mahsol", JSON.stringify([])) : undefined;
+  let localMahsol = JSON.parse(localStorage.getItem("mahsol"));
+  localMahsol === null ? localStorage.setItem("mahsol", JSON.stringify([])) : undefined;
+  let localLove = JSON.parse(localStorage.getItem("love"));
+  localLove === null ? localStorage.setItem("love", JSON.stringify([])) : undefined;
 };
-export {CreateDivsPanel, moreDivCreatePanel, CheckAuth, setUiUser, funcLogOut, containerProduct, empityLocal};
+export {CreateDivsPanel, moreDivCreatePanel, CheckAuth, setUiUser, funcLogOut, containerProduct, empityLocal, addToLove};

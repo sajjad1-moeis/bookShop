@@ -108,7 +108,7 @@ const Header = (dot, href, link, arr) => {
            <span class="my-auto"> سبد خرید</span>
         </div>
       </a>
-         <div class="my-5 p-3  text-white" id="pages">
+         <div class="my-5 p-3  text-white pages" >
            <div class="w-full my-auto">صفحات</div>
        <div style="height:0px;transition: 0.3s;" class="overflow-hidden" id="itemPage">
          <a href="${dot}./html/abut.html?id=pages">
@@ -141,9 +141,9 @@ const Header = (dot, href, link, arr) => {
     
 `
   );
-  let pages = document.querySelector("#pages");
+  let pages = document.querySelector(".pages");
   pages.onclick = () => {
-    document.querySelector("#pages").classList.toggle("showA");
+    pages.classList.toggle("showA");
     if (pages.className.includes("showA")) {
       document.querySelector("#itemPage").style.height = `${document.querySelector("#itemPage").scrollHeight}px`;
     } else {
@@ -220,16 +220,14 @@ function LodingSite(bg) {
 }
 
 function ActiveItemNav() {
-  document.querySelectorAll(".item-nav").forEach((item) => item.classList.remove("active"));
   let locationSite = location.search;
   let IdLocation = new URLSearchParams(locationSite);
   let SearchLocation = IdLocation.get("id");
+  document.querySelectorAll(".item-nav").forEach((item) => item.classList.remove("active"));
   if (SearchLocation === null) {
     document.querySelector(`#home`).classList.add("active");
-  } else if (SearchLocation) {
-    document.querySelector(`#${SearchLocation}`).classList.add("active");
   } else {
-    console.log("object");
+    document.querySelector(`#${SearchLocation}`).classList.add("active");
   }
 }
 
@@ -260,7 +258,9 @@ const headerAndIsLogin = (dot, arr) => {
 };
 function countBasket(arr) {
   if (arr) {
-    document.querySelector("#countBasket").textContent = arr.length;
+    if (document.querySelector("#countBasket")) {
+      document.querySelector("#countBasket").textContent = arr.length;
+    }
   }
 }
 

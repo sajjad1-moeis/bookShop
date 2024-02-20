@@ -2,31 +2,44 @@ const $ = document;
 
 import {divNextHeader} from "../components/templatNextHeader/divNextHeader.js";
 import {CreateDivMahsol} from "./Create-Div-Mahsol.js";
-import {containerProduct} from "./export.js";
+import {countBasket} from "./Header-Site.js";
 customElements.define("div-next-header", divNextHeader);
 
 let api = await fetch("https://bookshop-backend.liara.run/api/v1/books");
 let arrBook = await api.json();
 let local = JSON.parse(localStorage.getItem("mahsol"));
 let arrMahsol = [];
-arrMahsol = [...local];
+arrMahsol = local;
 
-CreateDivMahsol(arrBook.slice(0, 4), $.querySelector("#mahsol"), ".", "");
-console.log(arrMahsol);
-let tableMahsol = $.querySelector("#tableMahsol");
-if (local == "") {
-} else {
-  renderDivMahsol();
-  isArrBaskets();
-}
-let btnMahsol = document.querySelectorAll(".btnMahsol");
-btnMahsol.forEach((item) => {
-  item.onclick = () => {
-    isArrBaskets();
-    containerProduct(arrMahsol, item);
-    renderDivMahsol();
-  };
+var Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 2000,
+
+  showClass: {
+    popup: `
+      animate__animated
+      animate__bounceInRight
+      animate__faster
+    `,
+  },
+  hideClass: {
+    popup: `
+      animate__animated
+      animate__bounceOutRight
+      animate__faster
+    `,
+  },
+  color: "#fff",
+  background: "#198754",
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  },
 });
+
 function renderDivMahsol() {
   tableMahsol.innerHTML = "";
   arrMahsol.forEach((item) => {
@@ -53,6 +66,7 @@ function renderDivMahsol() {
       arrMahsol[index].count++;
       localStorage.setItem("mahsol", JSON.stringify(arrMahsol));
       renderDivMahsol();
+      total(arrMahsol);
     };
   });
 
@@ -68,6 +82,8 @@ function renderDivMahsol() {
       localStorage.setItem("mahsol", JSON.stringify(arrMahsol));
       renderDivMahsol();
       isArrBaskets();
+      total(arrMahsol);
+      countBasket(arrMahsol);
     };
   });
 
@@ -77,8 +93,10 @@ function renderDivMahsol() {
       let index = local.findIndex((item) => item.id === id);
       arrMahsol.splice(index, 1);
       localStorage.setItem("mahsol", JSON.stringify(arrMahsol));
+      total(arrMahsol);
       renderDivMahsol();
       isArrBaskets();
+      countBasket(arrMahsol);
     };
   });
 }
@@ -93,4 +111,73 @@ function isArrBaskets() {
     $.getElementById("empityBasketImg").classList.remove("hidden");
     $.getElementById("divAsli").classList.add("hidden");
   }
+}
+
+let tableMahsol = $.querySelector("#tableMahsol");
+
+CreateDivMahsol(arrBook.slice(0, 4), $.querySelector("#mahsol"), ".", "", false);
+let btnMahsol = document.querySelectorAll(".btnMahsol");
+btnMahsol.forEach((item) => {
+  item.onclick = async () => {
+    containerProduct(arrMahsol, item);
+  };
+});
+
+function setlocal(arr) {
+  localStorage.setItem("mahsol", JSON.stringify(arr));
+}
+function containerProduct(arrMahsol, btn) {
+  let idMahsol = btn.dataset.num;
+  fetch(`https://bookshop-backend.liara.run/api/v1/books/${idMahsol}`, {
+    credentials: "include",
+  })
+    .then((result) => result.json())
+    .then((data) => {
+      addTobascket(data, arrMahsol);
+    })
+    .catch((err) => {});
+}
+
+function addTobascket(respons, arrMahsol) {
+  fetch(`https://bookshop-backend.liara.run/api/v1/books`, {
+    credentials: "include",
+  })
+    .then((result) => result.json())
+    .then((arr) => {
+      let newProduct = {
+        id: respons.foundBook._id,
+        name: respons.foundBook.name,
+        price: respons.foundBook.price,
+        img: respons.foundBook.imagePath,
+        count: 1,
+      };
+      let someLocal = arrMahsol.some((item) => item.id === newProduct.id);
+      if (someLocal) {
+        let findIndexLocal = arrMahsol.findIndex((item) => item.id === newProduct.id);
+        arrMahsol[findIndexLocal].count++;
+      } else {
+        arrMahsol.push(newProduct);
+      }
+      setlocal(arrMahsol);
+      renderDivMahsol();
+      total(arrMahsol);
+      isArrBaskets();
+      countBasket(arrMahsol);
+
+      Toast.fire({title: "با موفقیت به سبد خرید اضافه شد", icon: "success"});
+    });
+}
+
+renderDivMahsol();
+isArrBaskets();
+total(arrMahsol);
+function total(arr) {
+  let priceTotal = arr.reduce((prev, next) => {
+    return (prev += next.count * next.price);
+  }, 0);
+  $.querySelector(".total").innerHTML = `
+  <td class="p-5 text-center">${priceTotal.toLocaleString()}</td>
+  <td class="p-5 text-center border-r-[1px] border-zinc-200">${priceTotal.toLocaleString()}</td>
+  `;
+  console.log(priceTotal);
 }

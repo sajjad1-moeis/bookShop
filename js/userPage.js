@@ -3,7 +3,8 @@ import {CreateDivsPanel, moreDivCreatePanel, CheckAuth, setUiUser, funcLogOut} f
 let div = [
   {title: "پیشخوان", href: "../html/userPage.html?id=pishkhan"},
   {title: "تیکت ها", href: "../html/userPage.html?id=tiket"},
-  {title: "علاقه مندی ها", href: "../html/userPage.html?id=love"},
+  {title: "سبد خرید", href: "../html/basket.html?id=love"},
+  {title: "علاقه مندی ها", href: "../html/userPage.html?id=loveDiv"},
   {title: "جزِیات حساب", href: "../html/userPage.html?id=moreUser"},
   {title: "صفحه اصلی", href: "../index.html"},
   {title: "خروج", href: "#"},
@@ -23,7 +24,7 @@ CheckAuth("#");
 CreateDivsPanel(div);
 moreDivCreatePanel(imgDiv);
 let aDiv = document.querySelectorAll(".panel a");
-funcLogOut(aDiv[5]);
+funcLogOut(aDiv[6]);
 
 //////////////////
 const showDivLocation = () => {
@@ -41,12 +42,15 @@ showDivLocation();
 
 //////////////////// divLoveTextContent
 
-let divLove = document.getElementById("love");
+let arrLove = [...JSON.parse(localStorage.getItem("love"))];
+let divLove = document.getElementById("loveDiv");
 const divLoveTextContent = () => {
-  let api = 0;
-  if (api > 1) {
-  } else {
+  console.log(arrLove);
+  if (arrLove == "") {
     divLove.textContent = "محصولی در علاقه مندی شما وجود ندارد ...";
+  } else {
+    divLove.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-4 text-base gap-5" id="userLove"></div>`;
+    CreateDivMahsol(arrLove, $.getElementById("userLove"), ".", "", true, ["Aasd"]);
   }
 };
 divLoveTextContent();
@@ -186,7 +190,7 @@ import {CreateDivMahsol} from "./Create-Div-Mahsol.js";
 let mahsolContainer = $.querySelector(".mahsol");
 let api = await fetch("https://bookshop-backend.liara.run/api/v1/books");
 let arrBook = await api.json();
-CreateDivMahsol(arrBook.slice(0, 4), mahsolContainer, ".");
+CreateDivMahsol(arrBook.slice(0, 4), mahsolContainer, ".", "", false, arrLove);
 
 //////////////////Open Modal Tiket
 
@@ -379,3 +383,25 @@ fetch("https://bookshop-backend.liara.run/api/v1/ticket/myTickets", {
   .then((data) => {
     $.querySelectorAll(".item")[2].textContent = data.tickets.length;
   });
+
+//////////////////////
+import {addToLove, containerProduct} from "./export.js";
+import {empityLocal} from "./export.js";
+empityLocal();
+let btnLove = document.querySelectorAll(".love");
+
+let arrBookUser = [];
+arrBookUser = JSON.parse(localStorage.getItem("love"));
+btnLove.forEach((item) => {
+  item.onclick = () => {
+    addToLove(arrBookUser, item);
+  };
+});
+
+let btnMahsol = document.querySelectorAll(".btnMahsol");
+
+let arrMahsol = [];
+
+arrMahsol = JSON.parse(localStorage.getItem("mahsol"));
+
+btnMahsol.forEach((item) => (item.onclick = () => containerProduct(arrMahsol, item)));
