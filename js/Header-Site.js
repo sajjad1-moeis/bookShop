@@ -37,7 +37,7 @@ const Header = (dot, href, link, arr) => {
                 <div class=" absolute w-max pt-14 " >
                 <div class="p-5 bg-primary text-white   hidden majmoee ">
                    <a href="#"><div class="pe-20 my-3">وبلاگ</div></a>
-                   <a href="${dot}./html/abutMe.html?id=pages"><div class="pe-20 my-3">درباره ما</div></a>
+                   <a href="${dot}./html/abut.html?id=pages"><div class="pe-20 my-3">درباره ما</div></a>
                    <a href="${dot}./html/questionYou.html?id=pages"><div class="pe-20 my-3">سوالات متداول</div></a>
                 </div>
                 </div>
@@ -109,9 +109,9 @@ const Header = (dot, href, link, arr) => {
         </div>
       </a>
          <div class="my-5 p-3  text-white" id="pages">
-           <div class="w-full my-auto py-5">صفحات</div>
+           <div class="w-full my-auto">صفحات</div>
        <div style="height:0px;transition: 0.3s;" class="overflow-hidden" id="itemPage">
-         <a href="${dot}./html/abutMe.html?id=pages">
+         <a href="${dot}./html/abut.html?id=pages">
              <div class="my-5 p-3 border-b-2 text-white">
                <span class="my-auto">درباره ما</span>
             </div>
