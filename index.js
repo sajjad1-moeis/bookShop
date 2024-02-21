@@ -135,7 +135,7 @@ const searchBookBtn = $.getElementById("searchBookBtn");
 
 function SerachBook() {
   if (searchBookInput.value) {
-    location.href = `../html/search.html?id=${searchBookInput.value}`;
+    location.href = `./html/search.html?id=${searchBookInput.value}`;
   }
 }
 
@@ -145,4 +145,4 @@ searchBookInput.onkeydown = (e) => {
   }
 };
 searchBookBtn.onclick = SerachBook;
-fastShow();
+fastShow("");

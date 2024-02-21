@@ -219,11 +219,11 @@ function addToLove(arrBookUser, btn) {
     .catch((err) => {});
 }
 
-const fastShow = () => {
+const fastShow = (dot) => {
   document.querySelectorAll(".fastShow").forEach((btn) => {
     btn.onclick = () => {
       let id = btn.parentElement.dataset.num;
-      location.href = `../html/fastShow.html?id=${id}`;
+      location.href = `${dot}./html/fast.html?id=${id}`;
     };
   });
 };

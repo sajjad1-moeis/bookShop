@@ -121,4 +121,4 @@ btnLove.forEach((item) => {
     addToLove(arrBookUser, item);
   };
 });
-fastShow();
+fastShow(".");
