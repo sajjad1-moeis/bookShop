@@ -23,7 +23,7 @@ tippy("#search", {
 });
 
 let page = 1;
-let current = 9;
+let current = 6;
 
 const pagination = () => {
   let end = page * current;
@@ -121,3 +121,11 @@ btnLove.forEach((item) => {
   };
 });
 fastShow(".");
+document.getElementById("chanePagination").onchange = () => {
+  let currentValue = Number(document.getElementById("chanePagination").value);
+  page = 1;
+  current = currentValue;
+  pagination();
+  PageBtn();
+  console.log(current);
+};
