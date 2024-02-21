@@ -47,7 +47,6 @@ const showPassBtn = document.querySelectorAll(".showPassBtn");
 const removeClass = (add) => {
   spanError[add].classList.remove("hidden");
 };
-console.log("d@gmail.com".length);
 ///////////Function Regester
 
 function validateEmail(email) {
@@ -94,7 +93,6 @@ const regesterFunc = () => {
   } else if (!validateEmail(inputDivRegestar[2].value)) {
     removeClass(2);
   } else if (inputDivRegestar[3].value < 8) {
-    console.log("object");
     removeClass(3);
   } else {
     ValidDataBaseRegister(inputDivRegestar[0].value, inputDivRegestar[1].value, inputDivRegestar[2].value, inputDivRegestar[3].value);
@@ -113,7 +111,6 @@ const ValidDataBaseLogin = async (email, password) => {
       return result.json();
     })
     .then((data) => {
-      console.log(data);
       if (data.valid !== undefined) {
         if (!data.valid) {
           spanErrorLogin.textContent = "لطفا ابتدا ثبت نام کنید";

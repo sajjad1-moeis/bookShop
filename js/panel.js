@@ -124,7 +124,6 @@ const ShowAllTikcet = () => {
           userId = btn.parentElement.dataset.user;
           userTicket = btn.parentElement.dataset.ticket;
           showContainerTicket(userId, userTicket);
-          console.log();
         };
       });
 
@@ -137,7 +136,6 @@ const ShowAllTikcet = () => {
           })
             .then((result) => result.json())
             .then((data) => {
-              console.log(data);
               ShowAllTikcet();
             })
             .catch((err) => {
@@ -162,13 +160,11 @@ const subjectTicket = document.querySelector(".subjectTicket");
 const divInputTicket = $.querySelector(".divInputTicket");
 
 const showContainerTicket = (useId, userTicket) => {
-  console.log(useId);
   fetch(`https://bookshop-backend.liara.run/api/v1/userdata/${useId}`, {
     credentials: "include",
   })
     .then((result) => result.json())
     .then((data) => {
-      console.log(data);
       document.querySelector(".divNewTextTicket").classList.remove("hidden");
       document.querySelector(".titleDivNewTextTicket").textContent = `  ${data.fullname}  `;
       fetch(`https://bookshop-backend.liara.run/api/v1/ticket/${userTicket}`, {
@@ -176,12 +172,10 @@ const showContainerTicket = (useId, userTicket) => {
       })
         .then((res) => res.json())
         .then((result) => {
-          console.log(result.ticket.status);
           result.ticket.status ? divInputTicket.classList.remove("hidden") : divInputTicket.classList.add("hidden");
           subjectTicket.textContent = result.ticket.subject;
           categoryTicket.textContent = result.ticket.title;
           containerChatUserAndAdmin.innerHTML = "";
-          console.log(result.messages);
           result.messages.forEach((item) => {
             let date = new Date(item.sendTime).toLocaleString("fa-IR");
             let time = date.split(",");
@@ -220,7 +214,6 @@ const sendAnswerTicketBtn = document.querySelector(".sendAnswerTicket");
 const inputNewTextTicket = document.querySelector(".inputNewTextTicket");
 
 sendAnswerTicketBtn.onclick = () => {
-  console.log(userTicket);
   if (inputNewTextTicket.value) {
     fetch(`https://bookshop-backend.liara.run/api/v1/ticket/${userTicket}`, {
       method: "PUT",
@@ -379,17 +372,12 @@ const postMahsol = (metod, idImg) => {
   let sum = 0;
   inputMahsolAll.forEach((item) => (item.value ? sum++ : sum));
   if (sum >= 3 && inputImgMahsol.value) {
-    console.log(sum);
-    console.log(inputImgMahsol.value);
     if (isNaN(inputMahsolAll[1].value)) {
-      console.log("nan");
       $.querySelector(".errorTiketSpan").textContent = "لطفا برای قیمت عدد وارد کنید";
     } else if (isNaN(inputMahsolAll[2].value)) {
-      console.log("nan");
       $.querySelector(".errorTiketSpan").textContent = "لطفا برای تخفیف عدد وارد کنید";
     } else {
       $.querySelector(".errorTiketSpan").textContent = "";
-      console.log($.querySelector(".errorTiketSpan"));
       let data = null;
       if (metod === "POST") {
         const formData = new FormData();
@@ -494,7 +482,6 @@ function pagination(arr1, parent, parentBtn) {
     }
     parentBtn.querySelectorAll(".itemPage").forEach((btn) => {
       btn.onclick = () => {
-        console.log("object");
         page = btn.textContent;
         pagination(arr1, parent, parentBtn);
       };
@@ -519,7 +506,6 @@ function pagination(arr1, parent, parentBtn) {
         //////////
         Toast.fire({title: "آیا مایلید حذف کنید ؟", icon: "warning"}).then((result) => {
           if (result.isConfirmed) {
-            console.log(btn.parentElement.dataset.id);
             Swal.fire({
               title: "با موفقیت حذف شد",
               icon: "success",

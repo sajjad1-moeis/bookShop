@@ -61,7 +61,6 @@ function removeAll() {
 }
 
 function activePage(btn) {
-  console.log(btn);
   let innerBtn = Number(btn.textContent);
   removeAll();
   page = innerBtn;

@@ -208,7 +208,6 @@ function total(arr) {
   <td class="p-5 text-center">${priceTotal.toLocaleString()}</td>
   <td class="p-5 text-center border-r-[1px] border-zinc-200">${priceTotal.toLocaleString()}</td>
   `;
-  console.log(priceTotal);
 }
 
 let btnLove = document.querySelectorAll(".love");

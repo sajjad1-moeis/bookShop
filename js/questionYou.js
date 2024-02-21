@@ -37,7 +37,6 @@ document.querySelectorAll(".parentAccordian").forEach((divAcord) => {
     let itemAcordian = divAcord.querySelector(".itemAccordian");
     divAcord.classList.toggle("show");
     itemAcordian.classList.toggle("showAcord");
-    console.log(itemAcordian);
     let height = itemAcordian.scrollHeight;
     if (divAcord.className.includes("show")) {
       itemAcordian.style.height = `${height}px`;
@@ -46,6 +45,5 @@ document.querySelectorAll(".parentAccordian").forEach((divAcord) => {
       itemAcordian.style.height = `0px`;
       divAcord.querySelector("img").src = "../img/double-black.png";
     }
-    console.log(height);
   };
 });

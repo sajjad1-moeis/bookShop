@@ -45,7 +45,6 @@ showDivLocation();
 let arrLove = [...JSON.parse(localStorage.getItem("love"))];
 let divLove = document.getElementById("loveDiv");
 const divLoveTextContent = () => {
-  console.log(arrLove);
   if (arrLove == "") {
     divLove.textContent = "محصولی در علاقه مندی شما وجود ندارد ...";
   } else {
@@ -74,7 +73,6 @@ const funUpdateUser = () => {
 funUpdateUser();
 let apiUser = null;
 let imgUser = $.querySelectorAll(".imgUser");
-// console.log(inputDivUpdateUser);
 const SettUI = async () => {
   try {
     let api = await fetch("https://bookshop-backend.liara.run/api/v1/userdata/mydata", {credentials: "include"});
@@ -106,9 +104,7 @@ const changePassBtn = $.getElementById("changePass");
 const uploadImg = $.getElementById("uploadImg");
 //////////////Unpoad Img User
 uploadImg.onchange = () => {
-  console.log();
   let url = URL.createObjectURL(uploadImg.files[0]);
-  console.log(url);
   imgUser.forEach((img) => (img.src = url));
 };
 //////////// changeUser
@@ -170,12 +166,10 @@ const changePassFunc = () => {
             }
           });
         }
-        console.log(data);
       })
       .catch((err) => {
         SwalAlert("دوباره تلاش کنید", "error");
       });
-    console.log("object");
   }
 };
 
@@ -278,7 +272,6 @@ const getTiketFunc = async () => {
         let date = new Date(data.tickets[0].createDate).toLocaleString("fa-IR");
         let time = date.split(",");
         tiketsContainer.innerHTML = "";
-        console.log(data);
         data.tickets.forEach((item) => {
           tiketsContainer.innerHTML += `
       
@@ -318,7 +311,6 @@ function showTikcetFunc(id, title) {
     .then((res) => {
       let containetInputNewTicket = $.querySelector(".containetInputNewTicket");
       res.ticket.status ? containetInputNewTicket.classList.remove("hidden") : containetInputNewTicket.classList.add("hidden");
-      console.log();
       $.querySelector(".titleTicket").textContent = res.ticket.title;
       let DivChatUser = $.querySelector(".containerChatUser");
       DivChatUser.classList.remove("hidden");
@@ -363,14 +355,11 @@ const sendNewTextTicket = () => {
         showTikcetFunc(IdTiket, nameUser);
         getTiketFunc();
       });
-
-    console.log(IdTiket);
   } else {
     SwalAlert("لطفا متن مورد نظر را بنویسید", "warning");
   }
 };
 closeDivChatBtn.onclick = () => {
-  console.log("object");
   $.querySelector(".containerChatUser").classList.add("hidden");
 };
 sendNewTextTicketBtn.onclick = sendNewTextTicket;

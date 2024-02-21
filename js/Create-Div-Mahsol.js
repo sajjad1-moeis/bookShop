@@ -34,8 +34,6 @@ const CreateDivMahsol = (arr, parent, dot, clas, current, arr2) => {
 
   document.querySelectorAll(".deleteLove").forEach((btn) => {
     btn.onclick = () => {
-      console.log("object");
-      console.log(arr2);
       if (arr2) {
         let id = btn.parentElement.dataset.num;
         let find = arr2.findIndex((item) => item._id === id);

@@ -87,7 +87,6 @@ const funcLogOut = (elm) => {
             fetch("https://bookshop-backend.liara.run/api/v1/logout", {credentials: "include"})
               .then((result) => {
                 location.href = "../index.html";
-                console.log(result);
               })
               .catch((err) => {});
           });
@@ -196,9 +195,7 @@ function addToLove(arrBookUser, btn) {
       toast.onmouseleave = Swal.resumeTimer;
     },
   });
-  console.log(btn.parentElement);
   let idMahsol = btn.parentElement.dataset.num;
-  console.log(idMahsol);
   fetch(`https://bookshop-backend.liara.run/api/v1/books/${idMahsol}`, {
     credentials: "include",
   })
@@ -210,7 +207,6 @@ function addToLove(arrBookUser, btn) {
       if (!some) {
         arrBookUser.push(mahsol.foundBook);
         localStorage.setItem("love", JSON.stringify(arrBookUser));
-        console.log(localLove);
         Toast.fire({title: "به علاقه مندی ها  اضافه شد", icon: "success", background: "#198754", color: "#fff"});
       } else {
         Toast.fire({title: "در علاقه مندی وجود دارد", icon: "warning", background: "#fff", color: "#000"});
