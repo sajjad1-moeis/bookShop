@@ -85,10 +85,6 @@ const next = () => {
     document.querySelectorAll(".pageItemStore")[sum - 1].classList.add("pageItemActive");
     pagination(arrBook);
   }
-  if (sum === btns) {
-    nextBtn.classList.add("hidden");
-    prevBtn.classList.remove("hidden");
-  }
 };
 
 nextBtn.onclick = next;
@@ -102,10 +98,6 @@ const prev = () => {
     removeAll();
     document.querySelectorAll(".pageItemStore")[sum - 1].classList.add("pageItemActive");
     pagination(arrBook);
-  }
-  if (sum !== btns) {
-    prevBtn.classList.add("hidden");
-    nextBtn.classList.remove("hidden");
   }
 };
 
