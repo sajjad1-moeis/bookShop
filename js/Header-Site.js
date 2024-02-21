@@ -8,7 +8,9 @@ const Header = (dot, href, link, arr) => {
           <div class="md:col-span-3" style="border-bottom-left-radius: 70px; box-shadow: 0px 13px 26px 0px rgba(12, 12, 12, 0.06)">
             <div class="flex p-5 py-8">
               <div class="me-8 p-2">
+              <a href="${dot}./index.html">
                 <img src="${dot}./img/logo-book-shop.png" class="" alt="" />
+                </a>
               </div>
               <div class="flex gap-8 text-lg text-zinc-500">
                 <div id="home" class="item-nav h-max m-auto flex-none active"><a href="${dot}./index.html" >صفحه اصلی</a></div>
@@ -36,7 +38,6 @@ const Header = (dot, href, link, arr) => {
                 <div class="item-nav h-max m-auto relative" id="pages">
                 <div class=" absolute w-max pt-14 " >
                 <div class="p-5 bg-primary text-white   hidden majmoee ">
-                   <a href="#"><div class="pe-20 my-3">وبلاگ</div></a>
                    <a href="${dot}./html/abut.html?id=pages"><div class="pe-20 my-3">درباره ما</div></a>
                    <a href="${dot}./html/questionYou.html?id=pages"><div class="pe-20 my-3">سوالات متداول</div></a>
                 </div>
@@ -47,9 +48,9 @@ const Header = (dot, href, link, arr) => {
                 <div class="item-nav h-max m-auto relative" id="category">
                 <div class=" absolute w-max pt-14" style="z-index:11111">
                 <div class="p-5 bg-primary text-white   hidden majmoee ">
-                   <a href="#"><div class="pe-20 my-3">تاریخی</div></a>
-                   <a href="#"><div class="pe-20 my-3">مذهبی</div></a>
-                   <a href="#"><div class="pe-20 my-3">تخیلی</div></a>
+                   <a href="../html/search.html?id=ا"><div class="pe-20 my-3">تاریخی</div></a>
+                   <a href="../html/search.html?id=ب"><div class="pe-20 my-3">مذهبی</div></a>
+                   <a href="../html/search.html?id=ت"><div class="pe-20 my-3">تخیلی</div></a>
                 </div>
                 </div>
                 دسته بندی<img class="w-3 ms-1 inline" src="${dot}./img/arrow.png" alt="" /></div>

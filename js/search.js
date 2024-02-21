@@ -1,7 +1,7 @@
 const $ = document;
 import {divNextHeader} from "../components/templatNextHeader/divNextHeader.js";
 customElements.define("div-next-header", divNextHeader);
-import {containerProduct, addToLove} from "./export.js";
+import {containerProduct, addToLove, fastShow} from "./export.js";
 import {CreateDivMahsol} from "./Create-Div-Mahsol.js";
 let api = await fetch("https://bookshop-backend.liara.run/api/v1/books");
 let arrBook = await api.json();
@@ -42,3 +42,4 @@ let btnLove = $.querySelectorAll(".love");
 let arrLove = [];
 arrLove = JSON.parse(localStorage.getItem("love"));
 btnLove.forEach((item) => (item.onclick = () => addToLove(arrLove, item)));
+fastShow(".");

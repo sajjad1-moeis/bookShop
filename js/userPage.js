@@ -1,5 +1,5 @@
 const $ = document;
-import {CreateDivsPanel, moreDivCreatePanel, CheckAuth, setUiUser, funcLogOut} from "./export.js";
+import {CreateDivsPanel, moreDivCreatePanel, CheckAuth, setUiUser, funcLogOut, fastShow} from "./export.js";
 let div = [
   {title: "پیشخوان", href: "../html/userPage.html?id=pishkhan"},
   {title: "تیکت ها", href: "../html/userPage.html?id=tiket"},
@@ -405,3 +405,5 @@ let arrMahsol = [];
 arrMahsol = JSON.parse(localStorage.getItem("mahsol"));
 
 btnMahsol.forEach((item) => (item.onclick = () => containerProduct(arrMahsol, item)));
+
+fastShow(".");

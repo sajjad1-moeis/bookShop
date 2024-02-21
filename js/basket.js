@@ -3,7 +3,7 @@ const $ = document;
 import {divNextHeader} from "../components/templatNextHeader/divNextHeader.js";
 import {CreateDivMahsol} from "./Create-Div-Mahsol.js";
 import {countBasket} from "./Header-Site.js";
-import {addToLove} from "./export.js";
+import {addToLove, fastShow} from "./export.js";
 customElements.define("div-next-header", divNextHeader);
 
 let api = await fetch("https://bookshop-backend.liara.run/api/v1/books");
@@ -219,3 +219,4 @@ btnLove.forEach((item) => {
     addToLove(arrBookUser, item);
   };
 });
+fastShow(".");
