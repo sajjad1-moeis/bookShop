@@ -196,6 +196,7 @@ function addToLove(arrBookUser, btn) {
       toast.onmouseleave = Swal.resumeTimer;
     },
   });
+  console.log(btn.parentElement);
   let idMahsol = btn.parentElement.dataset.num;
   console.log(idMahsol);
   fetch(`https://bookshop-backend.liara.run/api/v1/books/${idMahsol}`, {
@@ -218,10 +219,19 @@ function addToLove(arrBookUser, btn) {
     .catch((err) => {});
 }
 
+const fastShow = () => {
+  document.querySelectorAll(".fastShow").forEach((btn) => {
+    btn.onclick = () => {
+      let id = btn.parentElement.dataset.num;
+      location.href = `../html/fastShow.html?id=${id}`;
+    };
+  });
+};
+
 const empityLocal = () => {
   let localMahsol = JSON.parse(localStorage.getItem("mahsol"));
   localMahsol === null ? localStorage.setItem("mahsol", JSON.stringify([])) : undefined;
   let localLove = JSON.parse(localStorage.getItem("love"));
   localLove === null ? localStorage.setItem("love", JSON.stringify([])) : undefined;
 };
-export {CreateDivsPanel, moreDivCreatePanel, CheckAuth, setUiUser, funcLogOut, containerProduct, empityLocal, addToLove};
+export {CreateDivsPanel, moreDivCreatePanel, CheckAuth, setUiUser, funcLogOut, fastShow, containerProduct, empityLocal, addToLove};

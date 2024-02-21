@@ -1,7 +1,7 @@
 const $ = document;
 
 //////////////////////// import All
-import {empityLocal, addToLove} from "./js/export.js";
+import {empityLocal, addToLove, fastShow} from "./js/export.js";
 import {headerAndIsLogin} from "./js/Header-Site.js";
 import {temp2, temp1} from "./components/temp1/temp1.js";
 import {CreateDivMahsol} from "./js/Create-Div-Mahsol.js";
@@ -145,11 +145,4 @@ searchBookInput.onkeydown = (e) => {
   }
 };
 searchBookBtn.onclick = SerachBook;
-
-$.querySelectorAll(".fastShow").forEach((btn) => {
-  btn.onclick = () => {
-    let id = btn.parentElement.dataset.num;
-    location.href = `../html/fastShow.html?id=${id}`;
-    console.log();
-  };
-});
+fastShow();
