@@ -548,7 +548,7 @@ function ItemDivUserAndAdmin(email, id, admin) {
     <div class="h-max my-auto md:text-xl w-[100px] md:w-max">${email}</div>
     <div class="justify-end my-3 md:my-0 flex gap-2" data-id="${id}">
       <div class="p-2 md:p-3 cursor-pointer bg-blue-600 md:text-base text-sm rounded w-max ${admin ? "closeAdmin" : "addAdmin"}">${admin ? "لغو ادمینی" : "ادد ادمین"}</div>
-      <div class="p-2 md:p-3 cursor-pointer bg-danger md:text-base text-sm rounded w-max deleteUser">${admin ? "حذف ادمین" : "حذف کاربر"}</div>
+      <div class="p-2 md:p-3 cursor-pointer bg-danger md:text-base text-sm rounded w-max ${admin ? "hidden" : "deleteUser"} "> حذف کاربر</div>
     </div>
   </div>
 </div>`;
